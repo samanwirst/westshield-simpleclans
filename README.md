@@ -1,85 +1,55 @@
-[![SimpleClans Logo](https://i.imgur.com/9vgfVdX.png)](https://www.spigotmc.org/resources/simpleclans.71242/)
+# WIUT SimpleClans
 
-SimpleClans
-==========
+An unofficial, GPL-3.0 fork of [RoinujNosde/SimpleClans](https://github.com/RoinujNosde/SimpleClans), based on release 2.19.2 (`05e7abccbdd46339691b9a01eae84caae817b3ef`). The WIUT build targets **Purpur 26.2 build 2633 and Java 25**.
 
-Full featured clan system for PVP Minecraft Servers!
+## Changes
 
-[![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.roinujnosde.me%2Fjob%2FSimpleClans%2F)](https://ci.roinujnosde.me/job/SimpleClans/)
-[![Spiget Downloads](https://img.shields.io/spiget/downloads/71242)](https://www.spigotmc.org/resources/simpleclans.71242/)
-[![Issues](https://img.shields.io/github/issues/RoinujNosde/SimpleClans.svg)](https://github.com/RoinujNosde/SimpleClans/issues)
-[![Crowdin](https://badges.crowdin.net/simpleclans/localized.svg)](https://crowdin.com/project/simpleclans)
-[![Discord](https://img.shields.io/discord/719557355917934613?label=discord&logo=discord)](https://discord.gg/CkNwgdE)
-[![bStats Servers](https://img.shields.io/bstats/servers/7131)](https://bstats.org/plugin/bukkit/SimpleClans/7131)
-[![bStats Players](https://img.shields.io/bstats/players/7131)](https://bstats.org/plugin/bukkit/SimpleClans/7131)
+- Read the player's locale through the supported Paper API, replacing old ACF reflection against a removed Minecraft field.
+- Create clan permission attachments immediately for newly created clans. Clan group permissions no longer require a reload or reconnect.
+- Provide a small configuration and player permission allowlist for clan names, membership and GriefPrevention trust.
 
+The clan data model and existing SQLite persistence remain upstream SimpleClans. This is a targeted compatibility fork, not an upstream release.
 
-#### Download Link
+## Claim access
 
-* [Download from Spigot](https://www.spigotmc.org/resources/simpleclans.71242/)
+Enable `permissions.auto-group-groupname: true`. Members receive the live permission `group.<tag>`. Use GriefPrevention's normal trust commands while standing in an owned claim:
 
-#### Documentation 
-
-* [Documentation](https://simpleclans.gitbook.io/simpleclans/)
-* Commands & Permissions
-  * [Permissions](https://simpleclans.gitbook.io/simpleclans/commands-and-permissions/permissions)
-  * [Commands](https://simpleclans.gitbook.io/simpleclans/commands-and-permissions/commands)
-  * [Clan Alliances and Rivalries](https://simpleclans.gitbook.io/simpleclans/commands-and-permissions/aliances-and-rivalries)
-  * [Clan Ranks with Permissions](https://simpleclans.gitbook.io/simpleclans/commands-and-permissions/ranks-with-permissions)
-* How to Setup
-  * [Configuration](https://simpleclans.gitbook.io/simpleclans/how-to-setup/configuration)
-  * [Translation](https://simpleclans.gitbook.io/simpleclans/how-to-setup/translation)
-  * [Clan Member Fee](https://simpleclans.gitbook.io/simpleclans/how-to-setup/member-fee)
-  * [Clan Upkeep](https://simpleclans.gitbook.io/simpleclans/how-to-setup/clan-upkeep)
-  * [Clan name above players head](https://simpleclans.gitbook.io/simpleclans/how-to-setup/clan-below-players-name)
-  * [Clan name on Tablist](https://simpleclans.gitbook.io/simpleclans/how-to-setup/clan-on-tablist)
-* Plugins & Development 
-  * [SimpleClans API Example](https://simpleclans.gitbook.io/simpleclans/other/simpleclans-api)
-  * [PlaceholderAPI Placeholders](https://simpleclans.gitbook.io/simpleclans/other/placeholderapi-support)
-  * [Land Protection Plugins](https://simpleclans.gitbook.io/simpleclans/other/land-claims)
-  
-#### Support & Suggestions
-
-* [Discord Support](https://discord.gg/CkNwgdE)
-* [Bugs and Suggestions](https://github.com/RoinujNosde/SimpleClans/issues)
-
-
-#### Developers
-
-Including SimpleClans with Maven:
-```xml
-<repositories>
-    <repository>
-        <id>roinujnosde-repo</id>
-        <url>https://repo.roinujnosde.me/releases/</url>
-    </repository>
-</repositories>
-```
-```xml
-<dependencies>
-    <dependency>
-        <groupId>net.sacredlabyrinth.phaed.simpleclans</groupId>
-        <artifactId>SimpleClans</artifactId>
-        <version>2.18.1</version> <!-- You can find the latest version at the bottom -->
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
+```text
+/trust [group.wiut]
+/containertrust [group.wiut]
+/accesstrust [group.wiut]
+/untrust [group.wiut]
+/trustlist
 ```
 
-Using Gradle:
-```groovy
-repositories {
-    maven {
-        url  "https://repo.roinujnosde.me/releases/" 
-    }
-}
-dependencies {
-    compileOnly "net.sacredlabyrinth.phaed.simpleclans:SimpleClans:2.18.1"
-}
+This can target the owner's clan or a different selected clan. Leaving, exclusion and disbanding remove the clan permission; an independently granted personal trust remains independent.
+
+The example disables SimpleClans land sharing (`war-and-protection.land-sharing: false`): GriefPrevention remains responsible for permission decisions. This avoids an additional plugin uncancelling block or inventory events. GriefPrevention can be enabled only in a creative world through its existing per-world configuration.
+
+Clan trust is keyed by the tag. Recreating a clan under the same tag matches existing trust entries for that tag. Remove obsolete entries with `/untrust [group.tag]` when retiring a tag. This fork does not introduce immutable clan IDs or migrate existing claim identities.
+
+## Configuration and verification
+
+See [WIUT setup](wiut/SETUP.md), [player guide](wiut/PLAYER_GUIDE_RU.md) and [test scope](wiut/tests/README.md).
+
+The tested stack includes AuthMe, Geyser/Floodgate, Multiverse-Inventories, GriefPrevention and the existing WIUT creative-world transition plugin. Headless Java protocol checks do not establish physical Java/Bedrock GUI, mobile input or voice support. Recorded evidence identifies the tested versions and remaining checks.
+
+## Build
+
+The supported WIUT build is a deterministic class overlay over the pinned upstream distribution. Unchanged classes/resources retain the upstream implementation; changed source is included in this repository. The original Maven project is retained for upstream history, while the WIUT changes use the build below.
+
+Requirements: Python 3, the tested OpenJDK 27 compiler with `--release 25`, and the `libraries` directory populated by Purpur 26.2 build 2633. Only four API libraries are required; their exact paths and hashes are in `wiut/server-libraries.sha256.json`.
+
+```sh
+python3 wiut/build.py --server-libraries /path/to/purpur-26.2/libraries
 ```
 
-Feel free to learn our [Javadoc](https://ci.roinujnosde.me/job/SimpleClans/Javadoc/).
-##### Latest version:
-[![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.roinujnosde.me%2Freleases%2Fnet%2Fsacredlabyrinth%2Fphaed%2Fsimpleclans%2FSimpleClans%2Fmaven-metadata.xml)](https://repo.roinujnosde.me/#/releases/net/sacredlabyrinth/phaed/simpleclans/SimpleClans)
-##### API Examples
-* [Examples of how to use the API](https://simpleclans.gitbook.io/simpleclans/other/simpleclans-api)
+The script downloads three public, hash-pinned compile dependencies when missing. Vault is a compile-only API dependency; the example runtime configuration does not require installing Vault.
+
+Output: `wiut/SimpleClans-2.19.2-wiut.1.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup.
+
+The inherited upstream publishing workflows are archived under `wiut/upstream-workflows`; they are not enabled for this fork.
+
+## License and attribution
+
+[GPL-3.0](LICENSE). Original authors and embedded dependency notices are retained. See [upstream README](README_UPSTREAM.md) for the original project and documentation.

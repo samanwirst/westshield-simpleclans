@@ -1,0 +1,15 @@
+# Run from the LuckPerms server console.
+lp group default permission set simpleclans.* false
+lp group default permission set simpleclans.anyone.list true
+lp group default permission set simpleclans.anyone.profile true
+lp group default permission set simpleclans.anyone.roster true
+lp group default permission set simpleclans.anyone.lookup true
+lp group default permission set simpleclans.leader.create true
+lp group default permission set simpleclans.leader.invite true
+lp group default permission set simpleclans.leader.kick true
+lp group default permission set simpleclans.leader.disband true
+lp group default permission set simpleclans.member.can-join true
+lp group default permission set simpleclans.member.profile true
+lp group default permission set simpleclans.member.roster true
+lp group default permission set simpleclans.member.lookup true
+lp group default permission set simpleclans.member.resign true

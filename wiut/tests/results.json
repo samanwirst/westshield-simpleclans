@@ -1,0 +1,246 @@
+{
+  "checked_at": "2026-10-17T12:25:35.162516+00:00",
+  "status": "passed",
+  "plugin_version": "2.19.2-wiut.1",
+  "sha256": "1495116c05da32669deebcae6bfa41076b848cdd70c06d71cb83dec8a14089fd",
+  "engine": "Purpur 26.2 build 2633",
+  "runtime": "Java 25",
+  "compiler": "javac 27",
+  "connected_test_accounts": 3,
+  "operator_players": 0,
+  "full_stack_checks": [
+    {
+      "check": "WIUT SimpleClans fork loads on Purpur 26.2 with GriefPrevention 16.18.7",
+      "passed": true
+    },
+    {
+      "check": "AuthMe blocks clan creation before login",
+      "passed": true
+    },
+    {
+      "check": "Three ordinary non-OP players log in and enter creative",
+      "passed": true
+    },
+    {
+      "check": "Ordinary owner creates a creative claim",
+      "passed": true
+    },
+    {
+      "check": "Owner places a real block through the client protocol",
+      "passed": true
+    },
+    {
+      "check": "Owner breaks a real block through the client protocol",
+      "passed": true
+    },
+    {
+      "check": "Outsider cannot place a real block",
+      "passed": true
+    },
+    {
+      "check": "Outsider cannot break a real block",
+      "passed": true
+    },
+    {
+      "check": "Ordinary player creates a named clan with a short tag",
+      "passed": true
+    },
+    {
+      "check": "Invited player joins the clan",
+      "passed": true
+    },
+    {
+      "check": "New clan receives its live group permission immediately, without reload or reconnect",
+      "passed": true
+    },
+    {
+      "check": "Native GriefPrevention grants clan access across the full claim height",
+      "passed": true
+    },
+    {
+      "check": "Clan membership does not grant building in unclaimed creative land",
+      "passed": true
+    },
+    {
+      "check": "Clan member places a real block in the shared claim",
+      "passed": true
+    },
+    {
+      "check": "Clan member breaks a real block in the shared claim",
+      "passed": true
+    },
+    {
+      "check": "Clan member opens a real claimed chest",
+      "passed": true
+    },
+    {
+      "check": "Outsider cannot open the claimed chest",
+      "passed": true
+    },
+    {
+      "check": "Sharing with the clan does not admit an outsider",
+      "passed": true
+    },
+    {
+      "check": "Member leaves the clan",
+      "passed": true
+    },
+    {
+      "check": "Leaving the clan immediately removes native build access",
+      "passed": true
+    },
+    {
+      "check": "Rejoining restores clan access",
+      "passed": true
+    },
+    {
+      "check": "Leader excludes a member",
+      "passed": true
+    },
+    {
+      "check": "Exclusion immediately removes native break access",
+      "passed": true
+    },
+    {
+      "check": "Reconnect requires AuthMe again",
+      "passed": true
+    },
+    {
+      "check": "Clan membership does not allow block placement before AuthMe login",
+      "passed": true
+    },
+    {
+      "check": "Clan membership does not allow block breaking before AuthMe login",
+      "passed": true
+    },
+    {
+      "check": "Clan membership survives reconnect",
+      "passed": true
+    },
+    {
+      "check": "Clan building works while claim owner is offline",
+      "passed": true
+    },
+    {
+      "check": "Owner revokes shared clan access",
+      "passed": true
+    },
+    {
+      "check": "Coordinates, vitals, home teleport, bank and war permissions are disabled",
+      "passed": true
+    },
+    {
+      "check": "A second freshly created clan immediately receives its independent group permission",
+      "passed": true
+    },
+    {
+      "check": "Another clan cannot grant itself access to a foreign claim",
+      "passed": true
+    },
+    {
+      "check": "Owner can grant access to a specifically selected different clan",
+      "passed": true
+    },
+    {
+      "check": "A selected clan can receive container-only access",
+      "passed": true
+    },
+    {
+      "check": "Container-only clan permission does not grant building",
+      "passed": true
+    },
+    {
+      "check": "Clan identity is shared across worlds while claim protection remains creative-only",
+      "passed": true
+    },
+    {
+      "check": "Clan commands preserve survival inventory, Ender Chest and return location",
+      "passed": true
+    },
+    {
+      "check": "Creative inventory and location remain separate after clan operations",
+      "passed": true
+    },
+    {
+      "check": "Clan identity persists after a clean server restart",
+      "passed": true
+    },
+    {
+      "check": "Shared claim access persists after restart",
+      "passed": true
+    },
+    {
+      "check": "Clan permission reattaches after server restart",
+      "passed": true
+    },
+    {
+      "check": "Disbanding the clan removes membership and live group permissions",
+      "passed": true
+    },
+    {
+      "check": "Disbanding the clan removes native block access",
+      "passed": true
+    },
+    {
+      "check": "Supported locale API fixes the old ACF player-language exception",
+      "passed": true
+    }
+  ],
+  "minimal_configuration_checks": [
+    {
+      "check": "Allowlisted create, invite and accept work without broad player permissions",
+      "passed": true
+    },
+    {
+      "check": "Native clan claim access works with the minimal command permissions",
+      "passed": true
+    },
+    {
+      "check": "Unused coordinate, vitals, home, regroup, bank and war permissions are absent",
+      "passed": true
+    },
+    {
+      "check": "Disabled feature commands cannot teleport the player",
+      "passed": true
+    },
+    {
+      "check": "Another real protocol client receives ordinary chat with the clan tag",
+      "passed": true
+    },
+    {
+      "check": "Native chat confirms the disband prompt and revokes group permission",
+      "passed": true
+    },
+    {
+      "check": "A disbanded clan loses claim access under the minimal configuration",
+      "passed": true
+    }
+  ],
+  "total_checks": 51,
+  "unexpected_runtime_error_lines": 0,
+  "known_existing_svg_logging_notice": true,
+  "real_native_packets": [
+    "commands",
+    "block place",
+    "block break",
+    "chest interaction",
+    "ordinary chat",
+    "conversation confirmation"
+  ],
+  "binary_changed_entries": [
+    "net/sacredlabyrinth/phaed/simpleclans/commands/SCCommandManager$1.class",
+    "net/sacredlabyrinth/phaed/simpleclans/commands/SCCommandManager.class",
+    "net/sacredlabyrinth/phaed/simpleclans/managers/PermissionsManager$1.class",
+    "net/sacredlabyrinth/phaed/simpleclans/managers/PermissionsManager.class",
+    "plugin.yml"
+  ],
+  "binary_added_entries": [
+    "META-INF/WIUT-FORK.json",
+    "META-INF/WIUT-SIMPLECLANS-LICENSE.txt",
+    "net/sacredlabyrinth/phaed/simpleclans/acf/WiutPaperCommandManager.class"
+  ],
+  "physical_java_bedrock_gui_checked": false,
+  "physical_voice_checked": false,
+  "production_server_modified": false,
+  "build_reproducibility": "Repeated builds with the same pinned dependencies/compiler produced the same JAR SHA-256."
+}

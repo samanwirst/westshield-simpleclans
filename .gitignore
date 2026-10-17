@@ -8,3 +8,11 @@
 .factorypath
 SimpleClans.iml
 dependency-reduced-pom.xml
+/wiut/classes/
+/wiut/trace-classes/
+__pycache__/
+
+/wiut/tests/integration/test-password.txt
+/wiut/tests/integration/*-results.json
+/wiut/tests/integration/console-*.log
+/wiut/tests/integration/server/

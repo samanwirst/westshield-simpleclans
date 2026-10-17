@@ -103,6 +103,9 @@ public final class PermissionsManager {
         if (clan == null) {
             return;
         }
+        // New clans must receive their permission attachment before any reload.
+        permissions.computeIfAbsent(clan.getTag(), tag -> plugin.getSettingsManager().getConfig()
+                .getStringList("permissions." + tag));
         Player player = cp.toPlayer();
         if (player != null) {
             if (permissions.containsKey(clan.getTag())) {

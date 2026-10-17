@@ -1,0 +1,11 @@
+name: ClanProbe
+version: 1.0.0
+main: com.wiut.clans.ClanProbe
+api-version: '26.2'
+depend: [SimpleClans, GriefPrevention, AuthMe, WiutCreative]
+commands:
+  clanprobe:
+    permission: clanprobe.console
+permissions:
+  clanprobe.console:
+    default: op
