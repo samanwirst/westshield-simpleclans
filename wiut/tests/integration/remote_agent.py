@@ -105,13 +105,14 @@ def close(client):
     except OSError: pass
     client.close()
 
-def drain():
+def drain(include_chat=True):
     result = {}
     for name, client in clients.items():
         messages = client.messages[cursors[name]:]
         cursors[name] = len(client.messages)
-        result[name] = [(kind, str(value)[:1600]) for kind, value in messages[-16:]
+        result[name] = [(kind, str(value)[:1200]) for kind, value in messages[-8:]
                         if kind in {'chat', 'disconnect', 'open-screen', 'clan-chat-raw', 'game'}
+                        and (include_chat or kind != 'chat')
                         and 'WIUTRPC' not in str(value)]
     return result
 
@@ -157,15 +158,14 @@ def perform(action):
 
 try:
     for name in NAMES: connect(name)
-    # One authenticated account carries private log acknowledgements. The other
-    # two remain unauthenticated until the controller explicitly logs them in.
-    first = clients[NAMES[0]]
-    first.command('register ' + PASSWORD + ' ' + PASSWORD)
-    time.sleep(.8)
-    first.command('login ' + PASSWORD)
-    time.sleep(.8)
-    authenticated.add(NAMES[0])
-    emit(0, {'ok': True, 'protocol': protocol, 'messages': drain()})
+    for name in NAMES:
+        client = clients[name]
+        client.command('register ' + PASSWORD + ' ' + PASSWORD)
+        time.sleep(.8)
+        client.command('login ' + PASSWORD)
+        time.sleep(.8)
+        authenticated.add(name)
+    emit(0, {'ok': True, 'protocol': protocol, 'messages': drain(False)})
     print('READY: temporary clients connected; no host credentials loaded.', flush=True)
     last = 0
     started = time.monotonic()
@@ -185,7 +185,7 @@ try:
         last = sequence  # Claim before execution; never repeat an unknown outcome.
         try:
             value = perform(action)
-            result = {'ok': True, 'value': value, 'messages': drain()}
+            result = {'ok': True, 'value': value, 'messages': drain(action['kind'] == 'command')}
         except Exception as error:
             result = {'ok': False, 'error': (type(error).__name__ + ': ' + str(error)).replace(PASSWORD, '<redacted>'), 'messages': drain()}
         emit(sequence, result)
