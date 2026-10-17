@@ -49,6 +49,7 @@ class Capture(io.RawIOBase):
 
 def connect(name):
     global last_connection
+    authenticated.discard(name)
     # Bukkit throttles repeated handshakes from one source IP. Loopback fixtures
     # do not exercise this production rule; retain it and space the test clients.
     time.sleep(max(0, last_connection + 4.5 - time.monotonic()))
@@ -99,7 +100,8 @@ def connect(name):
     for _ in range(120):
         if client.state == 'game':
             client.send(44)
-            time.sleep(.5)
+            # AuthMe also rejects commands sent immediately after joining.
+            time.sleep(3)
             return client
         if client.closed: raise RuntimeError('Client disconnected before game: ' + name + ' ' + str(client.messages[-1:]))
         time.sleep(.1)
