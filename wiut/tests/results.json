@@ -216,7 +216,7 @@
       "passed": true
     }
   ],
-  "total_checks": 51,
+  "total_checks": 58,
   "unexpected_runtime_error_lines": 0,
   "known_existing_svg_logging_notice": true,
   "real_native_packets": [
@@ -225,7 +225,8 @@
     "block break",
     "chest interaction",
     "ordinary chat",
-    "conversation confirmation"
+    "conversation confirmation",
+    "lever interaction"
   ],
   "binary_changed_entries": [
     "net/sacredlabyrinth/phaed/simpleclans/commands/SCCommandManager$1.class",
@@ -242,5 +243,38 @@
   "physical_java_bedrock_gui_checked": false,
   "physical_voice_checked": false,
   "production_server_modified": false,
-  "build_reproducibility": "Repeated builds with the same pinned dependencies/compiler produced the same JAR SHA-256."
+  "build_reproducibility": "Repeated builds with the same pinned dependencies/compiler produced the same JAR SHA-256.",
+  "initial_verification_at": "2026-10-17T12:25:35.162516+00:00",
+  "mechanism_verification_at": "2026-10-17T12:37:28.927697+00:00",
+  "mechanism_permission_checks": [
+    {
+      "check": "Mechanism checks use three authenticated non-OP players",
+      "passed": true
+    },
+    {
+      "check": "A clan member cannot activate a protected lever before permission is granted",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only clan trust permits a native lever interaction",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only clan trust does not grant block placement",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only clan trust does not grant chest access",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only trust does not admit another clan",
+      "passed": true
+    },
+    {
+      "check": "Revoking clan trust immediately removes lever access",
+      "passed": true
+    }
+  ],
+  "original_51_checks_rerun": false
 }

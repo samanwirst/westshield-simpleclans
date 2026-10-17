@@ -1,6 +1,6 @@
 # WIUT verification — 17 October 2026
 
-51 checks passed on the full isolated stack. Three non-OP Java protocol accounts were used. Physical Java/Bedrock GUI and voice remain unverified.
+58 checks passed on the full isolated stack. Three non-OP Java protocol accounts were used. Physical Java/Bedrock GUI and voice remain unverified.
 
 ## Full-stack behavior
 
@@ -59,6 +59,16 @@
 - Native chat confirms the disband prompt and revokes group permission
 - A disbanded clan loses claim access under the minimal configuration
 
+## Separate mechanism permissions
+
+- Mechanism checks use three authenticated non-OP players
+- A clan member cannot activate a protected lever before permission is granted
+- Mechanism-only clan trust permits a native lever interaction
+- Mechanism-only clan trust does not grant block placement
+- Mechanism-only clan trust does not grant chest access
+- Mechanism-only trust does not admit another clan
+- Revoking clan trust immediately removes lever access
+
 ## Build
 
 Plugin SHA-256: `1495116c05da32669deebcae6bfa41076b848cdd70c06d71cb83dec8a14089fd`.
@@ -67,3 +77,5 @@ The original upstream behavior needed two compatibility fixes: public API locale
 The broad land-all command also needs an explicit permission. The reviewed configuration uses native GriefPrevention group trust instead.
 
 Early harness/confirmation attempts are excluded from the passing count. No production server or real player data was modified by these tests.
+
+The additional seven mechanism checks used the identical JAR after transfer. The original 51 checks were retained, not rerun. A preliminary status-listener readiness attempt is excluded from the passing count.
