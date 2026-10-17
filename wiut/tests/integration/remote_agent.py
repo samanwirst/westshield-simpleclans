@@ -164,6 +164,8 @@ try:
         time.sleep(.8)
         client.command('login ' + PASSWORD)
         time.sleep(.8)
+        assert any('success' in str(value).lower() or 'already logged in' in str(value).lower()
+                   for kind, value in client.messages if kind == 'chat'), 'Authentication unconfirmed for ' + name
         authenticated.add(name)
     emit(0, {'ok': True, 'protocol': protocol, 'messages': drain(False)})
     print('READY: temporary clients connected; no host credentials loaded.', flush=True)
