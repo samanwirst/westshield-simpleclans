@@ -1,0 +1,247 @@
+{
+  "checked_at": "2026-10-17T13:26:26.996046+00:00",
+  "status": "passed",
+  "scope": "Main WIUT production server; connected native Java protocol clients without OP, followed by a clean restart and removal of temporary fixtures.",
+  "plugin_version": "2.19.2-wiut.1",
+  "sha256": "1495116c05da32669deebcae6bfa41076b848cdd70c06d71cb83dec8a14089fd",
+  "engine": "Purpur 26.2 build 2633",
+  "runtime": "Java 25",
+  "native_gameplay_checks": 36,
+  "before_restart": [
+    {
+      "check": "Three temporary Java clients connect without OP through the public domain",
+      "passed": true
+    },
+    {
+      "check": "AuthMe blocks clan commands before authentication",
+      "passed": true
+    },
+    {
+      "check": "Authenticated ordinary players enter the creative world",
+      "passed": true
+    },
+    {
+      "check": "Temporary fixture occupies untouched flat terrain",
+      "passed": true
+    },
+    {
+      "check": "Ordinary owner creates a full-height creative claim",
+      "passed": true
+    },
+    {
+      "check": "Untrusted outsider cannot place blocks in the claim",
+      "passed": true
+    },
+    {
+      "check": "Clan creation, invitation and acceptance work for ordinary players",
+      "passed": true
+    },
+    {
+      "check": "New clan membership immediately grants shared construction",
+      "passed": true
+    },
+    {
+      "check": "Clan trust grants native chest access",
+      "passed": true
+    },
+    {
+      "check": "Another clan cannot open the shared chest",
+      "passed": true
+    },
+    {
+      "check": "Leaving a clan immediately removes build access",
+      "passed": true
+    },
+    {
+      "check": "Rejoining immediately restores clan access",
+      "passed": true
+    },
+    {
+      "check": "Exclusion immediately removes clan access",
+      "passed": true
+    },
+    {
+      "check": "Owner can explicitly share the claim with another selected clan",
+      "passed": true
+    },
+    {
+      "check": "Revoking selected foreign-clan trust immediately blocks building",
+      "passed": true
+    },
+    {
+      "check": "Container-only clan trust permits native chest access",
+      "passed": true
+    },
+    {
+      "check": "Container-only clan trust does not grant construction",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only clan trust permits a native lever interaction",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only clan trust does not grant construction",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only clan trust does not grant chest access",
+      "passed": true
+    },
+    {
+      "check": "Mechanism-only trust excludes other clans",
+      "passed": true
+    },
+    {
+      "check": "Revocation immediately removes native lever access",
+      "passed": true
+    },
+    {
+      "check": "Clan members retain shared access while the owner is offline",
+      "passed": true
+    }
+  ],
+  "after_restart": [
+    {
+      "check": "Clan membership survives the clean production restart",
+      "passed": true
+    },
+    {
+      "check": "Shared clan claim survives the clean production restart",
+      "passed": true
+    },
+    {
+      "check": "Fresh authenticated sessions regain persisted clan construction rights",
+      "passed": true
+    },
+    {
+      "check": "Persisted claim still excludes a different clan",
+      "passed": true
+    },
+    {
+      "check": "Disabled clan feature commands cannot teleport ordinary players",
+      "passed": true
+    },
+    {
+      "check": "Another connected client receives ordinary chat with the clan tag",
+      "passed": true
+    },
+    {
+      "check": "Survival inventory and experience remain preserved on production",
+      "passed": true
+    },
+    {
+      "check": "Survival return preserves the saved location",
+      "passed": true
+    },
+    {
+      "check": "Clan membership is shared between survival and creative",
+      "passed": true
+    },
+    {
+      "check": "Creative inventory remains separate from survival",
+      "passed": true
+    },
+    {
+      "check": "Disbanding immediately revokes persisted claim access",
+      "passed": true
+    },
+    {
+      "check": "Temporary test claim is removed after verification",
+      "passed": true
+    },
+    {
+      "check": "Temporary block fixture is restored to air",
+      "passed": true
+    }
+  ],
+  "service_and_configuration_checks": [
+    {
+      "check": "Main server is running after the final clean startup",
+      "passed": true
+    },
+    {
+      "check": "WIUT SimpleClans release loads on the main server",
+      "passed": true
+    },
+    {
+      "check": "Final startup contains no unexpected runtime errors",
+      "passed": true
+    },
+    {
+      "check": "Installed JAR matches the tested public release checksum",
+      "passed": true
+    },
+    {
+      "check": "No observer or test plugin is installed on production",
+      "passed": true
+    },
+    {
+      "check": "Exactly one active SimpleClans JAR is installed",
+      "passed": true
+    },
+    {
+      "check": "Existing configuration preserved: /plugins/AuthMe/config.yml",
+      "passed": true
+    },
+    {
+      "check": "Existing configuration preserved: /plugins/Multiverse-Inventories/groups.yml",
+      "passed": true
+    },
+    {
+      "check": "Existing configuration preserved: /commands.yml",
+      "passed": true
+    },
+    {
+      "check": "Existing creative-only claim protection remains unchanged",
+      "passed": true
+    },
+    {
+      "check": "Existing backups include clan data and LuckPerms permissions",
+      "passed": true
+    },
+    {
+      "check": "All temporary test identities removed from the whitelist",
+      "passed": true
+    },
+    {
+      "check": "Original invited players remain whitelisted",
+      "passed": true
+    },
+    {
+      "check": "Creative travel and inventory isolation are ready",
+      "passed": true
+    },
+    {
+      "check": "End lock, locator policy and survival borders remain active",
+      "passed": true
+    },
+    {
+      "check": "No conflicting inventory groups",
+      "passed": true
+    },
+    {
+      "check": "Analytics, voice page and map return HTTP 200",
+      "passed": true
+    },
+    {
+      "check": "Native production gameplay checks passed",
+      "passed": true
+    },
+    {
+      "check": "Persistence and fixture cleanup checks passed",
+      "passed": true
+    }
+  ],
+  "temporary_access_removed": true,
+  "host_credentials_shared_with_runner": false,
+  "observer_plugin_deployed": false,
+  "physical_java_bedrock_gui_checked": false,
+  "physical_voice_checked": false,
+  "diagnostic_qualifications": [
+    "Earlier transport and harness attempts were retained privately and are excluded from the passing count.",
+    "The harness was corrected for panel timeouts, password length, console echo/ANSI parsing and existing connection/AuthMe admission delays.",
+    "The 23 accepted pre-restart checks and 13 post-restart checks form separate recorded stages; an interrupted reconnect does not count as a successful test.",
+    "No additional production plugin code changes were required after the published release."
+  ]
+}
