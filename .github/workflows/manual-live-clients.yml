@@ -1,0 +1,39 @@
+name: Manual live protocol clients
+
+on:
+  workflow_dispatch:
+    inputs:
+      control_url:
+        description: Temporary read-only HTTPS control document
+        required: true
+        type: string
+      names:
+        description: JSON array of three explicitly whitelisted temporary names
+        required: true
+        type: string
+      beacon:
+        description: Unique diagnostic marker
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  clients:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      WIUT_CONTROL_URL: ${{ inputs.control_url }}
+      WIUT_NAMES: ${{ inputs.names }}
+      WIUT_BEACON: ${{ inputs.beacon }}
+      WIUT_TEST_PASSWORD: ${{ secrets.WIUT_LIVE_TEST_PASSWORD }}
+    steps:
+      - name: Run temporary non-OP Java protocol clients
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch wiut-26.2 https://github.com/samanwirst/wiut-simpleclans.git source
+          python3 -m venv /tmp/wiut-clients
+          /tmp/wiut-clients/bin/pip install nbtlib==2.0.4 requests==2.34.2
+          /tmp/wiut-clients/bin/python source/wiut/tests/integration/remote_agent.py
