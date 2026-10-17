@@ -34,6 +34,7 @@ clients = {}
 cursors = {}
 authenticated = set()
 last_command = {}
+last_connection = 0
 protocol = status('wiut.minecraft.surf', 25565)['version']['protocol']
 
 class Capture(io.RawIOBase):
@@ -47,6 +48,11 @@ class Capture(io.RawIOBase):
     def close(self): self.stream.close()
 
 def connect(name):
+    global last_connection
+    # Bukkit throttles repeated handshakes from one source IP. Loopback fixtures
+    # do not exercise this production rule; retain it and space the test clients.
+    time.sleep(max(0, last_connection + 4.5 - time.monotonic()))
+    last_connection = time.monotonic()
     client = Client('wiut.minecraft.surf', 25565, name, protocol, virtual_host='wiut.minecraft.surf')
     original_send = client.send
     lock = threading.RLock()
@@ -95,7 +101,7 @@ def connect(name):
             client.send(44)
             time.sleep(.5)
             return client
-        if client.closed: raise RuntimeError('Client disconnected before game: ' + name)
+        if client.closed: raise RuntimeError('Client disconnected before game: ' + name + ' ' + str(client.messages[-1:]))
         time.sleep(.1)
     raise TimeoutError('Game session not confirmed')
 
