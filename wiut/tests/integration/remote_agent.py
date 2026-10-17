@@ -190,7 +190,9 @@ try:
             result = {'ok': False, 'error': (type(error).__name__ + ': ' + str(error)).replace(PASSWORD, '<redacted>'), 'messages': drain()}
         emit(sequence, result)
         print(f'Observed sequence {sequence}: {action["kind"]}; success={result["ok"]}', flush=True)
-        if action['kind'] == 'close': close(clients[action['name']])
+        if action['kind'] == 'close':
+            close(clients[action['name']])
+            if all(client.closed for client in clients.values()): break
         if action['kind'] == 'finish': break
 finally:
     for client in clients.values():
