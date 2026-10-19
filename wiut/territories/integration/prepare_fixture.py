@@ -43,8 +43,8 @@ geyser['bedrock'].update({'address':'127.0.0.1','port':25602,'clone-remote-port'
 if 'remote' in geyser:
     geyser['remote'].update({'address':'127.0.0.1','port':25601})
 geyser_path.write_text(yaml.safe_dump(geyser,allow_unicode=True,sort_keys=False))
-clan=base.parent.parent/'SimpleClans-2.19.2-wiut.2.jar'
-territory=base.parent/'WiutClanTerritories-1.0.0.jar'
+clan=base.parent.parent/'SimpleClans-2.19.2-wiut.3.jar'
+territory=base.parent/'WiutClanTerritories-1.0.1.jar'
 for jar in [clan,territory]: shutil.copy2(jar,target/'plugins')
 (target/'plugins/SimpleClans').mkdir(exist_ok=True)
 shutil.copy2(base.parent.parent/'config/simpleclans.yml',target/'plugins/SimpleClans/config.yml')

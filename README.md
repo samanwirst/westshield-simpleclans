@@ -7,6 +7,7 @@ An unofficial, GPL-3.0 fork of [RoinujNosde/SimpleClans](https://github.com/Roin
 - Read the player's locale through the supported Paper API, replacing old ACF reflection against a removed Minecraft field.
 - Create clan permission attachments immediately for newly created clans. Clan group permissions no longer require a reload or reconnect.
 - Provide a small configuration and player permission allowlist for clan names, membership and GriefPrevention trust.
+- Use English for direct and interactive creation authority errors.
 - Restrict new clan creation to `wiutclans.admin` (operators by default), including permission revalidation after an interactive conversation.
 - Keep deferred clan saves distinct by object identity and discard disbanded instances, so recreating a tag cannot restore the previous clan's data during a later save or shutdown.
 - Provide the separate [WiutClanTerritories](wiut/territories/README.md) plugin for administrator-selected, concave polygons and entry/exit actionbars. Its territories do not protect land.
@@ -33,7 +34,7 @@ Clan trust is keyed by the tag. Recreating a clan under the same tag matches exi
 
 ## Configuration and verification
 
-See [WIUT setup](wiut/SETUP.md), [player guide](wiut/PLAYER_GUIDE_RU.md) and [test scope](wiut/tests/README.md).
+See [WIUT setup](wiut/SETUP.md), [English player guide](wiut/PLAYER_GUIDE_EN.md) and [test scope](wiut/tests/README.md).
 
 The tested stack includes AuthMe, Geyser/Floodgate, Multiverse-Inventories, GriefPrevention and the existing WIUT creative-world transition plugin. Headless Java protocol checks do not establish physical Java/Bedrock GUI, mobile input or voice support. Recorded evidence identifies the tested versions and remaining checks.
 
@@ -49,10 +50,12 @@ python3 wiut/build.py --server-libraries /path/to/purpur-26.2/libraries
 
 The script downloads three public, hash-pinned compile dependencies when missing. Vault is a compile-only API dependency; the example runtime configuration does not require installing Vault.
 
-Output: `wiut/SimpleClans-2.19.2-wiut.2.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup. The optional territory plugin has its own build and artifact; see its README.
+Output: `wiut/SimpleClans-2.19.2-wiut.3.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup. The optional territory plugin has its own build and artifact; see its README.
 
 The inherited upstream publishing workflows are archived under `wiut/upstream-workflows`; they are not enabled for this fork.
 
 ## License and attribution
 
 [GPL-3.0](LICENSE). Original authors and embedded dependency notices are retained. See [upstream README](README_UPSTREAM.md) for the original project and documentation.
+
+The current English server presentation and adapter build instructions are in [wiut/english/README.md](wiut/english/README.md), with an [English player guide](wiut/PLAYER_GUIDE_EN.md).

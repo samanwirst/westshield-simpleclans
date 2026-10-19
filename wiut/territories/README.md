@@ -1,6 +1,6 @@
 # Informational clan territories
 
-WiutClanTerritories 1.0.0 adds world-specific polygon labels to the WIUT SimpleClans 2.19.2-wiut.2 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration.
+WiutClanTerritories 1.0.1 adds world-specific polygon labels to the WIUT SimpleClans 2.19.2-wiut.3 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration.
 
 The territory has no protection policy. Entry and exit send a brief standard Minecraft actionbar with the current clan name. Building, breaking, containers, PvP and ordinary interaction continue under the existing server rules. This plugin never uncancels another plugin's decisions. Its only block-break cancellation is for an authenticated administrator holding the explicitly tagged selection wand, to prevent the wand from breaking a selected block.
 
@@ -30,7 +30,7 @@ The selected player must not already belong to a clan. Tags and names follow the
 
 Any six-digit RGB color is accepted. The native SimpleClans colored tag is the single persisted source of truth: the Java chat prefix, territory fill, boundary and permanent name label derive from it. Existing legacy colors remain supported. Invalid colors and non-admin changes are rejected. The same tag, membership and creative trust identities are retained.
 
-For each public BlueMap map, the plugin publishes the world's exact polygon vertices under the `wiut-clans` marker set, labeled `Территории кланов`. Fill opacity is 18%; a readable permanent clan-name label is anchored inside the polygon, including concave outlines whose geometric centroid might be outside. Areas in dimensions with no existing public map are not published onto another dimension's map. Changes, renames, reassignment and disbanding update the layer automatically.
+For each public BlueMap map, the plugin publishes the world's exact polygon vertices under the `wiut-clans` marker set, labeled `Clan territories`. Fill opacity is 18%; a readable permanent clan-name label is anchored inside the polygon, including concave outlines whose geometric centroid might be outside. Areas in dimensions with no existing public map are not published onto another dimension's map. Changes, renames, reassignment and disbanding update the layer automatically.
 
 Install `web/wiut-clans-v1.js` and `web/wiut-clans-v1.css` in BlueMap's web root and append those files to the existing `scripts` and `styles` arrays in `plugins/BlueMap/webapp.conf`. Keep the existing `wiut-map-v3` files and entries. The dedicated checkbox is available even before the first territory exists, saves the visitor's preference, follows map changes and stays synchronized with BlueMap's native layer switch. It changes only the clan layer. Current hidden player/coordinate settings, flat view, daylight and disabled coordinate-click popup remain in place.
 
@@ -72,11 +72,11 @@ python3 wiut/territories/build.py --server-root /path/to/prepared-purpur-server
 python3 wiut/territories/check_geometry.py --server-root /path/to/prepared-purpur-server
 ```
 
-Output: `wiut/territories/WiutClanTerritories-1.0.0.jar` and SHA-256. The supplied server root must contain its `libraries`, AuthMe and BlueMap 5.29 JARs. JTS 1.20.0 is downloaded from Maven Central only if missing and checked against the committed SHA-256 lock; its classes and tagged upstream license files are embedded. No runtime download is needed. Custom source is covered by the fork's GPL-3.0; JTS retains its Eclipse licenses/notices.
+Output: `wiut/territories/WiutClanTerritories-1.0.1.jar` and SHA-256. The supplied server root must contain its `libraries`, AuthMe and BlueMap 5.29 JARs. JTS 1.20.0 is downloaded from Maven Central only if missing and checked against the committed SHA-256 lock; its classes and tagged upstream license files are embedded. No runtime download is needed. Custom source is covered by the fork's GPL-3.0; JTS retains its Eclipse licenses/notices.
 
 ## Verification
 
-The accepted checkpoint is recorded in [VERIFICATION.md](VERIFICATION.md), with 22 geometry, 48 native and 25 browser checks. It retains the earlier failed-attempt qualifications and physical-client limits.
+The current English presentation is recorded in [../english/README.md](../english/README.md). The original territory checkpoint is recorded in [VERIFICATION.md](VERIFICATION.md), with 22 geometry, 48 native and 25 browser checks. It retains the earlier failed-attempt qualifications and physical-client limits.
 
 The standalone checks cover concavity, both winding orders, inclusive boundaries, invalid outlines, positive-area overlap, shared edges, exact persistence, world isolation, disk failures and a saved/reloaded 10,000-vertex polygon.
 

@@ -22,7 +22,7 @@ for name, entry in json.loads((dependencies / 'lock.json').read_text()).items():
             path.write_bytes(response.read())
     if hashlib.sha256(path.read_bytes()).hexdigest() != entry['sha256']:
         raise SystemExit('Dependency hash mismatch: ' + name)
-clan = BASE.parent / 'SimpleClans-2.19.2-wiut.2.jar'
+clan = BASE.parent / 'SimpleClans-2.19.2-wiut.3.jar'
 if not clan.exists():
     raise SystemExit('Build SimpleClans wiut.2 first')
 auth = list((server / 'plugins').glob('AuthMe*.jar'))
@@ -54,11 +54,11 @@ entries['META-INF/WIUT-LICENSE.txt'] = (FORK / 'LICENSE').read_bytes()
 for path in dependencies.glob('JTS-*'):
     entries['META-INF/'+path.name] = path.read_bytes()
 entries['META-INF/WIUT-BUILD.json'] = json.dumps({
-    'name': 'WiutClanTerritories', 'version': '1.0.0', 'java_release': 25,
+    'name': 'WiutClanTerritories', 'version': '1.0.1', 'java_release': 25,
     'server': 'Purpur 26.2 build 2633', 'jts': json.loads((dependencies/'lock.json').read_text()),
     'protection': False, 'fixed_vertex_limit': None,
 }, indent=2).encode()
-output = BASE / 'WiutClanTerritories-1.0.0.jar'
+output = BASE / 'WiutClanTerritories-1.0.1.jar'
 with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as target:
     for name, data in sorted(entries.items()):
         item = zipfile.ZipInfo(name, (2026, 10, 20, 0, 0, 0))

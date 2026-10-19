@@ -88,7 +88,7 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
     public void onPreCreate(PreCreateClanEvent event) {
         if (!admin(event.getPlayer())) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage("Создавать кланы может только вошедший администратор.");
+            event.getPlayer().sendMessage("Only an authenticated administrator can create clans.");
         }
     }
 
@@ -96,7 +96,7 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
     public void onTagChange(TagChangeEvent event) {
         if (!admin(event.getPlayer())) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage("Цвет и оформление клана меняет администрация.");
+            event.getPlayer().sendMessage("Only administrators can change clan colors and tag formatting.");
         }
     }
 
@@ -129,29 +129,29 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
     private void addPoint(Player player, Location location) {
         Selection selection = selections.computeIfAbsent(player.getUniqueId(),ignored -> new Selection(location));
         if (!selection.world.equals(location.getWorld().getUID())) {
-            throw new IllegalArgumentException("Все вершины должны быть в одном мире. /cterr clear — начать заново.");
+            throw new IllegalArgumentException("All vertices must be in the same world. Use /cterr clear to start again.");
         }
         Vertex point = new Vertex(location.getBlockX(),location.getBlockZ());
         if (!selection.points.isEmpty() && selection.points.getFirst().equals(point) && selection.points.size() >= 3) {
-            player.sendMessage("Последняя вершина соединится с первой автоматически. Сохранить: /cterr save <тег> <id>.");
+            player.sendMessage("The last vertex connects to the first automatically. Save: /cterr save <tag> <id>.");
             return;
         }
-        if (selection.points.contains(point)) throw new IllegalArgumentException("Эта вершина уже выбрана.");
+        if (selection.points.contains(point)) throw new IllegalArgumentException("This vertex is already selected.");
         selection.points.add(point);
         player.spawnParticle(Particle.END_ROD,location.clone().add(.5,1.1,.5),6,.15,.2,.15,0);
-        player.sendMessage("Вершина " + selection.points.size() + " добавлена. ПКМ или /cterr undo — отменить.");
+        player.sendMessage("Vertex " + selection.points.size() + " added. Right click or /cterr undo to undo.");
     }
 
     private void undo(Player player) {
         Selection selection = selections.get(player.getUniqueId());
-        if (selection == null || selection.points.isEmpty()) { player.sendMessage("Выбранных вершин нет.");return; }
+        if (selection == null || selection.points.isEmpty()) { player.sendMessage("No vertices selected.");return; }
         selection.points.removeLast();
-        player.sendMessage("Последняя вершина отменена. Осталось: " + selection.points.size() + ".");
+        player.sendMessage("Last vertex removed. Remaining: " + selection.points.size() + ".");
     }
 
     private Clan requireClan(String tag) {
         Clan clan = clans.getClanManager().getClan(tag);
-        if (clan == null) throw new IllegalArgumentException("Клан с таким тегом не найден.");
+        if (clan == null) throw new IllegalArgumentException("No clan found with that tag.");
         return clan;
     }
 
@@ -166,20 +166,20 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
 
     private Territory requireTerritory(String id) {
         Territory territory = store.get(id);
-        if (territory == null) throw new IllegalArgumentException("Территория не найдена.");
+        if (territory == null) throw new IllegalArgumentException("Territory not found.");
         return territory;
     }
 
     private void saveSelection(Player player, String tag, String id, boolean replace) throws IOException {
         Selection selection = selections.get(player.getUniqueId());
-        if (selection == null) throw new IllegalArgumentException("Сначала отметьте вершины жезлом или /cterr point.");
-        if (!selection.world.equals(player.getWorld().getUID())) throw new IllegalArgumentException("Вернитесь в мир выделения.");
+        if (selection == null) throw new IllegalArgumentException("Select vertices with the wand or /cterr point first.");
+        if (!selection.world.equals(player.getWorld().getUID())) throw new IllegalArgumentException("Return to the selection's world.");
         Clan clan = requireClan(tag);
         Territory territory = new Territory(id,selection.world,selection.worldName,clan.getTag(),clan.getFounded(),selection.points);
         store.put(territory,replace);
         selections.remove(player.getUniqueId());
-        player.sendMessage("Территория " + id + " сохранена для клана " + plain(clan.getName())
-                + ". Вершин: " + territory.vertices().size() + ". Это обозначение, не приват.");
+        player.sendMessage("Territory " + id + " saved for clan " + plain(clan.getName())
+                + ". Vertices: " + territory.vertices().size() + ". This is a label, not a protected claim.");
         getLogger().info(player.getName() + " " + (replace ? "reshaped" : "created") + " territory " + id + " for " + clan.getTag());
     }
 
@@ -203,24 +203,24 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
             Presence previous = presence.get(player.getUniqueId());
             if (java.util.Objects.equals(previous,next)) continue;
             if (next != null) {
-                player.sendActionBar(Component.text("Территория клана: " + next.name(),TextColor.color(next.rgb())));
+                player.sendActionBar(Component.text("Clan territory: " + next.name(),TextColor.color(next.rgb())));
                 presence.put(player.getUniqueId(),next);
             } else {
-                if (previous != null) player.sendActionBar(Component.text("Вы покинули территорию клана: " + previous.name(),NamedTextColor.GRAY));
+                if (previous != null) player.sendActionBar(Component.text("You left clan territory: " + previous.name(),NamedTextColor.GRAY));
                 presence.remove(player.getUniqueId());
             }
         }
     }
 
     @Override public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission(ADMIN)) { sender.sendMessage("Эта команда доступна только администрации.");return true; }
+        if (!sender.hasPermission(ADMIN)) { sender.sendMessage("This command is only available to administrators.");return true; }
         if (sender instanceof Player player && !authenticated(player)) {
-            player.sendMessage("Сначала войдите: /login или /register.");return true;
+            player.sendMessage("Please log in first: /login or /register.");return true;
         }
         try {
             if (command.getName().equals("clanadmin")) {
                 if (args.length > 0 && args[0].equalsIgnoreCase("color")) { changeColor(sender,args);return true; }
-                if (!(sender instanceof Player player)) throw new IllegalArgumentException("Создавайте клан из игры под вошедшим администратором.");
+                if (!(sender instanceof Player player)) throw new IllegalArgumentException("Create clans in game as an authenticated administrator.");
                 createClanFor(player,args);return true;
             }
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) { help(sender);return true; }
@@ -233,32 +233,32 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
                 for (Territory territory : store.all()) {
                     if (args.length > 1 && !territory.clanTag().equalsIgnoreCase(args[1])) continue;
                     Clan clan = currentClan(territory);
-                    sender.sendMessage(territory.id() + " — " + (clan == null ? "клан удалён" : plain(clan.getName()))
-                            + " — " + territory.worldName() + " — вершин: " + territory.vertices().size());
+                    sender.sendMessage(territory.id() + " — " + (clan == null ? "clan disbanded" : plain(clan.getName()))
+                            + " — " + territory.worldName() + " - vertices: " + territory.vertices().size());
                 }
-                sender.sendMessage("Всего территорий: " + store.all().size());return true;
+                sender.sendMessage("Total territories: " + store.all().size());return true;
             }
             if (action.equals("delete") && args.length == 2) {
-                store.remove(args[1]);sender.sendMessage("Территория удалена: " + args[1]);
+                store.remove(args[1]);sender.sendMessage("Territory deleted: " + args[1]);
                 getLogger().info(sender.getName() + " deleted territory " + args[1]);return true;
             }
             if (action.equals("assign") && args.length == 3) {
                 Territory old = requireTerritory(args[1]);Clan clan = requireClan(args[2]);
                 store.put(new Territory(old.id(),old.world(),old.worldName(),clan.getTag(),clan.getFounded(),old.vertices()),true);
-                sender.sendMessage("Территория передана клану " + plain(clan.getName()));
+                sender.sendMessage("Territory assigned to clan " + plain(clan.getName()));
                 getLogger().info(sender.getName() + " reassigned territory " + old.id() + " to " + clan.getTag());return true;
             }
-            if (!(sender instanceof Player player)) throw new IllegalArgumentException("Выбор вершин доступен из игры.");
+            if (!(sender instanceof Player player)) throw new IllegalArgumentException("Select vertices in game.");
             switch (action) {
                 case "wand" -> {
                     ItemStack wand = ItemStack.of(Material.BLAZE_ROD);
                     wand.editMeta(meta -> {
-                        meta.displayName(Component.text("Разметка территории клана",NamedTextColor.GOLD));
-                        meta.lore(List.of(Component.text("ЛКМ по блоку — добавить вершину"),Component.text("ПКМ — отменить последнюю вершину")));
+                        meta.displayName(Component.text("Clan territory wand",NamedTextColor.GOLD));
+                        meta.lore(List.of(Component.text("Left click a block to add a vertex"),Component.text("Right click to undo the last vertex")));
                         meta.getPersistentDataContainer().set(wandKey,PersistentDataType.BYTE,(byte)1);
                     });
-                    if (player.getInventory().addItem(wand).isEmpty()) player.sendMessage("Жезл выдан. Обойдите границу, отмечая вершины по порядку.");
-                    else throw new IllegalArgumentException("Освободите ячейку инвентаря.");
+                    if (player.getInventory().addItem(wand).isEmpty()) player.sendMessage("Wand received. Walk around the boundary and select vertices in order.");
+                    else throw new IllegalArgumentException("Make room in your inventory first.");
                 }
                 case "point" -> {
                     if (args.length == 1) addPoint(player,player.getLocation());
@@ -266,39 +266,39 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
                     else throw new IllegalArgumentException("/cterr point [x z]");
                 }
                 case "undo" -> undo(player);
-                case "clear" -> { selections.remove(player.getUniqueId());player.sendMessage("Выделение очищено."); }
+                case "clear" -> { selections.remove(player.getUniqueId());player.sendMessage("Selection cleared."); }
                 case "save" -> {
-                    if (args.length != 3) throw new IllegalArgumentException("/cterr save <тег клана> <id территории>");
+                    if (args.length != 3) throw new IllegalArgumentException("/cterr save <clan-tag> <territory-id>");
                     saveSelection(player,args[1],args[2],false);
                 }
                 case "reshape" -> {
-                    if (args.length != 2) throw new IllegalArgumentException("/cterr reshape <id территории>");
+                    if (args.length != 2) throw new IllegalArgumentException("/cterr reshape <territory-id>");
                     Territory old = requireTerritory(args[1]);
                     Clan clan = currentClan(old);
-                    if (clan == null) throw new IllegalArgumentException("Клан удалён. Сначала /cterr assign <id> <тег>.");
+                    if (clan == null) throw new IllegalArgumentException("This clan was disbanded. Use /cterr assign <id> <tag> first.");
                     saveSelection(player,clan.getTag(),old.id(),true);
                 }
                 case "selection" -> {
                     Selection selected = selections.get(player.getUniqueId());
-                    player.sendMessage(selected == null ? "Выделения нет." : "Мир: " + selected.worldName + "; вершин: " + selected.points.size());
+                    player.sendMessage(selected == null ? "No selection." : "World: " + selected.worldName + "; vertices: " + selected.points.size());
                 }
                 case "info" -> {
                     List<Territory> found = args.length == 2 ? List.of(requireTerritory(args[1]))
                             : store.at(player.getWorld().getUID(),player.getLocation().getBlockX(),player.getLocation().getBlockZ());
-                    if (found.isEmpty()) player.sendMessage("Здесь нет территории клана.");
+                    if (found.isEmpty()) player.sendMessage("There is no clan territory here.");
                     for (Territory territory : found) {
                         Clan clan = currentClan(territory);
-                        player.sendMessage(territory.id() + ": " + (clan == null ? "клан удалён" : plain(clan.getName()))
-                                + "; мир " + territory.worldName() + "; вершин " + territory.vertices().size()
-                                + "; площадь " + territory.area() + "; защита выключена.");
+                        player.sendMessage(territory.id() + ": " + (clan == null ? "clan disbanded" : plain(clan.getName()))
+                                + "; world " + territory.worldName() + "; vertices " + territory.vertices().size()
+                                + "; area " + territory.area() + "; protection disabled.");
                     }
                 }
                 default -> help(sender);
             }
         } catch (IllegalArgumentException failure) {
-            sender.sendMessage(failure instanceof NumberFormatException ? "Координаты должны быть целыми числами." : failure.getMessage());
+            sender.sendMessage(failure instanceof NumberFormatException ? "Coordinates must be whole numbers." : failure.getMessage());
         } catch (IOException failure) {
-            sender.sendMessage("Не удалось сохранить территорию. Изменение не применено; сообщите администрации.");
+            sender.sendMessage("Could not save the territory. No change was applied; please contact an administrator.");
             getLogger().log(java.util.logging.Level.SEVERE,"Territory persistence failed",failure);
         }
         return true;
@@ -306,37 +306,37 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
 
     private void createClanFor(Player administrator, String[] args) {
         if (args.length < 4 || !args[0].equalsIgnoreCase("create")) {
-            throw new IllegalArgumentException("/clanadmin create <тег> <онлайн-лидер> <название клана>");
+            throw new IllegalArgumentException("/clanadmin create <tag> <online-leader> <clan-name>");
         }
         String tag = args[1];Player leader = Bukkit.getPlayerExact(args[2]);
-        if (leader == null || !authenticated(leader)) throw new IllegalArgumentException("Будущий лидер должен быть онлайн и войти через AuthMe.");
-        if (clans.getClanManager().isClan(tag)) throw new IllegalArgumentException("Этот тег клана уже занят.");
+        if (leader == null || !authenticated(leader)) throw new IllegalArgumentException("The new leader must be online and authenticated with AuthMe.");
+        if (clans.getClanManager().isClan(tag)) throw new IllegalArgumentException("This clan tag is already in use.");
         var membership = clans.getClanManager().getAnyClanPlayer(leader.getUniqueId());
-        if (membership != null && membership.getClan() != null) throw new IllegalArgumentException("Будущий лидер уже состоит в клане.");
+        if (membership != null && membership.getClan() != null) throw new IllegalArgumentException("The new leader already belongs to a clan.");
         var invalidTag = clans.getTagValidator().validate(administrator,tag);
         if (invalidTag.isPresent()) throw new IllegalArgumentException(invalidTag.get());
         String name = String.join(" ",Arrays.copyOfRange(args,3,args.length));
         int min = clans.getSettingsManager().getInt(ConfigField.CLAN_MIN_LENGTH);
         int max = clans.getSettingsManager().getInt(ConfigField.CLAN_MAX_LENGTH);
         if (name.length() <= min || name.length() > max || name.contains("&") || name.codePoints().anyMatch(Character::isISOControl)) {
-            throw new IllegalArgumentException("Название: " + (min+1) + "–" + max + " символов без цветовых кодов.");
+            throw new IllegalArgumentException("Name: " + (min+1) + "–" + max + " characters without color codes.");
         }
         PreCreateClanEvent proposed = new PreCreateClanEvent(administrator,tag,name);
         Bukkit.getPluginManager().callEvent(proposed);
-        if (proposed.isCancelled()) throw new IllegalArgumentException("Создание клана отменено сервером.");
+        if (proposed.isCancelled()) throw new IllegalArgumentException("Clan creation was cancelled by the server.");
         var freshMembership = clans.getClanManager().getAnyClanPlayer(leader.getUniqueId());
         if (!admin(administrator) || !leader.isOnline() || !authenticated(leader)
                 || clans.getClanManager().isClan(tag) || freshMembership != null && freshMembership.getClan() != null) {
-            throw new IllegalArgumentException("Права или состав кланов изменились; проверьте состояние и повторите команду.");
+            throw new IllegalArgumentException("Permissions or clan membership changed; check the current state and try again.");
         }
         clans.getClanManager().createClan(leader,tag,name);
-        administrator.sendMessage("Клан " + name + " создан. Лидер: " + leader.getName());
+        administrator.sendMessage("Clan " + name + " created. Leader: " + leader.getName());
         getLogger().info(administrator.getName() + " created clan " + tag + " for " + leader.getName());
     }
 
     private void changeColor(CommandSender administrator,String[] args) {
         if (args.length!=3 || !args[2].matches("#[0-9a-fA-F]{6}")) {
-            throw new IllegalArgumentException("/clanadmin color <тег> #RRGGBB — например #2A9D8F.");
+            throw new IllegalArgumentException("/clanadmin color <tag> #RRGGBB - for example #2A9D8F.");
         }
         Clan clan=requireClan(args[1]);
         clan.changeClanTag("&"+args[2].toUpperCase(Locale.ROOT)+clan.getTag());
@@ -344,19 +344,19 @@ public final class WiutClanTerritories extends JavaPlugin implements Listener {
             if(clans.getClanManager().getClanByPlayerUniqueId(player.getUniqueId())==clan) clans.getClanManager().updateDisplayName(player);
         }
         blueMap.refresh();
-        administrator.sendMessage(Component.text("Цвет клана "+plain(clan.getName())+": "+args[2].toUpperCase(Locale.ROOT),TextColor.color(clanColor(clan))));
+        administrator.sendMessage(Component.text("Clan color for "+plain(clan.getName())+": "+args[2].toUpperCase(Locale.ROOT),TextColor.color(clanColor(clan))));
         getLogger().info(administrator.getName()+" changed clan "+clan.getTag()+" color to "+args[2].toUpperCase(Locale.ROOT));
     }
 
     @Override public void onDisable() { if(blueMap!=null) blueMap.close(); }
 
     private void help(CommandSender sender) {
-        sender.sendMessage("/cterr wand — жезл: ЛКМ добавляет вершину, ПКМ отменяет последнюю.");
-        sender.sendMessage("/cterr point [x z] — добавить вершину командой; /cterr undo; /cterr clear; /cterr selection.");
-        sender.sendMessage("/cterr save <тег> <id> — сохранить многоугольник; /cterr reshape <id> — заменить его границу выделением.");
-        sender.sendMessage("/cterr assign <id> <тег>; /cterr delete <id>; /cterr list [тег]; /cterr info [id].");
-        sender.sendMessage("/clanadmin create <тег> <онлайн-лидер> <название> — создать клан для игрока.");
-        sender.sendMessage("/clanadmin color <тег> #RRGGBB — общий цвет тега в чате и территории на BlueMap.");
+        sender.sendMessage("/cterr wand - selection wand: left click adds a vertex, right click undoes the last one.");
+        sender.sendMessage("/cterr point [x z] - add a vertex by command; /cterr undo; /cterr clear; /cterr selection.");
+        sender.sendMessage("/cterr save <tag> <id> - save the polygon; /cterr reshape <id> - replace its boundary with the selection.");
+        sender.sendMessage("/cterr assign <id> <tag>; /cterr delete <id>; /cterr list [tag]; /cterr info [id].");
+        sender.sendMessage("/clanadmin create <tag> <online-leader> <name> - create a clan for a player.");
+        sender.sendMessage("/clanadmin color <tag> #RRGGBB - shared color for the chat tag and BlueMap territory.");
     }
 
     @Override public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {

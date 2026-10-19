@@ -1,2 +1,5 @@
 # Preserve byte-for-byte copies of pinned upstream license texts.
 wiut/territories/dependencies/JTS-LICENSE* -whitespace
+# Retain the exact head-adapter source/resource snapshots used by the accepted JAR.
+wiut/english/adapters/heads/com/wiut/heads/WiutHeads.java whitespace=-blank-at-eof
+wiut/english/adapters/heads/plugin.yml whitespace=-blank-at-eof

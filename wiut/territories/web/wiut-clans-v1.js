@@ -24,9 +24,9 @@
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = preference ?? true;
-    checkbox.setAttribute("aria-label", "Территории кланов");
+    checkbox.setAttribute("aria-label", "Clan territories");
     const title = document.createElement("span");
-    title.textContent = "Территории кланов";
+    title.textContent = "Clan territories";
     label.append(checkbox, title);
     document.body.append(label);
 

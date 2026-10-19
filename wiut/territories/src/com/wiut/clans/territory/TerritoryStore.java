@@ -72,7 +72,7 @@ public final class TerritoryStore {
         for (int first = 0; first < all.size(); first++) {
             for (int second = first + 1; second < all.size(); second++) {
                 if (all.get(first).overlapsInterior(all.get(second))) {
-                    throw new IllegalArgumentException("Площади территорий пересекаются: "
+                    throw new IllegalArgumentException("Territory interiors overlap: "
                             + all.get(first).id() + " / " + all.get(second).id());
                 }
             }
@@ -106,7 +106,7 @@ public final class TerritoryStore {
 
     public void put(Territory territory, boolean replace) throws IOException {
         if (territories.containsKey(territory.id()) != replace) {
-            throw new IllegalArgumentException(replace ? "Территория не найдена." : "Этот ID уже занят; используйте reshape.");
+            throw new IllegalArgumentException(replace ? "Territory not found." : "This ID is already in use; use reshape.");
         }
         LinkedHashMap<String,Territory> next = new LinkedHashMap<>(territories);
         next.put(territory.id(), territory);
@@ -116,7 +116,7 @@ public final class TerritoryStore {
     }
 
     public void remove(String id) throws IOException {
-        if (!territories.containsKey(id)) throw new IllegalArgumentException("Территория не найдена.");
+        if (!territories.containsKey(id)) throw new IllegalArgumentException("Territory not found.");
         LinkedHashMap<String,Territory> next = new LinkedHashMap<>(territories);
         next.remove(id);
         persist(next);

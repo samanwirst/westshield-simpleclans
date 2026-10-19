@@ -28,15 +28,15 @@ public final class Territory {
     public Territory(String id, UUID world, String worldName, String clanTag, long clanFounded,
                      List<Vertex> input) {
         if (id == null || !ID.matcher(id).matches()) {
-            throw new IllegalArgumentException("ID: 1–64 латинских символа a-z, цифры, дефис или подчёркивание.");
+            throw new IllegalArgumentException("ID: 1-64 lowercase letters a-z, digits, hyphens or underscores.");
         }
         if (world == null || worldName == null || worldName.isBlank() || clanTag == null || clanTag.isBlank()
-                || clanFounded <= 0) throw new IllegalArgumentException("Некорректный мир или клан территории.");
+                || clanFounded <= 0) throw new IllegalArgumentException("Invalid territory world or clan.");
         ArrayList<Vertex> points = new ArrayList<>(input);
         if (points.size() > 1 && points.getFirst().equals(points.getLast())) points.removeLast();
-        if (points.size() < 3) throw new IllegalArgumentException("Нужно как минимум три вершины.");
+        if (points.size() < 3) throw new IllegalArgumentException("Select at least three vertices.");
         if (new HashSet<>(points).size() != points.size()) {
-            throw new IllegalArgumentException("Вершины не должны повторяться.");
+            throw new IllegalArgumentException("Vertices must not repeat.");
         }
         Coordinate[] ring = new Coordinate[points.size() + 1];
         for (int index = 0; index < points.size(); index++) {
@@ -45,7 +45,7 @@ public final class Territory {
         ring[points.size()] = new Coordinate(ring[0]);
         polygon = FACTORY.createPolygon(ring);
         if (!new IsValidOp(polygon).isValid() || polygon.getArea() <= 0) {
-            throw new IllegalArgumentException("Граница пересекает сама себя или не образует площадь. Обойдите вершины по порядку.");
+            throw new IllegalArgumentException("The boundary intersects itself or has no area. Select vertices in boundary order.");
         }
         this.id = id;
         this.world = world;

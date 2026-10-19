@@ -54,7 +54,7 @@ public final class BlueMapBridge implements AutoCloseable {
         if (signature.equals(previous)) return;
         Map<String,MarkerSet> layers=new LinkedHashMap<>();
         for (BlueMapMap map:api.getMaps()) {
-            layers.put(map.getId(),MarkerSet.builder().label("Территории кланов").toggleable(true)
+            layers.put(map.getId(),MarkerSet.builder().label("Clan territories").toggleable(true)
                     .defaultHidden(false).sorting(100).build());
         }
         for (Territory territory:store.all()) {

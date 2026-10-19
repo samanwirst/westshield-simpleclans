@@ -78,7 +78,7 @@ public class GeneralCommands extends BaseCommand {
     @Description("{@@command.description.create}")
     public void create(Player player, @Optional @Name("tag") String tag, @Optional @Name("name") String name) {
         if (!player.hasPermission("wiutclans.admin")) {
-            player.sendMessage("Создавать кланы может только администрация.");
+            player.sendMessage("Only administrators can create clans.");
             return;
         }
         ClanPlayer cp = cm.getAnyClanPlayer(player.getUniqueId());

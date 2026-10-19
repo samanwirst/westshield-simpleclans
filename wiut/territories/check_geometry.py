@@ -9,7 +9,7 @@ args = parser.parse_args()
 base = Path(__file__).resolve().parent
 classes = base / 'test-classes'
 classes.mkdir(exist_ok=True)
-classpath = [base/'WiutClanTerritories-1.0.0.jar', *sorted((args.server_root/'libraries').rglob('*.jar'))]
+classpath = [base/'WiutClanTerritories-1.0.1.jar', *sorted((args.server_root/'libraries').rglob('*.jar'))]
 subprocess.run(['javac','--release','25','-encoding','UTF-8','-cp',':'.join(map(str,classpath)),
                 '-d',str(classes),*map(str,(base/'tests').rglob('GeometryChecks.java'))],check=True)
 subprocess.run(['java','-cp',':'.join(map(str,[classes,*classpath])),

@@ -40,7 +40,7 @@ settings:
   - vip
   - clan
   language: en
-  user-language-selector: true
+  user-language-selector: false
   disallowed-tag-colors:
   - '4'
   - k

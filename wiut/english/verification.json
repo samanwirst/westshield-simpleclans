@@ -1,0 +1,360 @@
+{
+  "scope": "Loopback server and Russian-locale real Java protocol clients",
+  "status": "passed",
+  "checks": [
+    {
+      "check": "updated English plugins start without errors",
+      "passed": true
+    },
+    {
+      "check": "English clan fork version is loaded",
+      "passed": true
+    },
+    {
+      "check": "English response to /login",
+      "passed": true
+    },
+    {
+      "check": "English response to /cterr",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: selection wand",
+      "passed": true
+    },
+    {
+      "check": "English response to /cterr",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: No selection",
+      "passed": true
+    },
+    {
+      "check": "English response to /cterr",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: Selection cleared",
+      "passed": true
+    },
+    {
+      "check": "English response to /cterr",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: Vertex 1 added",
+      "passed": true
+    },
+    {
+      "check": "English response to /cterr",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: No clan found",
+      "passed": true
+    },
+    {
+      "check": "actual server locale is Russian while plugin text stays English",
+      "passed": true
+    },
+    {
+      "check": "English response to /creative",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: Creative world",
+      "passed": true
+    },
+    {
+      "check": "English response to /creative",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: already in the creative",
+      "passed": true
+    },
+    {
+      "check": "English response to /survival",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: returned to survival",
+      "passed": true
+    },
+    {
+      "check": "English response to /sit",
+      "passed": true
+    },
+    {
+      "check": "English response to /sit",
+      "passed": true
+    },
+    {
+      "check": "English response to /claimlist",
+      "passed": true
+    },
+    {
+      "check": "English response to /clan",
+      "passed": true
+    },
+    {
+      "check": "English response to /register",
+      "passed": true
+    },
+    {
+      "check": "English response to /login",
+      "passed": true
+    },
+    {
+      "check": "English response to /register",
+      "passed": true
+    },
+    {
+      "check": "English response to /login",
+      "passed": true
+    },
+    {
+      "check": "English response to /clanadmin",
+      "passed": true
+    },
+    {
+      "check": "Expected wording: Unknown",
+      "passed": true
+    },
+    {
+      "check": "English response to /clan",
+      "passed": true
+    },
+    {
+      "check": "English response to /clan",
+      "passed": true
+    },
+    {
+      "check": "revoked interactive creation returns the English authority guard",
+      "passed": true
+    },
+    {
+      "check": "real PvP death produces an English named head with its frozen skin",
+      "passed": true
+    },
+    {
+      "check": "English clan entry actionbar is received",
+      "passed": true
+    },
+    {
+      "check": "no Cyrillic server-owned responses reached the clients",
+      "passed": true
+    },
+    {
+      "check": "English packet rendering reports no failures",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "WiutCreative-1.0.2.jar": "a366c113ffcbff56a755520720455c7d11d74ce17784ddf703eb34385800cbb3",
+    "WiutEnglish-1.0.0.jar": "c7b48fac567b3119474aba5518378192ce99b80306ee9cc2e6bf87c6d1de01f8",
+    "WiutHeads-1.0.1.jar": "08d2eda57caa51e3f106285d0824a3f940f118651d58b1d05848aa081614b328",
+    "WiutWorldRules-1.1.1.jar": "556eab41a0e154e7e690953a9c317e4f217e1691b6d870122dfc1d4e8cadc456",
+    "WiutClanTerritories-1.0.1.jar": "d2a2f556978f434792075f25122f6761644c4dd766e04a7c149e4fefd953601b",
+    "SimpleClans-2.19.2-wiut.3.jar": "828dcecfd82f7859125374935ce13f1e5948f9477340afebb27577e72724f7be",
+    "floodgate-spigot-wiut-en.jar": "413d36a4fc51c580b8e1b7fc2100d9a820f89c3527fe6b1a43ae30b0f3b016af"
+  },
+  "geometry_checks": 22,
+  "format_style_and_user_text_check": "passed",
+  "production": {
+    "status": "passed",
+    "checks": [
+      {
+        "check": "server is running",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/AuthMe/config.yml / settings.messagesLanguage",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/AuthMe/config.yml / settings.perPlayerLocale",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/GSit/config.yml / Lang.client-lang",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/SimpleClans/config.yml / settings.user-language-selector",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/Multiverse-Core/config.yml / messaging.per-player-locale",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/LuckPerms/config.yml / auto-install-translations",
+        "passed": true
+      },
+      {
+        "check": "English policy: /plugins/Plan/config.yml / Plugin.Logging.Locale",
+        "passed": true
+      },
+      {
+        "check": "exact tested plugin: WiutCreative-1.0.2.jar",
+        "passed": true
+      },
+      {
+        "check": "exact tested plugin: WiutEnglish-1.0.0.jar",
+        "passed": true
+      },
+      {
+        "check": "exact tested plugin: WiutHeads-1.0.1.jar",
+        "passed": true
+      },
+      {
+        "check": "exact tested plugin: WiutWorldRules-1.1.1.jar",
+        "passed": true
+      },
+      {
+        "check": "exact tested plugin: WiutClanTerritories-1.0.1.jar",
+        "passed": true
+      },
+      {
+        "check": "exact tested plugin: floodgate-spigot-wiut-en.jar",
+        "passed": true
+      },
+      {
+        "check": "only the intended production JARs are present",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /plugins/GriefPreventionData/config.yml",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /plugins/Multiverse-Inventories/config.yml",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /plugins/Multiverse-Inventories/groups.yml",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /plugins/Multiverse-Core/worlds.yml",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /plugins/WiutCreative/config.yml",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /plugins/WiutCombat/config.yml",
+        "passed": true
+      },
+      {
+        "check": "existing functional policy preserved: /Caddyfile",
+        "passed": true
+      },
+      {
+        "check": "map privacy asset preserved: wiut-map-v3.js",
+        "passed": true
+      },
+      {
+        "check": "map privacy asset preserved: wiut-map-v3.css",
+        "passed": true
+      },
+      {
+        "check": "map bundle changed only by cache revisions for English settings",
+        "passed": true
+      },
+      {
+        "check": "public service responds: /",
+        "passed": true
+      },
+      {
+        "check": "public service responds: /voice/",
+        "passed": true
+      },
+      {
+        "check": "public service responds: /map/",
+        "passed": true
+      },
+      {
+        "check": "English clan layer label: wiut",
+        "passed": true
+      },
+      {
+        "check": "English clan layer label: wiut_nether",
+        "passed": true
+      },
+      {
+        "check": "English clan layer label: wiut_end",
+        "passed": true
+      },
+      {
+        "check": "Russian browser receives an English map",
+        "passed": true
+      },
+      {
+        "check": "English clan filter still controls the real layer",
+        "passed": true
+      },
+      {
+        "check": "map flat daylight and coordinate-click privacy remain active",
+        "passed": true
+      },
+      {
+        "check": "map shows no Cyrillic interface text",
+        "passed": true
+      },
+      {
+        "check": "voice overrides an old Polish preference with English",
+        "passed": true
+      },
+      {
+        "check": "voice language selector cannot switch away from English",
+        "passed": true
+      },
+      {
+        "check": "voice language module remains English after a language change request",
+        "passed": true
+      },
+      {
+        "check": "voice page shows no Cyrillic interface text",
+        "passed": true
+      },
+      {
+        "check": "Plan resets an old Russian preference to English",
+        "passed": true
+      },
+      {
+        "check": "Plan displays English login or analytics labels",
+        "passed": true
+      },
+      {
+        "check": "Plan shows no Cyrillic interface text",
+        "passed": true
+      },
+      {
+        "check": "no JavaScript errors on public interfaces",
+        "passed": true
+      },
+      {
+        "check": "production English renderer is active without failures",
+        "passed": true
+      },
+      {
+        "check": "server remains running",
+        "passed": true
+      }
+    ],
+    "final_clan_language": {
+      "status": "passed",
+      "version": "2.19.2-wiut.3",
+      "clan_data_preserved": true,
+      "access_lists_preserved": true,
+      "native_policies_ready": true,
+      "renderer_failures": 0,
+      "public_services_online": true
+    }
+  },
+  "source_reproduces_accepted_adapters": true
+}

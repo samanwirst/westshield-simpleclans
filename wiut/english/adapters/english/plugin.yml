@@ -1,0 +1,13 @@
+name: WiutEnglish
+version: 1.0.0
+main: com.wiut.english.WiutEnglish
+api-version: '26.2'
+depend: [packetevents, Geyser-Spigot]
+description: Render server-owned translatable messages and window titles in English.
+commands:
+  wiutenglish:
+    description: Inspect the server message language policy.
+    permission: wiutenglish.admin
+permissions:
+  wiutenglish.admin:
+    default: op

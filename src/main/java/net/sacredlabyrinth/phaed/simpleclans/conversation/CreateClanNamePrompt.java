@@ -50,7 +50,7 @@ public class CreateClanNamePrompt extends StringPrompt {
         Bukkit.getScheduler().runTask(plugin, () -> {
             // Revalidate the actor after an interactive conversation, before any write.
             if (!player.isOnline() || !player.hasPermission("wiutclans.admin")) {
-                player.sendMessage("Создавать кланы может только администрация.");
+                player.sendMessage("Only administrators can create clans.");
                 return;
             }
             String tag = (String) context.getSessionData(TAG_KEY);
@@ -68,7 +68,7 @@ public class CreateClanNamePrompt extends StringPrompt {
     private void processClanCreation(@NotNull SimpleClans plugin, @NotNull Player player, @NotNull String tag,
                                      @NotNull String name) {
         if (!player.isOnline() || !player.hasPermission("wiutclans.admin")) {
-            player.sendMessage("Создавать кланы может только администрация.");
+            player.sendMessage("Only administrators can create clans.");
             return;
         }
         if (plugin.getClanManager().purchaseCreation(player)) {

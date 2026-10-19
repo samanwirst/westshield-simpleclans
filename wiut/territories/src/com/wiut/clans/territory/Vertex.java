@@ -4,7 +4,7 @@ package com.wiut.clans.territory;
 public record Vertex(int x, int z) {
     public Vertex {
         if (Math.abs((long) x) > 30_000_000 || Math.abs((long) z) > 30_000_000) {
-            throw new IllegalArgumentException("Координаты вершины выходят за пределы Minecraft.");
+            throw new IllegalArgumentException("Vertex coordinates exceed Minecraft's limits.");
         }
     }
 }
