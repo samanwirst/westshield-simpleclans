@@ -7,8 +7,11 @@ An unofficial, GPL-3.0 fork of [RoinujNosde/SimpleClans](https://github.com/Roin
 - Read the player's locale through the supported Paper API, replacing old ACF reflection against a removed Minecraft field.
 - Create clan permission attachments immediately for newly created clans. Clan group permissions no longer require a reload or reconnect.
 - Provide a small configuration and player permission allowlist for clan names, membership and GriefPrevention trust.
+- Restrict new clan creation to `wiutclans.admin` (operators by default), including permission revalidation after an interactive conversation.
+- Keep deferred clan saves distinct by object identity and discard disbanded instances, so recreating a tag cannot restore the previous clan's data during a later save or shutdown.
+- Provide the separate [WiutClanTerritories](wiut/territories/README.md) plugin for administrator-selected, concave polygons and entry/exit actionbars. Its territories do not protect land.
 
-The clan data model and existing SQLite persistence remain upstream SimpleClans. This is a targeted compatibility fork, not an upstream release.
+The clan data model and SQLite schema remain upstream SimpleClans. The deferred-save queue additionally validates the current clan incarnation. This is a targeted server fork, not an upstream release.
 
 ## Claim access
 
@@ -38,7 +41,7 @@ The tested stack includes AuthMe, Geyser/Floodgate, Multiverse-Inventories, Grie
 
 The supported WIUT build is a deterministic class overlay over the pinned upstream distribution. Unchanged classes/resources retain the upstream implementation; changed source is included in this repository. The original Maven project is retained for upstream history, while the WIUT changes use the build below.
 
-Requirements: Python 3, the tested OpenJDK 27 compiler with `--release 25`, and the `libraries` directory populated by Purpur 26.2 build 2633. Only four API libraries are required; their exact paths and hashes are in `wiut/server-libraries.sha256.json`.
+Requirements: Python 3, the tested OpenJDK 27 compiler with `--release 25`, and the `libraries` directory populated by Purpur 26.2 build 2633. Five API libraries are required; their exact paths and hashes are in `wiut/server-libraries.sha256.json`.
 
 ```sh
 python3 wiut/build.py --server-libraries /path/to/purpur-26.2/libraries
@@ -46,7 +49,7 @@ python3 wiut/build.py --server-libraries /path/to/purpur-26.2/libraries
 
 The script downloads three public, hash-pinned compile dependencies when missing. Vault is a compile-only API dependency; the example runtime configuration does not require installing Vault.
 
-Output: `wiut/SimpleClans-2.19.2-wiut.1.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup.
+Output: `wiut/SimpleClans-2.19.2-wiut.2.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup. The optional territory plugin has its own build and artifact; see its README.
 
 The inherited upstream publishing workflows are archived under `wiut/upstream-workflows`; they are not enabled for this fork.
 

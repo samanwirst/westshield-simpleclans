@@ -1,10 +1,10 @@
 package net.sacredlabyrinth.phaed.simpleclans.commands.general;
 
-import co.aikar.commands.BaseCommand;
-import co.aikar.commands.CommandHelp;
-import co.aikar.commands.CommandParameter;
-import co.aikar.commands.HelpEntry;
-import co.aikar.commands.annotation.*;
+import net.sacredlabyrinth.phaed.simpleclans.acf.BaseCommand;
+import net.sacredlabyrinth.phaed.simpleclans.acf.CommandHelp;
+import net.sacredlabyrinth.phaed.simpleclans.acf.CommandParameter;
+import net.sacredlabyrinth.phaed.simpleclans.acf.HelpEntry;
+import net.sacredlabyrinth.phaed.simpleclans.acf.annotation.*;
 import net.sacredlabyrinth.phaed.simpleclans.*;
 import net.sacredlabyrinth.phaed.simpleclans.commands.ClanInput;
 import net.sacredlabyrinth.phaed.simpleclans.commands.ClanPlayerInput;
@@ -74,9 +74,13 @@ public class GeneralCommands extends BaseCommand {
     }
 
     @Subcommand("%create")
-    @CommandPermission("simpleclans.leader.create")
+    @CommandPermission("wiutclans.admin")
     @Description("{@@command.description.create}")
     public void create(Player player, @Optional @Name("tag") String tag, @Optional @Name("name") String name) {
+        if (!player.hasPermission("wiutclans.admin")) {
+            player.sendMessage("Создавать кланы может только администрация.");
+            return;
+        }
         ClanPlayer cp = cm.getAnyClanPlayer(player.getUniqueId());
 
         if (cp != null && cp.getClan() != null) {

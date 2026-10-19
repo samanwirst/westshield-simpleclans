@@ -1,0 +1,325 @@
+{
+  "date": "2026-10-20 Asia/Samarkand",
+  "scope": "Isolated loopback fixture; real Java protocol clients and desktop/mobile Chromium. No physical Bedrock GUI acceptance.",
+  "native": {
+    "status": "passed",
+    "checks": [
+      {
+        "check": "Both candidate plugins load on the real 26.2 server",
+        "passed": true
+      },
+      {
+        "check": "AuthMe prevents administrative writes before login",
+        "passed": true
+      },
+      {
+        "check": "Every test actor is authenticated and non-OP",
+        "passed": true
+      },
+      {
+        "check": "Only the designated test administrator receives the new administrative permission",
+        "passed": true
+      },
+      {
+        "check": "Ordinary users cannot create clans, including legacy create permission and aliases",
+        "passed": true
+      },
+      {
+        "check": "An administrator creates a clan for another authenticated leader",
+        "passed": true
+      },
+      {
+        "check": "An administrator assigns an arbitrary RGB color in the native clan record",
+        "passed": true
+      },
+      {
+        "check": "Another real client receives the exact chosen RGB color in the clan chat prefix",
+        "passed": true
+      },
+      {
+        "check": "Ordinary users and invalid RGB input cannot change the clan color",
+        "passed": true
+      },
+      {
+        "check": "Ordinary leader invitations and clan group permissions still work",
+        "passed": true
+      },
+      {
+        "check": "Revoking administration during a creation conversation prevents its final write",
+        "passed": true
+      },
+      {
+        "check": "The native clan create command works for a non-OP administrator",
+        "passed": true
+      },
+      {
+        "check": "An administrator already in a clan can create a separate clan for another leader",
+        "passed": true
+      },
+      {
+        "check": "Native left click adds a wand vertex without breaking the selected block",
+        "passed": true
+      },
+      {
+        "check": "Native right click undoes the last wand vertex",
+        "passed": true
+      },
+      {
+        "check": "A non-admin holding a copied wand gets no editing ability or special block protection",
+        "passed": true
+      },
+      {
+        "check": "An administrator saves a six-vertex concave territory",
+        "passed": true
+      },
+      {
+        "check": "BlueMap exposes clan territories as a separate toggleable layer",
+        "passed": true
+      },
+      {
+        "check": "The map receives the same concave polygon with the exact clan RGB and transparent fill",
+        "passed": true
+      },
+      {
+        "check": "A permanent name marker is placed over the filled territory",
+        "passed": true
+      },
+      {
+        "check": "Ordinary players cannot create, delete or reassign territories",
+        "passed": true
+      },
+      {
+        "check": "A real client receives the clan name in the actionbar on entry",
+        "passed": true
+      },
+      {
+        "check": "The concave notch is outside and triggers a real exit actionbar",
+        "passed": true
+      },
+      {
+        "check": "Territory detection applies at high altitude without a Y restriction",
+        "passed": true
+      },
+      {
+        "check": "A player really breaks a block inside another clan territory",
+        "passed": true
+      },
+      {
+        "check": "A player really places a block inside the territory",
+        "passed": true
+      },
+      {
+        "check": "Territory labels do not restrict opening a real chest",
+        "passed": true
+      },
+      {
+        "check": "Adjacent clans may have a shared edge",
+        "passed": true
+      },
+      {
+        "check": "Overlapping interiors are refused without changing existing territories",
+        "passed": true
+      },
+      {
+        "check": "Crossing directly into a neighboring clan shows its own name",
+        "passed": true
+      },
+      {
+        "check": "The existing creative claim system still creates claims",
+        "passed": true
+      },
+      {
+        "check": "Clan labels do not bypass an existing creative claim",
+        "passed": true
+      },
+      {
+        "check": "Existing creative clan trust still grants native block placement",
+        "passed": true
+      },
+      {
+        "check": "Changing a territory label does not change GriefPrevention permissions",
+        "passed": true
+      },
+      {
+        "check": "Territories from an unmapped creative dimension do not leak onto the survival map",
+        "passed": true
+      },
+      {
+        "check": "Existing territories display the current clan name",
+        "passed": true
+      },
+      {
+        "check": "The clan disbands through its normal leader flow",
+        "passed": true
+      },
+      {
+        "check": "Recreating a clan with the same tag does not inherit old territories",
+        "passed": true
+      },
+      {
+        "check": "A disbanded clan territory is also removed from BlueMap until explicitly reassigned",
+        "passed": true
+      },
+      {
+        "check": "An administrator can explicitly reassign an old territory",
+        "passed": true
+      },
+      {
+        "check": "Explicit reassignment updates the map color and permanent name together",
+        "passed": true
+      },
+      {
+        "check": "Polygons, clan binding and delegated admin permission persist after restart",
+        "passed": true
+      },
+      {
+        "check": "Custom clan RGB remains identical in the native record and map after restart",
+        "passed": true
+      },
+      {
+        "check": "A real entry actionbar works after server restart",
+        "passed": true
+      },
+      {
+        "check": "Creation remains admin-only after restart",
+        "passed": true
+      },
+      {
+        "check": "An administrator can replace an existing boundary with a different polygon",
+        "passed": true
+      },
+      {
+        "check": "An administrator can delete a territory without deleting the clan",
+        "passed": true
+      },
+      {
+        "check": "No plugin/event errors occurred in the accepted scenario",
+        "passed": true
+      }
+    ]
+  },
+  "browser": {
+    "status": "passed",
+    "checks": [
+      {
+        "check": "desktop dedicated layer checkbox visible and checked",
+        "passed": true
+      },
+      {
+        "check": "only mapped-world territory area and permanent name published",
+        "passed": true
+      },
+      {
+        "check": "permanent clan name visible on the screen without a click",
+        "passed": true
+      },
+      {
+        "check": "clan area and name are in a single visible layer",
+        "passed": true
+      },
+      {
+        "check": "flat orthographic mode retained",
+        "passed": true
+      },
+      {
+        "check": "checkbox hides both territory fill and permanent name",
+        "passed": true
+      },
+      {
+        "check": "hidden name removed from visible DOM",
+        "passed": true
+      },
+      {
+        "check": "hidden preference survives a browser reload",
+        "passed": true
+      },
+      {
+        "check": "filter follows dimension changes and respects saved preference",
+        "passed": true
+      },
+      {
+        "check": "returning to overworld preserves hidden clan layer",
+        "passed": true
+      },
+      {
+        "check": "checking restores fill and permanent names",
+        "passed": true
+      },
+      {
+        "check": "dedicated checkbox synchronizes with native BlueMap layer state",
+        "passed": true
+      },
+      {
+        "check": "ordinary mouse navigation still pans the map",
+        "passed": true
+      },
+      {
+        "check": "ordinary wheel still zooms in flat view",
+        "passed": true
+      },
+      {
+        "check": "daylight remains fixed even after a lighting write",
+        "passed": true
+      },
+      {
+        "check": "map clicks reveal no coordinate popup",
+        "passed": true
+      },
+      {
+        "check": "coordinate direction and lighting controls stay hidden",
+        "passed": true
+      },
+      {
+        "check": "URL retains dummy coordinates rather than actual navigation position",
+        "passed": true
+      },
+      {
+        "check": "no public player marker layer introduced",
+        "passed": true
+      },
+      {
+        "check": "desktop has no JavaScript errors",
+        "passed": true
+      },
+      {
+        "check": "mobile dedicated checkbox visible and touch accessible",
+        "passed": true
+      },
+      {
+        "check": "mobile tap hides fill and clan name",
+        "passed": true
+      },
+      {
+        "check": "mobile tap restores permanent clan name",
+        "passed": true
+      },
+      {
+        "check": "mobile map tap reveals no coordinate card",
+        "passed": true
+      },
+      {
+        "check": "mobile has no JavaScript errors",
+        "passed": true
+      }
+    ]
+  },
+  "geometry": {
+    "status": "passed",
+    "checks": 22
+  },
+  "artifact_sha256": {
+    "SimpleClans-2.19.2-wiut.2.jar": "dbf14c58da54025928a9271240ecf6a2aee93e79d99f4438fe8c3c2f86341a22",
+    "WiutClanTerritories-1.0.0.jar": "6ece885f6ff84a90fb370a17f682fd3856adfcdfb1816486cc11a0610af472c8"
+  },
+  "production": {
+    "status": "passed",
+    "checks": 23,
+    "server_running": true,
+    "offline_backup_verified": true,
+    "existing_clans_and_settings_preserved": true,
+    "public_map_voice_and_analytics_respond": true,
+    "public_map_privacy_files_unchanged": true,
+    "test_probe_absent": true,
+    "territories_created": 0
+  }
+}

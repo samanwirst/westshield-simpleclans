@@ -1,0 +1,22 @@
+{
+  "jts-core-1.20.0.jar": {
+    "url": "https://repo.maven.apache.org/maven2/org/locationtech/jts/jts-core/1.20.0/jts-core-1.20.0.jar",
+    "sha256": "6a783d8f9dba3d3cf7265435f134402f63c05838aa6cbcc4297ad3a5b2842baf"
+  },
+  "JTS-LICENSES.md": {
+    "url": "https://raw.githubusercontent.com/locationtech/jts/1.20.0/LICENSES.md",
+    "sha256": "860b6249d7688b4b84b56c47601c031c96d8317e8289e0f4192e9fa3228ce714"
+  },
+  "JTS-LICENSE_EDLv1.txt": {
+    "url": "https://raw.githubusercontent.com/locationtech/jts/1.20.0/LICENSE_EDLv1.txt",
+    "sha256": "e67a91b5489cd78292d2654f1b587fe68296e28df7c766b9b675614fbdce4fd1"
+  },
+  "JTS-LICENSE_EPLv2.txt": {
+    "url": "https://raw.githubusercontent.com/locationtech/jts/1.20.0/LICENSE_EPLv2.txt",
+    "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303"
+  },
+  "JTS-OSGEO_LICENSE.txt": {
+    "url": "https://raw.githubusercontent.com/locationtech/jts/1.20.0/OSGEO_LICENSE.txt",
+    "sha256": "a215d9af48d7ec9b9d72328cde3b6d6a22ee45d4b9d246962ccdbe62511f0acc"
+  }
+}

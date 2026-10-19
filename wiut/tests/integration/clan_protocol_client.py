@@ -51,8 +51,8 @@ class Client:
    elif pid==72:
     f=io.BytesIO(body);tid=vi(f);self.send(0,vint(tid))
    elif pid==11:self.send(11,struct.pack('>f',10.0))
-   elif pid in [121,32]:
-    f=io.BytesIO(body);tag=f.read(1)[0];d=nbtlib.tag.Base.get_tag(tag).parse(f);self.messages.append(('disconnect' if pid==32 else 'chat',str(d)))
+   elif pid in [121,32,87]:
+    f=io.BytesIO(body);tag=f.read(1)[0];d=nbtlib.tag.Base.get_tag(tag).parse(f);self.messages.append(('disconnect' if pid==32 else 'actionbar' if pid==87 else 'chat',str(d)))
     if pid==32:self.closed=True
  def pump(self,seconds):
   end=time.monotonic()+seconds

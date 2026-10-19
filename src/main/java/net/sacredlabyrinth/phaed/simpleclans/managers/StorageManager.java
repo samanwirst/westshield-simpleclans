@@ -1,6 +1,6 @@
 package net.sacredlabyrinth.phaed.simpleclans.managers;
 
-import com.google.common.base.Charsets;
+import java.nio.charset.StandardCharsets;
 import net.sacredlabyrinth.phaed.simpleclans.*;
 import net.sacredlabyrinth.phaed.simpleclans.events.ClanBalanceUpdateEvent;
 import net.sacredlabyrinth.phaed.simpleclans.loggers.BankLogger;
@@ -39,7 +39,9 @@ public final class StorageManager {
     private final SimpleClans plugin;
     private DBCore core;
     private final HashMap<String, ChatBlock> chatBlocks = new HashMap<>();
-    private final Set<Clan> modifiedClans = new HashSet<>();
+    // Clan.equals compares tags: distinct incarnations must not share a pending save entry.
+    private final Set<Clan> modifiedClans = Collections.synchronizedSet(
+            Collections.newSetFromMap(new IdentityHashMap<>()));
     private final Set<ClanPlayer> modifiedClanPlayers = new HashSet<>();
 
     /**
@@ -813,6 +815,7 @@ public final class StorageManager {
      * Delete a clan from the database
      */
     public void deleteClan(Clan clan) {
+        modifiedClans.remove(clan);
         plugin.getProxyManager().sendDelete(clan);
         String query = "DELETE FROM `sc_clans` WHERE tag = '" + clan.getTag() + "';";
         core.executeUpdate(query);
@@ -1193,7 +1196,7 @@ public final class StorageManager {
                 if (SimpleClans.getInstance().getServer().getOnlineMode()) {
                     uuidPlayer = UUIDFetcher.getUUIDOfThrottled(cp.getName());
                 } else {
-                    uuidPlayer = UUID.nameUUIDFromBytes(("OfflinePlayer:" + cp.getName()).getBytes(Charsets.UTF_8));
+                    uuidPlayer = UUID.nameUUIDFromBytes(("OfflinePlayer:" + cp.getName()).getBytes(StandardCharsets.UTF_8));
                 }
                 String query = "UPDATE `sc_players` SET uuid = '" + uuidPlayer.toString() + "' WHERE name = '" + cp.getName() + "';";
                 core.executeUpdate(query);
@@ -1244,15 +1247,16 @@ public final class StorageManager {
             plugin.getLogger().log(Level.SEVERE, "Error saving modified ClanPlayers:", ex);
         }
         try (PreparedStatement pst = prepareUpdateClanStatement(core.getConnection())) {
-            //removing disbanded clans
-            modifiedClans.retainAll(plugin.getClanManager().getClans());
-            for (Clan clan : modifiedClans) {
-                setValues(pst, clan);
-                pst.addBatch();
+            synchronized (modifiedClans) {
+                // Only the currently loaded incarnation may write this tag's row.
+                modifiedClans.removeIf(clan -> plugin.getClanManager().getClan(clan.getTag()) != clan);
+                for (Clan clan : modifiedClans) {
+                    setValues(pst, clan);
+                    pst.addBatch();
+                }
+                pst.executeBatch();
+                modifiedClans.clear();
             }
-            pst.executeBatch();
-
-            modifiedClans.clear();
         } catch (SQLException ex) {
             plugin.getLogger().log(Level.SEVERE, "Error saving modified Clans:", ex);
         }

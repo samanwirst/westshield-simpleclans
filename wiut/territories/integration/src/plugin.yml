@@ -1,0 +1,8 @@
+name: TerritoryProbe
+version: 'test-only'
+main: com.wiut.clans.test.TerritoryProbe
+api-version: '1.21'
+depend: [WiutClanTerritories, AuthMe, GriefPrevention]
+commands:
+  territoryprobe:
+    description: Local-only observations and fixture controls. Never deploy.

@@ -1,0 +1,23 @@
+PASS Both arms of a concave polygon are included
+PASS The concave notch is excluded despite being inside the bounding box
+PASS A concave polygon's permanent label anchor is inside its actual area
+PASS Vertices and shared edges are inclusive
+PASS Exterior points remain outside
+PASS Either winding order has the same meaning
+PASS Self-intersections are rejected
+PASS Zero-area outlines are rejected
+PASS Repeated internal vertices are rejected
+PASS Two points cannot become a territory
+PASS Neighboring polygons may share a complete edge
+PASS Complete containment is recognized as an overlap
+PASS Crossing polygon interiors are recognized
+PASS A shared boundary has deterministic ID ordering
+PASS Rejected overlaps change neither the file nor live state
+PASS Equal coordinates are isolated by world UUID
+PASS A 10000-vertex polygon survives save and reload without a vertex cap
+PASS Reload preserves exact vertices and clan incarnation
+PASS Deletion remains effective after restart
+PASS Malformed storage fails closed
+PASS A malformed file is retained unchanged
+PASS Failed disk persistence never activates a territory
+GEOMETRY_CHECKS_PASSED=22

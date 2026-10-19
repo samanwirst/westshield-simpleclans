@@ -16,3 +16,12 @@ __pycache__/
 /wiut/tests/integration/*-results.json
 /wiut/tests/integration/console-*.log
 /wiut/tests/integration/server/
+/wiut/territories/classes/
+/wiut/territories/test-classes/
+/wiut/territories/integration/server/
+/wiut/territories/integration/*-console-*.log
+/wiut/territories/integration/test-password.txt
+/wiut/territories/integration/*-results.json
+/wiut/territories/integration/probe-classes/
+/wiut/territories/integration/attempt-*/
+/wiut/territories/integration/browser-results/
