@@ -1,0 +1,17 @@
+name: WestShieldClanTerritories
+version: '1.0.2'
+main: com.westshield.clans.territory.WestShieldClanTerritories
+api-version: '1.21'
+depend: [SimpleClans, AuthMe, BlueMap]
+authors: [samanwirst]
+description: Administrative polygon labels with no land protection.
+commands:
+  clanterritory:
+    description: Mark and manage informational clan polygons.
+    aliases: [cterr]
+    permission: westshieldclans.admin
+    usage: /clanterritory help
+  clanadmin:
+    description: Create clans for players and set the shared chat/map clan color.
+    permission: westshieldclans.admin
+    usage: /clanadmin create <tag> <leader> <name>

@@ -49,7 +49,7 @@ public class CreateClanNamePrompt extends StringPrompt {
         String finalClanName = clanName;
         Bukkit.getScheduler().runTask(plugin, () -> {
             // Revalidate the actor after an interactive conversation, before any write.
-            if (!player.isOnline() || !player.hasPermission("wiutclans.admin")) {
+            if (!player.isOnline() || !player.hasPermission("westshieldclans.admin")) {
                 player.sendMessage("Only administrators can create clans.");
                 return;
             }
@@ -67,7 +67,7 @@ public class CreateClanNamePrompt extends StringPrompt {
 
     private void processClanCreation(@NotNull SimpleClans plugin, @NotNull Player player, @NotNull String tag,
                                      @NotNull String name) {
-        if (!player.isOnline() || !player.hasPermission("wiutclans.admin")) {
+        if (!player.isOnline() || !player.hasPermission("westshieldclans.admin")) {
             player.sendMessage("Only administrators can create clans.");
             return;
         }

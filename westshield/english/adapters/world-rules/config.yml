@@ -1,0 +1,9 @@
+locator-disabled: true
+end-locked: true
+overworld-border-radius: 2000
+nether-border-radius: 1000
+end-locked-message: The End is currently closed. Administrators will open it later.
+survival-overworlds:
+- westshield
+survival-nethers:
+- westshield_nether

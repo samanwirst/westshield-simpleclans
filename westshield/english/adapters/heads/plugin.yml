@@ -1,0 +1,7 @@
+name: WestShieldHeads
+version: 1.0.2
+main: com.westshield.heads.WestShieldHeads
+api-version: '26.2'
+description: Guaranteed PvP trophies with immutable skin profiles and persistent names.
+author: WestShield
+

@@ -1,0 +1,282 @@
+{
+  "scope": "Isolated Purpur 26.2/Java 25 fixture, real Java protocol clients and Chromium interfaces; no physical Bedrock gameplay or microphone acceptance",
+  "native_and_browser_checks": [
+    {
+      "check": "Nine rebranded plugins boot",
+      "passed": true
+    },
+    {
+      "check": "No plugin startup failure",
+      "passed": true
+    },
+    {
+      "check": "Java server-list uses WestShield",
+      "passed": true
+    },
+    {
+      "check": "Existing auth accounts still work",
+      "passed": true
+    },
+    {
+      "check": "creative",
+      "passed": true
+    },
+    {
+      "check": "Creative keeps isolated inventory and claims",
+      "passed": true
+    },
+    {
+      "check": "survival",
+      "passed": true
+    },
+    {
+      "check": "Survival inventory and mode restored after migration",
+      "passed": true
+    },
+    {
+      "check": "cterr status",
+      "passed": true
+    },
+    {
+      "check": "westshieldenglish",
+      "passed": true
+    },
+    {
+      "check": "westshieldworldrules status",
+      "passed": true
+    },
+    {
+      "check": "westshieldcombat",
+      "passed": true
+    },
+    {
+      "check": "Ordinary players cannot create clans",
+      "passed": true
+    },
+    {
+      "check": "Existing territory still gives entry actionbar",
+      "passed": true
+    },
+    {
+      "check": "Rebranded map retains existing polygon markers",
+      "passed": true
+    },
+    {
+      "check": "Admin commands use WestShield and preserve policy",
+      "passed": true
+    },
+    {
+      "check": "Map title and identifiers use WestShield",
+      "passed": true
+    },
+    {
+      "check": "Clan layer is visible and can be hidden",
+      "passed": true
+    },
+    {
+      "check": "Filter changes actual layer",
+      "passed": true
+    },
+    {
+      "check": "Flat/daylight/no-coordinate privacy preserved",
+      "passed": true
+    },
+    {
+      "check": "Map URL has no old brand or coordinates",
+      "passed": true
+    },
+    {
+      "check": "Voice HTTP works",
+      "passed": true
+    },
+    {
+      "check": "Voice has no former branding",
+      "passed": true
+    },
+    {
+      "check": "Analytics HTTP works",
+      "passed": true
+    },
+    {
+      "check": "Analytics has no former branding",
+      "passed": true
+    },
+    {
+      "check": "No browser JavaScript errors",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "floodgate-spigot-westshield-en.jar": "3d5dba5bf6cee6fa0c46164611c20456fc95f3d0ffa8add79223cde9bedf9e19",
+    "WestShieldEnglish-1.0.1.jar": "4a5a54c26cce9780ab4cb2066166d6a58f85e6eba9dcac9611f7be5788503193",
+    "WestShieldWorldRules-1.1.2.jar": "12278e729fb174bd889f77df21c48e653c5780dad9704ea8dce9d44bda19e8e3",
+    "SimpleClans-2.19.2-westshield.1.jar": "b03dfa6ddf01b09c41c184805b93dad3d856c1851bfa7afa5ce6844275f96506",
+    "WestShieldCombat-1.0.1.jar": "3d8b7f02da91ab9e182d75912a89ac9795a9c8ebe2a8363a8b9ab4082a27f773",
+    "WestShieldPortal-1.0.2.jar": "fb512314c138a3285eaf58228fa83fc8c2e7a64375fd02ccf70531db2394bbdb",
+    "WestShieldHeads-1.0.2.jar": "875f725bd52d942ae8b5d7c975373d1144cd259719405b69dc080ab1aa50abb9",
+    "WestShieldCreative-1.0.3.jar": "810c6c972ebe1f1d99e9ffeccf64a72e12cf5bd77b2277ca0145a433b48d1151",
+    "WestShieldClanTerritories-1.0.2.jar": "2e0aabc1d43d4205b497da230adafd0a9a88592a84a1880925cee2b2f3249858"
+  },
+  "geometry_checks_passed": 22,
+  "production_verified": true,
+  "production_checks": [
+    {
+      "check": "Server is running",
+      "passed": true
+    },
+    {
+      "check": "Only production plugins and WestShield identities are installed",
+      "passed": true
+    },
+    {
+      "check": "Map IDs use WestShield",
+      "passed": true
+    },
+    {
+      "check": "Map name and privacy: westshield",
+      "passed": true
+    },
+    {
+      "check": "Players hidden: westshield",
+      "passed": true
+    },
+    {
+      "check": "Map name and privacy: westshield_nether",
+      "passed": true
+    },
+    {
+      "check": "Players hidden: westshield_nether",
+      "passed": true
+    },
+    {
+      "check": "Map name and privacy: westshield_end",
+      "passed": true
+    },
+    {
+      "check": "Players hidden: westshield_end",
+      "passed": true
+    },
+    {
+      "check": "Existing render retained at the center and all four map corners",
+      "passed": true
+    },
+    {
+      "check": "HTTPS service responds: /map/",
+      "passed": true
+    },
+    {
+      "check": "HTTPS service responds: /voice/",
+      "passed": true
+    },
+    {
+      "check": "HTTPS service responds: /",
+      "passed": true
+    },
+    {
+      "check": "Player-facing branding: /plugins/AuthMe/welcome.txt",
+      "passed": true
+    },
+    {
+      "check": "No former brand: /plugins/AuthMe/welcome.txt",
+      "passed": true
+    },
+    {
+      "check": "Player-facing branding: /plugins/TAB/config.yml",
+      "passed": true
+    },
+    {
+      "check": "No former brand: /plugins/TAB/config.yml",
+      "passed": true
+    },
+    {
+      "check": "Player-facing branding: /plugins/Geyser-Spigot/config.yml",
+      "passed": true
+    },
+    {
+      "check": "No former brand: /plugins/Geyser-Spigot/config.yml",
+      "passed": true
+    },
+    {
+      "check": "Player-facing branding: /plugins/SimpleVoice-Geyser/config.yml",
+      "passed": true
+    },
+    {
+      "check": "No former brand: /plugins/SimpleVoice-Geyser/config.yml",
+      "passed": true
+    },
+    {
+      "check": "Analytics name and aliases use new presentation",
+      "passed": true
+    },
+    {
+      "check": "Public map has only new branding",
+      "passed": true
+    },
+    {
+      "check": "English interface preserved",
+      "passed": true
+    },
+    {
+      "check": "Clan filter hides actual layer",
+      "passed": true
+    },
+    {
+      "check": "Flat daylight and coordinate-click privacy preserved",
+      "passed": true
+    },
+    {
+      "check": "Map hash does not expose coordinates",
+      "passed": true
+    },
+    {
+      "check": "Map selection works: westshield_nether",
+      "passed": true
+    },
+    {
+      "check": "Map selection works: westshield",
+      "passed": true
+    },
+    {
+      "check": "Voice title uses WestShield",
+      "passed": true
+    },
+    {
+      "check": "Voice UI remains English",
+      "passed": true
+    },
+    {
+      "check": "Analytics has no former branding",
+      "passed": true
+    },
+    {
+      "check": "No browser JavaScript errors",
+      "passed": true
+    },
+    {
+      "check": "Access data unchanged: /whitelist.json",
+      "passed": true
+    },
+    {
+      "check": "Access data unchanged: /ops.json",
+      "passed": true
+    },
+    {
+      "check": "Server remains running",
+      "passed": true
+    }
+  ],
+  "preserved": [
+    "World UUIDs, seed and borders",
+    "Whitelist and operator records",
+    "Creative/survival storage, clan and claim identities",
+    "Backup schedule timing and task payloads",
+    "Existing map render tiles"
+  ],
+  "addresses": {
+    "java": "westshield.minecraft.surf",
+    "bedrock": "westshield.minecraft.surf:32712",
+    "map": "https://westshield.dynmap.xyz/map/",
+    "voice": "https://westshield.dynmap.xyz/voice/",
+    "analytics": "https://westshield.dynmap.xyz/"
+  }
+}

@@ -1,0 +1,16 @@
+name: WestShieldWorldRules
+version: 1.1.2
+main: com.westshield.rules.WestShieldWorldRules
+api-version: '26.2'
+description: Persistent WestShield borders, locator privacy and reversible End access control.
+author: WestShield
+depend:
+- Geyser-Spigot
+commands:
+  westshieldworldrules:
+    description: Inspect rules, reload configuration, or open/close End access.
+    usage: /westshieldworldrules <status|reload|end open|end close>
+    permission: westshieldworldrules.admin
+permissions:
+  westshieldworldrules.admin:
+    default: op

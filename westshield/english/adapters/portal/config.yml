@@ -1,0 +1,4 @@
+binary: bin/caddy
+configuration: Caddyfile
+sha256: 678ade3bfc088749c81a681adc603333ee0bb023b6a6cfe3c0f58bef8ff854e9
+pending-bedrock-invites: []

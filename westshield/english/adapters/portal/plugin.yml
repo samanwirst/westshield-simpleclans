@@ -1,0 +1,7 @@
+name: WestShieldPortal
+version: 1.0.2
+main: com.westshield.portal.WestShieldPortal
+api-version: '26.2'
+description: Runs the pinned Caddy web router for the WestShield server.
+author: WestShield
+depend: [AuthMe, voicechat, SimpleVoice-Geyser, floodgate]

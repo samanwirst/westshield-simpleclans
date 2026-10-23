@@ -3,7 +3,7 @@ package net.sacredlabyrinth.phaed.simpleclans.commands;
 import net.sacredlabyrinth.phaed.simpleclans.acf.BaseCommand;
 import net.sacredlabyrinth.phaed.simpleclans.acf.BukkitLocales;
 import net.sacredlabyrinth.phaed.simpleclans.acf.CommandIssuer;
-import net.sacredlabyrinth.phaed.simpleclans.acf.WiutPaperCommandManager;
+import net.sacredlabyrinth.phaed.simpleclans.acf.WestShieldPaperCommandManager;
 import net.sacredlabyrinth.phaed.simpleclans.locales.MessageKey;
 import net.sacredlabyrinth.phaed.simpleclans.locales.MessageKeyProvider;
 import net.sacredlabyrinth.phaed.simpleclans.ClanPlayer;
@@ -35,7 +35,7 @@ import static net.sacredlabyrinth.phaed.simpleclans.SimpleClans.lang;
 import static net.sacredlabyrinth.phaed.simpleclans.SimpleClans.optionalLang;
 import static net.sacredlabyrinth.phaed.simpleclans.managers.SettingsManager.ConfigField.*;
 
-public class SCCommandManager extends WiutPaperCommandManager {
+public class SCCommandManager extends WestShieldPaperCommandManager {
     private final SimpleClans plugin;
     private static final List<String> SUBCOMMANDS;
 

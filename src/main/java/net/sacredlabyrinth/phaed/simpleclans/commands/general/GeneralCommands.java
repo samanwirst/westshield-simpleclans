@@ -74,10 +74,10 @@ public class GeneralCommands extends BaseCommand {
     }
 
     @Subcommand("%create")
-    @CommandPermission("wiutclans.admin")
+    @CommandPermission("westshieldclans.admin")
     @Description("{@@command.description.create}")
     public void create(Player player, @Optional @Name("tag") String tag, @Optional @Name("name") String name) {
-        if (!player.hasPermission("wiutclans.admin")) {
+        if (!player.hasPermission("westshieldclans.admin")) {
             player.sendMessage("Only administrators can create clans.");
             return;
         }

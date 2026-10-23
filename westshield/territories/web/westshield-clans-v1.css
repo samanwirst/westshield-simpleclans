@@ -1,0 +1,38 @@
+#westshield-clan-filter {
+    position: fixed;
+    left: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 24px;
+    max-width: calc(100vw - 48px);
+    padding: 9px 12px;
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 7px;
+    background: rgba(25, 30, 36, .9);
+    color: #fff;
+    font: 14px/1.3 system-ui, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    user-select: none;
+}
+#westshield-clan-filter input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #63cca8;
+    cursor: pointer;
+}
+#westshield-clan-filter:focus-within {
+    outline: 2px solid #8ecfff;
+    outline-offset: 2px;
+}
+.westshield-clan-label {
+    pointer-events: none !important;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 500px) {
+    #westshield-clan-filter { font-size: 13px; }
+}

@@ -1,0 +1,23 @@
+name: WestShieldCreative
+version: 1.0.3
+main: com.westshield.creative.WestShieldCreative
+api-version: '26.2'
+depend: [Multiverse-Core, Multiverse-Inventories, GriefPrevention, AuthMe]
+softdepend: [GSit]
+commands:
+  creative:
+    description: Enter the shared creative world with a separate inventory.
+    usage: /creative
+    permission: westshieldcreative.travel
+  survival:
+    description: Return to the previous survival dimension and position.
+    usage: /survival
+    permission: westshieldcreative.travel
+  westshieldcreative:
+    description: Show creative world policy status.
+    permission: westshieldcreative.admin
+permissions:
+  westshieldcreative.travel:
+    default: true
+  westshieldcreative.admin:
+    default: op

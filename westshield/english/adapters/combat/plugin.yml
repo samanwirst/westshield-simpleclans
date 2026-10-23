@@ -1,0 +1,14 @@
+name: WestShieldCombat
+version: 1.0.1
+main: com.westshield.combat.WestShieldCombat
+api-version: '26.2'
+description: PvE-only maces and consistent spear weapon transitions for WestShield.
+author: WestShield
+commands:
+  westshieldcombat:
+    description: Inspect the active server combat policy.
+    permission: westshieldcombat.admin
+permissions:
+  westshieldcombat.admin:
+    default: op
+

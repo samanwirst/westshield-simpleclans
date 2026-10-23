@@ -1,0 +1,13 @@
+name: WestShieldEnglish
+version: 1.0.1
+main: com.westshield.english.WestShieldEnglish
+api-version: '26.2'
+depend: [packetevents, Geyser-Spigot]
+description: Render server-owned translatable messages and window titles in English.
+commands:
+  westshieldenglish:
+    description: Inspect the server message language policy.
+    permission: westshieldenglish.admin
+permissions:
+  westshieldenglish.admin:
+    default: op
