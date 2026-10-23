@@ -35,7 +35,7 @@ class Client:
   if self.compression:
    f=io.BytesIO(raw);unpacked=vi(f);raw=zlib.decompress(f.read()) if unpacked else f.read()
   f=io.BytesIO(raw);pid=vi(f);body=f.read()
-  if self.state=='game' and b'WestShield_CLAN_CHAT_CHECK' in body:self.messages.append(('clan-chat-raw',body.hex()))
+  if self.state=='game' and b'WESTSHIELD_CLAN_CHAT_CHECK' in body:self.messages.append(('clan-chat-raw',body.hex()))
   if self.state=='login':
    if pid==3:self.compression=True
    elif pid==2:self.send(3);self.state='config'

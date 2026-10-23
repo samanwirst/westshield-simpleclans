@@ -103,7 +103,7 @@ def start():
     global process,phase
     phase+=1
     log=BASE/f'local-console-{phase}.log'
-    java=os.environ['WestShield_JAVA_BIN']
+    java=os.environ['WESTSHIELD_JAVA_BIN']
     process=subprocess.Popen([java,'-Xms256M','-Xmx1500M','-XX:ActiveProcessorCount=2','-Dterminal.jline=false','-Dterminal.ansi=false','-jar','server.jar','nogui'],cwd=SERVER,stdin=subprocess.PIPE,stdout=log.open('w'),stderr=subprocess.STDOUT,text=True)
     report['server_pid']=process.pid;save()
     for _ in range(240):
@@ -149,7 +149,7 @@ try:
     command(administrator,'clanadmin color poly #2A9D8F')
     color_tag=inspect('TerritoryLead','custom-color')['color-tag']
     check(color_tag.lower().startswith('§x§2§a§9§d§8§f'),'An administrator assigns an arbitrary RGB color in the native clan record')
-    offset=len(user.messages);chat(leader,'WestShield_CLAN_CHAT_CHECK')
+    offset=len(user.messages);chat(leader,'WESTSHIELD_CLAN_CHAT_CHECK')
     packets=[bytes.fromhex(text) for kind,text in user.messages[offset:] if kind=='clan-chat-raw']
     report['chat_color_packets']=[packet.hex() for packet in packets];save()
     check(any(b'#2a9d8f' in packet.lower() for packet in packets),'Another real client receives the exact chosen RGB color in the clan chat prefix')

@@ -62,10 +62,10 @@ try:
     after = test.inspect('ClanProbeOwner', 'after-disabled-home')
     test.check(before['world'] == after['world'] and before['location'] == after['location'], 'Disabled feature commands cannot teleport the player')
     previous = len(member.messages)
-    chat(owner, 'WestShield_CLAN_CHAT_CHECK')
+    chat(owner, 'WESTSHIELD_CLAN_CHAT_CHECK')
     packets = [bytes.fromhex(value) for kind, value in member.messages[previous:] if kind == 'clan-chat-raw']
     test.observation('Tagged native chat packets received', [packet.hex() for packet in packets])
-    test.check(any(b'WestShield_CLAN_CHAT_CHECK' in packet and b'westshield' in packet.lower() for packet in packets), 'Another real protocol client receives ordinary chat with the clan tag')
+    test.check(any(b'WESTSHIELD_CLAN_CHAT_CHECK' in packet and b'westshield' in packet.lower() for packet in packets), 'Another real protocol client receives ordinary chat with the clan tag')
     test.command(owner, 'clan disband')
     chat(owner, 'yes')
     final = test.inspect('ClanProbeOwner', 'prompt-disbanded')

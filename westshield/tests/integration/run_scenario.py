@@ -13,11 +13,11 @@ import traceback
 import yaml
 
 BASE = Path(__file__).resolve().parent
-SERVER = Path(os.environ.get('WestShield_TEST_SERVER', str(BASE / 'server'))).resolve()
+SERVER = Path(os.environ.get('WESTSHIELD_TEST_SERVER', str(BASE / 'server'))).resolve()
 sys.path.insert(0, str(BASE.parent))
 from clan_protocol_client import Client, status, vint
 
-JAVA = os.environ.get('WestShield_JAVA_BIN', 'java')
+JAVA = os.environ.get('WESTSHIELD_JAVA_BIN', 'java')
 RESULT = BASE / 'scenario-results.json'
 report = {'started_at': datetime.now(timezone.utc).isoformat(), 'checks': [], 'observations': [],
           'scope': 'Isolated full production plugin stack plus SimpleClans and local test harness; Java protocol 26.2, no OP, no Bedrock GUI'}

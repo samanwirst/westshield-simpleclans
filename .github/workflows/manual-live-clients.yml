@@ -24,16 +24,16 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
-      WIUT_CONTROL_URL: ${{ inputs.control_url }}
-      WIUT_NAMES: ${{ inputs.names }}
-      WIUT_BEACON: ${{ inputs.beacon }}
-      WIUT_TEST_PASSWORD: ${{ secrets.WIUT_LIVE_TEST_PASSWORD }}
+      WESTSHIELD_CONTROL_URL: ${{ inputs.control_url }}
+      WESTSHIELD_NAMES: ${{ inputs.names }}
+      WESTSHIELD_BEACON: ${{ inputs.beacon }}
+      WESTSHIELD_TEST_PASSWORD: ${{ secrets.WESTSHIELD_LIVE_TEST_PASSWORD }}
     steps:
       - name: Run temporary non-OP Java protocol clients
         shell: bash
         run: |
           set -euo pipefail
-          git clone --depth 1 --branch wiut-26.2 https://github.com/samanwirst/wiut-simpleclans.git source
-          python3 -m venv /tmp/wiut-clients
-          /tmp/wiut-clients/bin/pip install nbtlib==2.0.4 requests==2.34.2
-          /tmp/wiut-clients/bin/python source/wiut/tests/integration/remote_agent.py
+          git clone --depth 1 --branch westshield-26.2 https://github.com/samanwirst/westshield-simpleclans.git source
+          python3 -m venv /tmp/westshield-clients
+          /tmp/westshield-clients/bin/pip install nbtlib==2.0.4 requests==2.34.2
+          /tmp/westshield-clients/bin/python source/westshield/tests/integration/remote_agent.py

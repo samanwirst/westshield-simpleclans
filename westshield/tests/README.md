@@ -8,7 +8,7 @@ Actual network packets placed and broke blocks, opened chests and sent commands.
 
 The isolated scenario source and observer plugin are supplied under `integration/`. They require a prepared, disposable four-world WestShield fixture with the full plugin stack. The private fixture, its generated accounts/databases and its worlds are not published. `run_scenario.py`, `run_minimal.py`, `run_access.py` and the observer plugin are not a fresh-server bootstrap and must never target a live server.
 
-Set `WestShield_TEST_SERVER` to the prepared fixture and `WestShield_JAVA_BIN` to Java 25. Install the observer from the included source only in that disposable fixture. The server must bind 127.0.0.1:25597; all extra HTTP/UDP services must also bind loopback. Python dependencies: `nbtlib` and `PyYAML`.
+Set `WESTSHIELD_TEST_SERVER` to the prepared fixture and `WESTSHIELD_JAVA_BIN` to Java 25. Install the observer from the included source only in that disposable fixture. The server must bind 127.0.0.1:25597; all extra HTTP/UDP services must also bind loopback. Python dependencies: `nbtlib` and `PyYAML`.
 
 Physical Java/Bedrock GUI, touch/controller shovel input, invited real Xbox identity admission and voice have not been checked by these scenarios. A server status query cannot establish those behaviors.
 
@@ -18,7 +18,7 @@ The additional mechanism scenario uses native lever packets to verify `/accesstr
 
 ## Manual remote clients
 
-The `Manual live protocol clients` workflow runs only by explicit dispatch. It is useful when the owner's network blocks game ports. It requires three temporary whitelisted, non-OP identities, a short-lived `WestShield_LIVE_TEST_PASSWORD` repository secret and an owner-controlled read-only HTTPS control document. The runner receives no panel credentials or console access and never installs plugins.
+The `Manual live protocol clients` workflow runs only by explicit dispatch. It is useful when the owner's network blocks game ports. It requires three temporary whitelisted, non-OP identities, a short-lived `WESTSHIELD_LIVE_TEST_PASSWORD` repository secret and an owner-controlled read-only HTTPS control document. The runner receives no panel credentials or console access and never installs plugins.
 
 The control sequence is claimed before an ordinary client action. Missing acknowledgements require observation of the existing sequence, not a new action or replay. Host-side assertions and private console evidence remain with the owner. Remove the temporary whitelist entries, registration data, control document and secret after the diagnostic. The workflow does not enable a schedule or establish physical Java/Bedrock GUI coverage.
 

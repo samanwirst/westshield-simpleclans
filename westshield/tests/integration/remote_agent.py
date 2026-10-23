@@ -20,14 +20,14 @@ from urllib.parse import urlparse
 import requests
 from clan_protocol_client import Client, status, vint
 
-URL = os.environ['WestShield_CONTROL_URL']
-NAMES = json.loads(os.environ['WestShield_NAMES'])
-BEACON = os.environ['WestShield_BEACON']
-PASSWORD = os.environ['WestShield_TEST_PASSWORD']
+URL = os.environ['WESTSHIELD_CONTROL_URL']
+NAMES = json.loads(os.environ['WESTSHIELD_NAMES'])
+BEACON = os.environ['WESTSHIELD_BEACON']
+PASSWORD = os.environ['WESTSHIELD_TEST_PASSWORD']
 assert len(NAMES) == 3 and all(re.fullmatch(r'Wt(?:Own|Mem|Oth)[0-9]{4}', name) for name in NAMES)
 assert re.fullmatch(r'[a-f0-9]{16}', BEACON) and len(PASSWORD) >= 16
 parsed = urlparse(URL)
-assert parsed.scheme == 'https' and parsed.netloc == 'westshield-voice.dynmap.xyz'
+assert parsed.scheme == 'https' and parsed.netloc == 'westshield.dynmap.xyz'
 assert re.fullmatch(r'/map/westshield-live-[a-f0-9]{32}\.json', parsed.path)
 
 clients = {}
