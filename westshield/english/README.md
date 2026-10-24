@@ -46,7 +46,7 @@ python3 westshield/english/build.py --server-root /path/to/purpur-server
 python3 westshield/english/floodgate_text_overlay.py --upstream-jar /path/to/floodgate-spigot.jar --output /path/to/floodgate-spigot-westshield-en.jar
 ```
 
-The adapter build includes WestShieldCreative 1.0.3, WestShieldWorldRules 1.1.2, WestShieldHeads 1.0.2 and WestShieldEnglish 1.0.1. Build SimpleClans 2.19.2-westshield.1 and WestShieldClanTerritories 1.0.2 separately using its existing build script. Do not install old/new copies of the same plugin together or upload test probes. Replace only the corresponding current JARs after a consistent backup and clean stop.
+The adapter build includes WestShieldCreative 1.0.3, WestShieldWorldRules 1.1.2, WestShieldHeads 1.0.2 and WestShieldEnglish 1.0.1. Build SimpleClans 2.19.2-westshield.1 and WestShieldClanTerritories 1.0.3 separately using its existing build script. Do not install old/new copies of the same plugin together or upload test probes. Replace only the corresponding current JARs after a consistent backup and clean stop.
 
 ## Acceptance
 
@@ -58,4 +58,4 @@ The preceding English-localization increment passed 37 native checks for its ori
 
 The WestShield build also includes WestShieldCombat 1.0.1 and WestShieldPortal 1.0.2. Previous English-localization receipts are preserved, unchanged, in `docs/history/pre-westshield/english/verification.json`; their old artifact names and hashes are historical. New acceptance is recorded separately for the exact WestShield artifacts. See [rebranding](../REBRANDING.md) for stable private storage identities.
 
-WestShieldWelcome 1.0.0 is a separate optional presentation adapter; see [the authenticated welcome guide](../welcome/README.md).
+WestShieldWelcome 1.0.1 retains on-demand map/voice commands; automatic greetings are disabled by the current [TAB information adapter](../tab/README.md). WestShieldTab 1.0.0 requires the current territory API and exact installed TAB/Plan dependencies.

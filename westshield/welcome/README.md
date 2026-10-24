@@ -1,5 +1,7 @@
 # WestShield authenticated welcome
 
+**Current configuration:** WestShieldWelcome 1.0.1 disables automatic greetings/titles and sends `/welcome` to the new [TAB information panel](../tab/README.md). `/map` and `/voice` remain available on demand. The preview and 1.0.0 acceptance below describe the preceding welcome-only release.
+
 ![Welcome layout](preview.png)
 
 WestShieldWelcome 1.0.0 provides one private, colored welcome after AuthMe login, automatic registration/login or session restoration. A brief matching title is shown only for automatic greetings. It contains the server/team identity and a compact menu, with no automatic URL/password tutorial dump.

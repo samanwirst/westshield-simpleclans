@@ -1,0 +1,5 @@
+# Original server setup date; independent of restarts, world seeds and the rebrand.
+server-launch-date: '2026-10-14'
+timezone: Asia/Tashkent
+history-refresh-seconds: 30
+domain: westshield.minecraft.surf

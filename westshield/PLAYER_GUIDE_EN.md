@@ -24,3 +24,5 @@ Clans work across worlds. Protected claims exist only in creative. AuthMe regist
 Administrators can mark informational clan territories with arbitrary polygon boundaries. Crossing a boundary displays the clan name above the hotbar. These labels do not restrict building, containers or interaction and do not grant access to creative claims.
 
 BlueMap shows a translucent clan-colored fill and permanent clan name. The **Clan territories** checkbox shows/hides that layer and remembers your preference. Administrators choose one RGB color for the chat tag and map. Bedrock text uses its supported palette; the browser map preserves the exact RGB.
+
+Hold **TAB** on Java for server age, membership age, playtime, TPS and clan statistics. Bedrock players can use `/westshield` to open the same information in a native panel. `/map` and `/voice` provide links only when requested. Clan territory area is measured in square blocks and remains informational.

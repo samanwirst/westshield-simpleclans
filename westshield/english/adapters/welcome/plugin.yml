@@ -1,5 +1,5 @@
 name: WestShieldWelcome
-version: 1.0.0
+version: 1.0.1
 main: com.westshield.welcome.WestShieldWelcome
 api-version: '26.2'
 author: WestShield
@@ -9,7 +9,7 @@ softdepend: [floodgate]
 commands:
   westshieldwelcome:
     aliases: [welcome]
-    description: Show the WestShield welcome panel again.
+    description: Show the WestShield information panel.
     usage: /welcome
     permission: westshieldwelcome.use
   map:

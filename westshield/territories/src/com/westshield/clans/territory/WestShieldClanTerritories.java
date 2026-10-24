@@ -173,6 +173,22 @@ public final class WestShieldClanTerritories extends JavaPlugin implements Liste
         return territory;
     }
 
+    /** Read-only, main-thread summary; retired worlds and clan incarnations do not count. */
+    public LandSummary landSummary(Clan clan) {
+        if (!Bukkit.isPrimaryThread()) throw new IllegalStateException("Read land summaries on the server thread");
+        int count = 0;
+        double area = 0;
+        for (Territory territory : store.all()) {
+            if (Bukkit.getWorld(territory.world()) != null && currentClan(territory) == clan) {
+                count++;
+                area += territory.area();
+            }
+        }
+        return new LandSummary(count, area);
+    }
+
+    public record LandSummary(int regions, double squareBlocks) { }
+
     private void saveSelection(Player player, String tag, String id, boolean replace) throws IOException {
         Selection selection = selections.get(player.getUniqueId());
         if (selection == null) throw new IllegalArgumentException("Select vertices with the wand or /cterr point first.");

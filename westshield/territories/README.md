@@ -1,6 +1,6 @@
 # Informational clan territories
 
-WestShieldClanTerritories 1.0.2 adds world-specific polygon labels to the WestShield SimpleClans 2.19.2-westshield.1 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration.
+WestShieldClanTerritories 1.0.3 adds world-specific polygon labels to the WestShield SimpleClans 2.19.2-westshield.1 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration.
 
 The territory has no protection policy. Entry and exit send a brief standard Minecraft actionbar with the current clan name. Building, breaking, containers, PvP and ordinary interaction continue under the existing server rules. This plugin never uncancels another plugin's decisions. Its only block-break cancellation is for an authenticated administrator holding the explicitly tagged selection wand, to prevent the wand from breaking a selected block.
 
@@ -72,7 +72,7 @@ python3 westshield/territories/build.py --server-root /path/to/prepared-purpur-s
 python3 westshield/territories/check_geometry.py --server-root /path/to/prepared-purpur-server
 ```
 
-Output: `westshield/territories/WestShieldClanTerritories-1.0.2.jar` and SHA-256. The supplied server root must contain its `libraries`, AuthMe and BlueMap 5.29 JARs. JTS 1.20.0 is downloaded from Maven Central only if missing and checked against the committed SHA-256 lock; its classes and tagged upstream license files are embedded. No runtime download is needed. Custom source is covered by the fork's GPL-3.0; JTS retains its Eclipse licenses/notices.
+Output: `westshield/territories/WestShieldClanTerritories-1.0.3.jar` and SHA-256. The supplied server root must contain its `libraries`, AuthMe and BlueMap 5.29 JARs. JTS 1.20.0 is downloaded from Maven Central only if missing and checked against the committed SHA-256 lock; its classes and tagged upstream license files are embedded. No runtime download is needed. Custom source is covered by the fork's GPL-3.0; JTS retains its Eclipse licenses/notices.
 
 ## Verification
 

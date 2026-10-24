@@ -65,3 +65,5 @@ Current server identities and scoped verification are documented in [WestShield 
 The installed SMP-style server list, original shield and real 200-player admission configuration are documented in [server presentation](westshield/presentation/README.md).
 
 The authenticated, private SMP greeting and on-demand map/voice commands are documented in [welcome presentation](westshield/welcome/README.md).
+
+The current [TAB information panel](westshield/tab/README.md) replaces the sidebar and automatic greeting, with Tashkent calendar ages, historical playtime, clan land statistics and TPS.

@@ -1,6 +1,8 @@
 sign-in: '<dark_gray>[<aqua>West<gold>Shield<dark_gray>]</dark_gray> <gray>Please sign in first.</gray>'
+automatic:
+  enabled: false
 title:
-  enabled: true
+  enabled: false
   main: '<bold><gradient:#80B3E0:#4DACE1>West</gradient><gradient:#FFF3C4:#F6AC10>Shield</gradient></bold>'
   subtitle: '<gray>Welcome, <white><player></white>.</gray>'
 welcome:

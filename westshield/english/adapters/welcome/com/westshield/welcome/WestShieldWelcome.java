@@ -48,6 +48,7 @@ public final class WestShieldWelcome extends JavaPlugin implements Listener {
     }
 
     private void queue(Player player) {
+        if (!getConfig().getBoolean("automatic.enabled", true)) return;
         // AuthMe can publish completion events from its asynchronous worker.
         Bukkit.getScheduler().runTask(this, () -> {
             if (!player.isOnline() || Bukkit.getPlayer(player.getUniqueId()) != player) return;
@@ -115,7 +116,10 @@ public final class WestShieldWelcome extends JavaPlugin implements Listener {
         switch (command.getName()) {
             case "map" -> getConfig().getStringList("map").forEach(line -> player.sendMessage(render(line, player.getName())));
             case "voice" -> getConfig().getStringList("voice").forEach(line -> player.sendMessage(render(line, player.getName())));
-            default -> showWelcome(player, false);
+            default -> {
+                if (Bukkit.getPluginManager().isPluginEnabled("WestShieldTab")) player.performCommand("westshield");
+                else showWelcome(player, false);
+            }
         }
         return true;
     }

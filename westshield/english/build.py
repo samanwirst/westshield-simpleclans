@@ -1,23 +1,26 @@
 """Build the published WestShield adapters against an installed Purpur 26.2 server."""
 from pathlib import Path
-import argparse,hashlib,subprocess,zipfile
+import argparse,hashlib,shutil,subprocess,zipfile
 import yaml
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--server-root',type=Path,required=True)
 parser.add_argument('--dependency-directory',type=Path,action='append',default=[])
-parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal','WestShieldWelcome'])
+parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal','WestShieldWelcome','WestShieldTab'])
 args=parser.parse_args()
 BASE=Path(__file__).resolve().parent;OUT=BASE/'build';OUT.mkdir(exist_ok=True)
 runtime=args.server_root.resolve()
 libraries=[*sorted((runtime/'libraries').rglob('*.jar')),*sorted((runtime/'plugins').glob('*.jar'))]
 libraries.extend(sorted((runtime/'versions').rglob('purpur-*.jar')))
-for directory in args.dependency_directory:libraries.extend(sorted(directory.glob('*.jar')))
+explicit=[path for directory in args.dependency_directory for path in sorted(directory.glob('*.jar'))]
+libraries=explicit+libraries
 for source in sorted((BASE/'adapters').iterdir()):
  descriptor=yaml.safe_load((source/'plugin.yml').read_text())
  name=descriptor['name'];version=descriptor['version']
  if args.only and args.only!=name:continue
- classes=OUT/(name+'-classes');classes.mkdir(exist_ok=True)
+ classes=OUT/(name+'-classes')
+ if classes.exists():shutil.rmtree(classes)
+ classes.mkdir()
  subprocess.run(['javac','--release','25','-encoding','UTF-8','-cp',':'.join(map(str,libraries)),
    '-d',str(classes),*map(str,sorted(source.rglob('*.java')))],check=True)
  entries={str(p.relative_to(classes)):p.read_bytes() for p in classes.rglob('*.class')}
