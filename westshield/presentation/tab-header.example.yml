@@ -1,0 +1,11 @@
+header-footer:
+  enabled: true
+  designs:
+    default:
+      header:
+      - '&b&lWest&6&lShield'
+      - '&7by &bMinecraft Club &8× &6WestDevs'
+      - '&7Java + Bedrock | Whitelist'
+      footer:
+      - '&7Online: &f%online% &8| &7Ping: &f%ping% ms'
+      - '&7westshield.minecraft.surf'

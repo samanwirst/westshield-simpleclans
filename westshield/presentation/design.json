@@ -1,0 +1,12 @@
+{
+  "line1": "  <#4DACE1>✦</#4DACE1> <bold><gradient:#80B3E0:#4DACE1>West</gradient><gradient:#FFF3C4:#F6AC10>Shield</gradient></bold> <dark_gray>┃</dark_gray> <white><bold>SMP</bold></white> <dark_gray>•</dark_gray> <aqua>Java</aqua> <gray>+</gray> <green>Bedrock</green>",
+  "line2": "          <gray>by</gray> <gradient:#B9E6FF:#4DACE1>Minecraft Club</gradient> <dark_gray>×</dark_gray> <gradient:#FFD58D:#F6AC10>WestDevs</gradient>",
+  "palette": {
+    "blue": "#264F9D",
+    "light_blue": "#4DACE1",
+    "burgundy": "#C7293F",
+    "gold": "#F6AC10"
+  },
+  "credit": "Minecraft Club × WestDevs",
+  "max_players": 200
+}

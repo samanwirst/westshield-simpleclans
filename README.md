@@ -61,3 +61,5 @@ The inherited upstream publishing workflows are archived under `westshield/upstr
 The current English server presentation and adapter build instructions are in [westshield/english/README.md](westshield/english/README.md), with an [English player guide](westshield/PLAYER_GUIDE_EN.md).
 
 Current server identities and scoped verification are documented in [WestShield rebranding](westshield/REBRANDING.md) and [the exact-build acceptance report](westshield/rebranding/verification.json).
+
+The installed SMP-style server list, original shield and real 200-player admission configuration are documented in [server presentation](westshield/presentation/README.md).

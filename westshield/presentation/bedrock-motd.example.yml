@@ -1,0 +1,8 @@
+motd:
+  primary-motd: §9§lWest§6§lShield §r§8| §fSMP §8• §bJava §7+ §aBedrock
+  secondary-motd: §7by §bMinecraft Club §8x §6WestDevs
+  passthrough-motd: false
+  max-players: 200
+  passthrough-player-counts: true
+  integrated-ping-passthrough: true
+  ping-passthrough-interval: 3

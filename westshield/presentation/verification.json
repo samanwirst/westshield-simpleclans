@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "scope": "Purpur 26.2 build 2633 / Java 25; isolated Java and RakNet pings plus public Java/Bedrock service checks",
+  "isolated_checks": [
+    {
+      "check": "MiniMOTD 2.2.5 loads on actual Purpur 26.2",
+      "passed": true
+    },
+    {
+      "check": "No plugin errors",
+      "passed": true
+    },
+    {
+      "check": "Two MOTD lines include WestShield and both teams",
+      "passed": true
+    },
+    {
+      "check": "MOTD includes RGB styling",
+      "passed": true
+    },
+    {
+      "check": "Java status uses actual 200-player limit",
+      "passed": true
+    },
+    {
+      "check": "Native favicon preserves every shield pixel",
+      "passed": true
+    },
+    {
+      "check": "No forbidden old branding in protocol response",
+      "passed": true
+    },
+    {
+      "check": "Native admission limit is 200, independent of MOTD rendering",
+      "passed": true
+    },
+    {
+      "check": "Bedrock status reports 200 slots",
+      "passed": true
+    },
+    {
+      "check": "Bedrock gets colored title and team credits",
+      "passed": true
+    },
+    {
+      "check": "Bedrock MOTD avoids quoted JSON text",
+      "passed": true
+    }
+  ],
+  "production_checks": [
+    {
+      "check": "Server running",
+      "passed": true
+    },
+    {
+      "check": "Public Java address shows 200 real slots",
+      "passed": true
+    },
+    {
+      "check": "Public MOTD has two colored lines and both team names",
+      "passed": true
+    },
+    {
+      "check": "No old branding in public MOTD",
+      "passed": true
+    },
+    {
+      "check": "Public Java icon preserves exact shield pixels",
+      "passed": true
+    },
+    {
+      "check": "Public Bedrock address responds",
+      "passed": true
+    },
+    {
+      "check": "Public Bedrock address shows 200 slots",
+      "passed": true
+    },
+    {
+      "check": "Public Bedrock title and credits match",
+      "passed": true
+    },
+    {
+      "check": "Persisted admission limit is 200",
+      "passed": true
+    },
+    {
+      "check": "Bedrock count uses actual server state",
+      "passed": true
+    },
+    {
+      "check": "No fake online players or fake max-player override",
+      "passed": true
+    },
+    {
+      "check": "Access preserved: /whitelist.json",
+      "passed": true
+    },
+    {
+      "check": "Access preserved: /ops.json",
+      "passed": true
+    },
+    {
+      "check": "Existing HTTPS service works: /map/",
+      "passed": true
+    },
+    {
+      "check": "Existing HTTPS service works: /voice/",
+      "passed": true
+    },
+    {
+      "check": "Existing HTTPS service works: /",
+      "passed": true
+    },
+    {
+      "check": "Server still running",
+      "passed": true
+    }
+  ],
+  "mini_motd_sha256": "a1f5bff3abf4c9c90bd4417ce26612e621c83a1564f3fc7aa39848996cbea6c6",
+  "server_icon_sha256": "6d714ee018fdbd50d9f6e03e63883b0fdaadd360b565278cc8210f8281c6558a",
+  "actual_admission_limit": 200,
+  "load_test_200_clients": false
+}
