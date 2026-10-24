@@ -1,0 +1,10 @@
+authme:
+  settings:
+    registration:
+      messageInterval: 30
+    useWelcomeMessage: false
+    broadcastWelcomeMessage: false
+simplevoice-geyser:
+  client:
+    join-message:
+      enabled: false

@@ -6,7 +6,7 @@ import yaml
 parser=argparse.ArgumentParser()
 parser.add_argument('--server-root',type=Path,required=True)
 parser.add_argument('--dependency-directory',type=Path,action='append',default=[])
-parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal'])
+parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal','WestShieldWelcome'])
 args=parser.parse_args()
 BASE=Path(__file__).resolve().parent;OUT=BASE/'build';OUT.mkdir(exist_ok=True)
 runtime=args.server_root.resolve()

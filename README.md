@@ -63,3 +63,5 @@ The current English server presentation and adapter build instructions are in [w
 Current server identities and scoped verification are documented in [WestShield rebranding](westshield/REBRANDING.md) and [the exact-build acceptance report](westshield/rebranding/verification.json).
 
 The installed SMP-style server list, original shield and real 200-player admission configuration are documented in [server presentation](westshield/presentation/README.md).
+
+The authenticated, private SMP greeting and on-demand map/voice commands are documented in [welcome presentation](westshield/welcome/README.md).

@@ -1,0 +1,27 @@
+name: WestShieldWelcome
+version: 1.0.0
+main: com.westshield.welcome.WestShieldWelcome
+api-version: '26.2'
+author: WestShield
+description: A compact authenticated welcome and on-demand map/voice links.
+depend: [AuthMe]
+softdepend: [floodgate]
+commands:
+  westshieldwelcome:
+    aliases: [welcome]
+    description: Show the WestShield welcome panel again.
+    usage: /welcome
+    permission: westshieldwelcome.use
+  map:
+    description: Open the WestShield world map.
+    usage: /map
+    permission: westshieldwelcome.use
+  voice:
+    description: Get voice chat setup and the website link.
+    usage: /voice
+    permission: westshieldwelcome.use
+permissions:
+  westshieldwelcome.use:
+    default: true
+  westshieldwelcome.admin:
+    default: op

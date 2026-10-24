@@ -57,3 +57,5 @@ The preceding English-localization increment passed 37 native checks for its ori
 ## Rebranding and previous verification
 
 The WestShield build also includes WestShieldCombat 1.0.1 and WestShieldPortal 1.0.2. Previous English-localization receipts are preserved, unchanged, in `docs/history/pre-westshield/english/verification.json`; their old artifact names and hashes are historical. New acceptance is recorded separately for the exact WestShield artifacts. See [rebranding](../REBRANDING.md) for stable private storage identities.
+
+WestShieldWelcome 1.0.0 is a separate optional presentation adapter; see [the authenticated welcome guide](../welcome/README.md).

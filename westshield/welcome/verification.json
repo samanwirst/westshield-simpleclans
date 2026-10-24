@@ -1,0 +1,192 @@
+{
+  "status": "passed",
+  "platform": "Purpur 26.2 build 2633, Java 25, AuthMe 6.0.1",
+  "isolated_checks": [
+    {
+      "check": "Welcome plugin starts with existing full stack",
+      "passed": true
+    },
+    {
+      "check": "No new plugin startup errors",
+      "passed": true
+    },
+    {
+      "check": "One short branded login prompt instead of five-second spam",
+      "passed": true
+    },
+    {
+      "check": "No voice instructions or welcome before authentication",
+      "passed": true
+    },
+    {
+      "check": "Map command remains blocked before authentication",
+      "passed": true
+    },
+    {
+      "check": "Authentication is still required",
+      "passed": true
+    },
+    {
+      "check": "Wrong password still returns a clear error",
+      "passed": true
+    },
+    {
+      "check": "Configured wrong-password kick is preserved",
+      "passed": true
+    },
+    {
+      "check": "Actual AuthMe login succeeds unchanged",
+      "passed": true
+    },
+    {
+      "check": "Exactly one automatic welcome after login",
+      "passed": true
+    },
+    {
+      "check": "Welcome names both teams and the player",
+      "passed": true
+    },
+    {
+      "check": "One short colored title follows login",
+      "passed": true
+    },
+    {
+      "check": "Java menu exposes real command click actions",
+      "passed": true
+    },
+    {
+      "check": "Map URL is supplied only on demand",
+      "passed": true
+    },
+    {
+      "check": "Voice setup uses a separate password and correct website",
+      "passed": true
+    },
+    {
+      "check": "Manual /welcome works without replaying the title",
+      "passed": true
+    },
+    {
+      "check": "Bedrock branch exposes usable typed commands",
+      "passed": true
+    },
+    {
+      "check": "Player placeholders remain literal text",
+      "passed": true
+    },
+    {
+      "check": "First-time users receive the registration prompt",
+      "passed": true
+    },
+    {
+      "check": "Actual registration still logs in automatically",
+      "passed": true
+    },
+    {
+      "check": "Register/login events produce one welcome",
+      "passed": true
+    },
+    {
+      "check": "Another player never receives the private greeting",
+      "passed": true
+    },
+    {
+      "check": "Logout remains effective",
+      "passed": true
+    },
+    {
+      "check": "Login after logout receives one fresh greeting",
+      "passed": true
+    },
+    {
+      "check": "Automatic welcome counter confirms no duplicates",
+      "passed": true
+    },
+    {
+      "check": "Russian client locale still receives English presentation",
+      "passed": true
+    }
+  ],
+  "production_checks": [
+    {
+      "check": "Production server is online",
+      "passed": true
+    },
+    {
+      "check": "Only the intended AuthMe presentation settings changed",
+      "passed": true
+    },
+    {
+      "check": "Registration and login policy unchanged",
+      "passed": true
+    },
+    {
+      "check": "Five-second repeated prompts replaced by 30-second reminders",
+      "passed": true
+    },
+    {
+      "check": "Stock welcome disabled in favor of one private panel",
+      "passed": true
+    },
+    {
+      "check": "Clear colored login and registration prompts",
+      "passed": true
+    },
+    {
+      "check": "Duplicate stock success messages removed",
+      "passed": true
+    },
+    {
+      "check": "Only the automatic voice reminder is disabled",
+      "passed": true
+    },
+    {
+      "check": "No voice setup text appears automatically on join",
+      "passed": true
+    },
+    {
+      "check": "Production uses the exact native-tested plugin",
+      "passed": true
+    },
+    {
+      "check": "Production welcome layout matches the tested source",
+      "passed": true
+    },
+    {
+      "check": "Access data preserved: /whitelist.json",
+      "passed": true
+    },
+    {
+      "check": "Access data preserved: /ops.json",
+      "passed": true
+    },
+    {
+      "check": "Stored account credentials preserved",
+      "passed": true
+    },
+    {
+      "check": "Existing HTTPS service remains available: /map/",
+      "passed": true
+    },
+    {
+      "check": "Existing HTTPS service remains available: /voice/",
+      "passed": true
+    },
+    {
+      "check": "Existing HTTPS service remains available: /",
+      "passed": true
+    },
+    {
+      "check": "200-player admission limit retained",
+      "passed": true
+    },
+    {
+      "check": "Server remains online",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "WestShieldWelcome-1.0.0.jar": "7813ad5827882bff44fe7e38bbdfc8d1d6f90fa062e470101f80034716e6120e"
+  },
+  "scope": "Actual Russian-locale Java protocol login/register/logout flows, live configuration/status verification, and direct rendering of the Bedrock branch. No physical Bedrock controller/client session is claimed."
+}

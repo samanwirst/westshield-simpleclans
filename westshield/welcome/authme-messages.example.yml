@@ -1,0 +1,11 @@
+login:
+  login_request: '&8[&bWest&6Shield&8] &7Sign in: &e/login <password>'
+  command_usage: '&8[&bWest&6Shield&8] &7Sign in: &e/login <password>'
+  wrong_password: '&8[&bWest&6Shield&8] &cIncorrect password. Please try again.'
+  success: ''
+registration:
+  register_request: '&8[&bWest&6Shield&8] &7Register: &e/register <password> <password>'
+  command_usage: '&8[&bWest&6Shield&8] &7Register: &e/register <password> <password>'
+  success: ''
+session:
+  valid_session: ''
