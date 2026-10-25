@@ -32,6 +32,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.floodgate.api.FloodgateApi;
+import org.geysermc.geyser.api.GeyserApi;
 
 /** Presentation only. World, authentication, permissions and Plan history remain owned by their plugins. */
 public final class WestShieldTab extends JavaPlugin implements Listener {
@@ -151,7 +152,7 @@ public final class WestShieldTab extends JavaPlugin implements Listener {
             if (saved != null && saved.firstSeen() > 0) first = first > 0 ? Math.min(first, saved.firstSeen()) : saved.firstSeen();
             String online = saved == null ? (unavailable.contains(player.getUniqueId()) ? "Unavailable" : "Loading…") : TimeFormats.online(saved.onlineMillis()
                     + Math.max(0, now.toEpochMilli() - saved.sampledAt()));
-            String footer = "\n§b§lYOUR JOURNEY§r\n§7Member for §f" + TimeFormats.age(first, now, zone)
+            String footer = "\n§b§lYOUR JOURNEY§r §8• §7Ping §f" + ping(player) + " ms\n§7Member for §f" + TimeFormats.age(first, now, zone)
                     + " §8• §7Online §f" + online + "\n" + clanLines(player, now)
                     + "\n" + RULE + "\n§b/survival §8• §b/creative §8• §b/clan help"
                     + "\n§6/map §8• §6/voice §8• §6/westshield\n§7" + domain;
@@ -159,6 +160,14 @@ public final class WestShieldTab extends JavaPlugin implements Listener {
         }
         panels = Map.copyOf(next);
         if (tick++ % refreshTicks == 0) readHistory();
+    }
+
+    private int ping(Player player) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Geyser-Spigot")) {
+            var connection = GeyserApi.api().connectionByUuid(player.getUniqueId());
+            if (connection != null) return Math.max(0, connection.ping());
+        }
+        return Math.max(0, player.getPing());
     }
 
     private String clanLines(Player player, Instant now) {

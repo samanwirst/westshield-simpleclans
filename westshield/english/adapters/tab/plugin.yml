@@ -1,11 +1,11 @@
 name: WestShieldTab
-version: 1.0.0
+version: 1.0.1
 main: com.westshield.tab.WestShieldTab
 api-version: '26.2'
 author: WestShield
 description: Authenticated TAB statistics and a Bedrock information panel.
 depend: [TAB, AuthMe, Plan, SimpleClans, WestShieldClanTerritories]
-softdepend: [floodgate]
+softdepend: [floodgate, Geyser-Spigot]
 commands:
   westshield:
     aliases: [serverinfo]

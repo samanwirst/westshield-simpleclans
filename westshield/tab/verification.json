@@ -1,244 +1,140 @@
 {
   "status": "passed",
-  "verified_at": "2026-10-24T20:02:04.156650+00:00",
-  "scope": "Exact Purpur 26.2 build 2633 / Java 25; isolated real Java protocol and read-only Plan history plus production startup/configuration/HTTPS checks",
+  "verified_at": "2026-10-25T15:47:12.297666+00:00",
+  "scope": "WestShieldTab 1.0.1 personal ping and the default-group seed grant; native loopback Java clients plus production installation/configuration/HTTPS checks",
   "artifacts": {
-    "WestShieldTab-1.0.0.jar": "d1bc97cf7df672308e2e74e33c63f933f5c021b499479b0b6c0f7382f24337bd",
     "WestShieldWelcome-1.0.1.jar": "6a234056e514c420f659ff67cc4b85c7e316e3de478dcada835bf7995e443d4a",
-    "WestShieldClanTerritories-1.0.3.jar": "f28f3ceb8e9f7814083e016044cd3afb2e12264c51eab885f0bd4dfefaf34aa9"
+    "WestShieldClanTerritories-1.0.3.jar": "f28f3ceb8e9f7814083e016044cd3afb2e12264c51eab885f0bd4dfefaf34aa9",
+    "WestShieldTab-1.0.1.jar": "a1b34ce370cb20821300cd84fb9f697ef91ed82c6c39a4dc91519dc33deeb9dc"
   },
   "native_checks": [
     {
-      "check": "TAB adapter and territory summary API load on full Purpur stack",
+      "check": "Updated TAB adapter starts with the full existing stack",
       "passed": true
     },
     {
-      "check": "No new plugin startup errors",
+      "check": "No plugin startup errors",
       "passed": true
     },
     {
-      "check": "Private player statistics stay hidden before AuthMe login",
+      "check": "Seed remains protected by AuthMe before login",
       "passed": true
     },
     {
-      "check": "Information command cannot bypass authentication",
+      "check": "Both ordinary players receive a personal ping in native TAB packets",
       "passed": true
     },
     {
-      "check": "Native TAB packets contain real counters and no unresolved placeholders",
+      "check": "Two connections show their own measured latency",
       "passed": true
     },
     {
-      "check": "History includes 53 prior hours, AFK and current session",
+      "check": "TAB displays the measured ping in milliseconds",
       "passed": true
     },
     {
-      "check": "Server age survives restart and is separate from member age",
+      "check": "Bedrock information form includes the same personal ping",
       "passed": true
     },
     {
-      "check": "TPS and real player admission count appear in TAB",
+      "check": "Seed access requires no operator status or unrelated permission",
       "passed": true
     },
     {
-      "check": "No automatic greeting or title remains",
+      "check": "TabMember can use /seed after login",
       "passed": true
     },
     {
-      "check": "No sidebar objectives are sent",
+      "check": "TabMember can use /minecraft:seed after login",
       "passed": true
     },
     {
-      "check": "Unclanned players see a compact None state",
+      "check": "TabSolo can use /seed after login",
       "passed": true
     },
     {
-      "check": "Administrator creates a real test clan",
+      "check": "TabSolo can use /minecraft:seed after login",
       "passed": true
     },
     {
-      "check": "Clan membership and true concave polygon area update live",
+      "check": "Legs-up remains denied",
       "passed": true
     },
     {
-      "check": "Member count and authenticated online count are correct",
+      "check": "Prior playtime and clan land are retained",
       "passed": true
     },
     {
-      "check": "Bedrock panel uses the same real statistics",
+      "check": "No sidebar or automatic welcome reappears",
       "passed": true
     },
     {
-      "check": "Clan color matches chat and map RGB",
-      "passed": true
-    },
-    {
-      "check": "Actual native components contain colors and no raw section codes",
-      "passed": true
-    },
-    {
-      "check": "No coordinates, compass, clock time or minutes appear",
-      "passed": true
-    },
-    {
-      "check": "Manual welcome now opens the information panel",
-      "passed": true
-    },
-    {
-      "check": "Map and voice links remain available on demand",
-      "passed": true
-    },
-    {
-      "check": "Custom placeholders survive a real TAB reload",
-      "passed": true
-    },
-    {
-      "check": "Logout hides private data again",
-      "passed": true
-    },
-    {
-      "check": "Re-login does not duplicate historical playtime",
-      "passed": true
-    },
-    {
-      "check": "Plan read-only history completed without failures",
+      "check": "Logout removes personal ping together with other private fields",
       "passed": true
     }
   ],
-  "restart_checks": [
-    {
-      "check": "Fixture restarts with saved history and polygon",
-      "passed": true
-    },
-    {
-      "check": "Historical time remains 2d 5h after actual restart",
-      "passed": true
-    },
-    {
-      "check": "Clan membership, area and region count survive restart",
-      "passed": true
-    },
-    {
-      "check": "Server age remains anchored to original setup",
-      "passed": true
-    },
-    {
-      "check": "No sidebar objectives appear after restart",
-      "passed": true
-    },
-    {
-      "check": "History adapter still has no read failures",
-      "passed": true
-    }
-  ],
-  "geometry_storage_checks": 22,
-  "time_area_checks": 11,
+  "native_ping_samples_ms": {
+    "fast": 0,
+    "slow": 801
+  },
   "production_checks": [
     {
-      "check": "Production server is online",
+      "check": "Production server online",
       "passed": true
     },
     {
-      "check": "Only the intended TAB presentation settings changed",
+      "check": "Production JAR matches native-tested plugin",
       "passed": true
     },
     {
-      "check": "Sidebar disabled; player list and existing names/teams retained",
+      "check": "Only current TAB adapter installed; no test observer",
       "passed": true
     },
     {
-      "check": "Automatic greeting and title disabled; on-demand voice/map help retained",
+      "check": "Existing HTTPS service available: /map/",
       "passed": true
     },
     {
-      "check": "Tashkent and original launch date are configured",
+      "check": "Existing HTTPS service available: /voice/",
       "passed": true
     },
     {
-      "check": "Hosting timezone is Asia/Tashkent",
+      "check": "Existing HTTPS service available: /",
       "passed": true
     },
     {
-      "check": "Exact tested plugin installed: WestShieldTab-1.0.0.jar",
+      "check": "Original configuration and authentication policy retained",
       "passed": true
     },
     {
-      "check": "Exact tested plugin installed: WestShieldWelcome-1.0.1.jar",
+      "check": "Whitelist and operators preserved",
       "passed": true
     },
     {
-      "check": "Exact tested plugin installed: WestShieldClanTerritories-1.0.3.jar",
+      "check": "Seed permission persists after restart",
       "passed": true
     },
     {
-      "check": "No duplicate old JARs or test probes in production",
+      "check": "Legs-up permission remains denied",
       "passed": true
     },
     {
-      "check": "Existing gameplay/authentication configuration preserved: /plugins/AuthMe/config.yml",
+      "check": "Render distance 16 and simulation distance 4 retained",
       "passed": true
     },
     {
-      "check": "Existing gameplay/authentication configuration preserved: /plugins/SimpleClans/config.yml",
-      "passed": true
-    },
-    {
-      "check": "Existing gameplay/authentication configuration preserved: /plugins/SimpleVoice-Geyser/config.yml",
-      "passed": true
-    },
-    {
-      "check": "Server properties preserved apart from startup timestamp comment",
-      "passed": true
-    },
-    {
-      "check": "Access data preserved: /whitelist.json",
-      "passed": true
-    },
-    {
-      "check": "Access data preserved: /ops.json",
-      "passed": true
-    },
-    {
-      "check": "Consistent offline backup verified and kept on host",
-      "passed": true
-    },
-    {
-      "check": "Production reports zero Plan history read failures",
-      "passed": true
-    },
-    {
-      "check": "Borders, End/locator policy and creative/combat rules remain active",
-      "passed": true
-    },
-    {
-      "check": "BlueMap territory integration remains ready",
-      "passed": true
-    },
-    {
-      "check": "Existing HTTPS service remains available: /map/",
-      "passed": true
-    },
-    {
-      "check": "Existing HTTPS service remains available: /voice/",
-      "passed": true
-    },
-    {
-      "check": "Existing HTTPS service remains available: /",
-      "passed": true
-    },
-    {
-      "check": "Server remains online after checks",
+      "check": "Clan territories, world rules and TAB report readiness without history failures",
       "passed": true
     }
   ],
-  "timezone": "Asia/Tashkent",
-  "launch_date": "2026-10-14",
-  "launch_provenance": "Original deployment and earliest retained production Plan registration in Asia/Tashkent",
-  "backup_verified": true,
+  "previous_full_verification": "verification-v1.0.0.json",
+  "seed_permission": "minecraft.command.seed=true, default group, global context",
+  "privacy": "AuthMe still gates player data and /seed; no OP or unrelated command grant",
   "limits": [
-    "No production test users, OP grants or forced authentication were introduced.",
-    "Bedrock form content is rendered with the actual Floodgate/Cumulus API; a physical Bedrock/controller session was not performed.",
-    "200 is the configured admission limit, not a stress-test result.",
-    "Earlier isolated harness failures and the production timestamp-comment assertion are retained privately as separate receipts."
+    "Physical Bedrock GUI/session not performed; shared form payload and installed Geyser connection API compatibility verified.",
+    "The installed Geyser connection ping API supplies Bedrock latency; keepalive-forwarding configuration is unchanged.",
+    "No production test accounts, operators or forced authentication were introduced.",
+    "Earlier isolated status-port harness failure retained separately.",
+    "200 remains an admission limit, not a load-test result."
   ]
 }

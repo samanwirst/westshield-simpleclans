@@ -58,4 +58,4 @@ The preceding English-localization increment passed 37 native checks for its ori
 
 The WestShield build also includes WestShieldCombat 1.0.1 and WestShieldPortal 1.0.2. Previous English-localization receipts are preserved, unchanged, in `docs/history/pre-westshield/english/verification.json`; their old artifact names and hashes are historical. New acceptance is recorded separately for the exact WestShield artifacts. See [rebranding](../REBRANDING.md) for stable private storage identities.
 
-WestShieldWelcome 1.0.1 retains on-demand map/voice commands; automatic greetings are disabled by the current [TAB information adapter](../tab/README.md). WestShieldTab 1.0.0 requires the current territory API and exact installed TAB/Plan dependencies.
+WestShieldWelcome 1.0.1 retains on-demand map/voice commands; automatic greetings are disabled by the current [TAB information adapter](../tab/README.md). WestShieldTab 1.0.1 requires the current territory API and exact installed TAB/Plan dependencies.

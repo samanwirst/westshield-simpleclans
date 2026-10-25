@@ -2,9 +2,13 @@
 
 ![TAB layout](preview.png)
 
-WestShieldTab 1.0.0 moves the server HUD into Java's TAB header/footer. The sidebar is disabled. WestShieldWelcome 1.0.1 disables automatic greetings/titles and retains on-demand `/map` and `/voice`; `/welcome` opens the information panel. AuthMe still owns registration, login, reminders and all authentication policy.
+WestShieldTab 1.0.1 moves the server HUD into Java's TAB header/footer. The sidebar is disabled. WestShieldWelcome 1.0.1 disables automatic greetings/titles and retains on-demand `/map` and `/voice`; `/welcome` opens the information panel. AuthMe still owns registration, login, reminders and all authentication policy.
 
-The panel shows the real online/max-player count, one-minute TPS capped at 20, server age, personal membership age, online duration, and the current clan's name/color, age, member count, authenticated online members, polygon area and number of regions. It reveals no positions, compass directions or player tracking. Useful commands appear as short reminders; TAB text is not a clickable menu.
+The panel shows the real online/max-player count, one-minute TPS capped at 20, personal ping in milliseconds, server age, personal membership age, online duration, and the current clan's name/color, age, member count, authenticated online members, polygon area and number of regions. It reveals no positions, compass directions or player tracking. Useful commands appear as short reminders; TAB text is not a clickable menu.
+
+Personal ping refreshes with the panel once a second. Java uses Paper’s game-connection latency. Bedrock uses the current Geyser connection’s `ping()` API, so the panel does not depend on the loopback Java connection or on enabling Geyser’s keepalive-forwarding setting. The same personal value appears in the on-demand information panel.
+
+All authenticated players can use `/seed` and `/minecraft:seed` through the narrowly scoped `minecraft.command.seed` grant on the default LuckPerms group. Authentication and operator-only commands keep their existing policy.
 
 ## Time and history
 
@@ -34,8 +38,8 @@ python3 westshield/territories/build.py --server-root /path/to/server
 # Put the resulting territory JAR and the built SimpleClans JAR in /path/to/current-api.
 python3 westshield/english/build.py --server-root /path/to/server --dependency-directory /path/to/current-api --only WestShieldTab
 python3 westshield/english/build.py --server-root /path/to/server --only WestShieldWelcome
-javac --release 25 -cp westshield/english/build/WestShieldTab-1.0.0.jar -d /tmp/tab-checks westshield/tab/tests/TimeFormatsChecks.java
-java -cp /tmp/tab-checks:westshield/english/build/WestShieldTab-1.0.0.jar TimeFormatsChecks
+javac --release 25 -cp westshield/english/build/WestShieldTab-1.0.1.jar -d /tmp/tab-checks westshield/tab/tests/TimeFormatsChecks.java
+java -cp /tmp/tab-checks:westshield/english/build/WestShieldTab-1.0.1.jar TimeFormatsChecks
 ```
 
 Back up before a clean stop. Replace the old welcome and territory JARs, add WestShieldTab, retain their data directories and merge the supplied TAB configuration. Never install old/new copies together. Do not install test probes. The source defaults are in `english/adapters/tab/config.yml`; the server launch date is an operator-maintained historical anchor, not a dynamically inferred uptime.
@@ -44,6 +48,6 @@ Back up before a clean stop. Replace the old welcome and territory JARs, add Wes
 
 ## Verification
 
-[verification.json](verification.json) records the exact installed artifacts and scoped acceptance. Native Java protocol tests cover login/logout, actual colored TAB packets, the absence of sidebar objectives and automatic greetings, Plan history, a real clan and a concave 64-square-block polygon, shared form rendering, custom placeholders after a TAB reload, and persistence after an actual server restart. Time tests cross Tashkent midnight and a leap day. Existing geometry/storage checks run against territory 1.0.3.
+[verification.json](verification.json) records the current ping/seed increment. The preceding full TAB, restart, geometry and time acceptance is retained in [verification-v1.0.0.json](verification-v1.0.0.json). Native Java protocol tests cover login/logout, actual colored TAB packets, the absence of sidebar objectives and automatic greetings, Plan history, a real clan and a concave 64-square-block polygon, shared form rendering, custom placeholders after a TAB reload, and persistence after an actual server restart. Time tests cross Tashkent midnight and a leap day. Existing geometry/storage checks run against territory 1.0.3.
 
-The preview is rendered from the captured native header/footer with illustrative fictional player rows and local Minecraft glyphs. Game font files are not redistributed. Java protocol and form-payload checks do not establish physical Bedrock/controller GUI behavior or a 200-player load benchmark. Earlier test-harness failures are retained privately and are not overwritten as passes.
+The preview is rendered from the captured native header/footer with illustrative fictional player rows and local Minecraft glyphs. The pictured ping comes from an intentionally delayed local test connection, not a public-server latency measurement. Game font files are not redistributed. Java protocol and form-payload checks do not establish physical Bedrock/controller GUI behavior or a 200-player load benchmark. Earlier test-harness failures are retained privately and are not overwritten as passes.

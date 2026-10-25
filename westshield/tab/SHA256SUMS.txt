@@ -1,3 +1,3 @@
 f28f3ceb8e9f7814083e016044cd3afb2e12264c51eab885f0bd4dfefaf34aa9  WestShieldClanTerritories-1.0.3.jar
-d1bc97cf7df672308e2e74e33c63f933f5c021b499479b0b6c0f7382f24337bd  WestShieldTab-1.0.0.jar
+a1b34ce370cb20821300cd84fb9f697ef91ed82c6c39a4dc91519dc33deeb9dc  WestShieldTab-1.0.1.jar
 6a234056e514c420f659ff67cc4b85c7e316e3de478dcada835bf7995e443d4a  WestShieldWelcome-1.0.1.jar

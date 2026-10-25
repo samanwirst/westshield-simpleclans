@@ -13,3 +13,7 @@ lp group default permission set simpleclans.member.profile true
 lp group default permission set simpleclans.member.roster true
 lp group default permission set simpleclans.member.lookup true
 lp group default permission set simpleclans.member.resign true
+
+# Shared server features.
+lp group default permission set minecraft.command.seed true
+lp group default permission set gsit.legsup false
