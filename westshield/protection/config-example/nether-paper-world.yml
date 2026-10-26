@@ -1,0 +1,24 @@
+anticheat:
+  anti-xray:
+    enabled: true
+    engine-mode: 3
+    hidden-blocks:
+    - ancient_debris
+    - nether_gold_ore
+    - nether_quartz_ore
+    - glowstone
+    - bone_block
+    - magma_block
+    - nether_bricks
+    - polished_blackstone_bricks
+    lava-obscures: false
+    max-block-height: 128
+    replacement-blocks:
+    - netherrack
+    - basalt
+    - blackstone
+    - gravel
+    - soul_sand
+    - soul_soil
+    update-radius: 2
+    use-permission: false

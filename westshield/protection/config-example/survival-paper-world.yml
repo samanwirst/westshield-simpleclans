@@ -1,0 +1,36 @@
+anticheat:
+  anti-xray:
+    enabled: true
+    engine-mode: 3
+    hidden-blocks:
+    - coal_ore
+    - deepslate_coal_ore
+    - copper_ore
+    - deepslate_copper_ore
+    - iron_ore
+    - deepslate_iron_ore
+    - gold_ore
+    - deepslate_gold_ore
+    - redstone_ore
+    - deepslate_redstone_ore
+    - lapis_ore
+    - deepslate_lapis_ore
+    - diamond_ore
+    - deepslate_diamond_ore
+    - emerald_ore
+    - deepslate_emerald_ore
+    lava-obscures: false
+    max-block-height: 256
+    replacement-blocks:
+    - stone
+    - deepslate
+    - andesite
+    - diorite
+    - granite
+    - tuff
+    - dirt
+    - gravel
+    - calcite
+    - smooth_basalt
+    update-radius: 2
+    use-permission: false

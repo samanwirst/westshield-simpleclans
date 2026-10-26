@@ -67,3 +67,5 @@ The installed SMP-style server list, original shield and real 200-player admissi
 The authenticated, private SMP greeting and on-demand map/voice commands are documented in [welcome presentation](westshield/welcome/README.md).
 
 The current [TAB information panel](westshield/tab/README.md) replaces the sidebar and automatic greeting, with Tashkent calendar ages, historical playtime, clan land statistics and TPS.
+
+The [protection guide](westshield/protection/README.md) documents multilingual censoring, separate Java/Bedrock anti-cheats, persistent three-kick bans and per-world anti-xray.

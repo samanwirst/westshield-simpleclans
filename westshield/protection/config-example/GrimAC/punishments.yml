@@ -1,0 +1,77 @@
+Punishments:
+  Simulation:
+    remove-violations-after: 300
+    checks:
+    - Simulation
+    - GroundSpoof
+    - Timer
+    - TimerLimit
+    - NoFall
+    commands:
+    - 100:100 [westshield]
+    - 1:1 [log]
+  Knockback:
+    remove-violations-after: 300
+    checks:
+    - Knockback
+    - Explosion
+    commands:
+    - 20:20 [westshield]
+    - 1:1 [log]
+  Post:
+    remove-violations-after: 300
+    checks:
+    - Post
+    commands:
+    - 40:40 [westshield]
+    - 1:1 [log]
+  BadPackets:
+    remove-violations-after: 300
+    checks:
+    - BadPackets
+    - PacketOrder
+    - Crash
+    commands:
+    - 40:40 [westshield]
+    - 1:1 [log]
+  Reach:
+    remove-violations-after: 300
+    checks:
+    - Reach
+    commands:
+    - 6:6 [westshield]
+    - 1:1 [log]
+  Hitboxes:
+    remove-violations-after: 300
+    checks:
+    - Hitboxes
+    commands:
+    - 10:10 [westshield]
+    - 1:1 [log]
+  Misc:
+    remove-violations-after: 300
+    checks:
+    - Vehicle
+    - NoSlow
+    - Sprint
+    - MultiActions
+    - Place
+    - Baritone
+    - Break
+    - TransactionOrder
+    - Elytra
+    - Exploit
+    commands:
+    - 40:40 [westshield]
+    - 1:1 [log]
+  Combat:
+    remove-violations-after: 300
+    checks:
+    - Interact
+    commands:
+    - 40:40 [westshield]
+    - 1:1 [log]
+  Autoclicker:
+    remove-violations-after: 300
+    checks: []
+    commands: []

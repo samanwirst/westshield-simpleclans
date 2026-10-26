@@ -1,0 +1,3 @@
+Multilingual base: LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words, CC BY 4.0.
+https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words
+Source lock: westshield/protection/dictionaries.lock.json. Neutral/ambiguous terms removed; Uzbek Latin/Cyrillic and Russian inflections/transliterations added by WestShield.

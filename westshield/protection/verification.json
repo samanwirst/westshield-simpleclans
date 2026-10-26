@@ -1,0 +1,175 @@
+{
+  "verified_at": "2026-10-25T18:23:12.146859+00:00",
+  "version": "WestShieldProtection 1.0.0",
+  "artifacts_sha256": {
+    "grimac-bukkit-2.3.74.jar": "3ac71c0b6ef8ab586c1dd3ab4c0b3254394ef39d048e4985efb2898b9fef628c",
+    "LightAntiCheat-Plus-2.0.2.jar": "b8277592979d6926ba39b98d6dafcd747446852d9f447fad395c60d02f150efa",
+    "WestShieldProtection-1.0.0.jar": "3e00583826a2bc89e977f1859d8232ed576ce8f96638209eb4b3fa79067d2ada"
+  },
+  "unit_checks_passed": 55,
+  "isolated_native_checks": [
+    {
+      "check": "Protection plus both disjoint anticheats load on full stack",
+      "passed": true
+    },
+    {
+      "check": "No startup errors",
+      "passed": true
+    },
+    {
+      "check": "LAC configured for Bedrock and excludes Java",
+      "passed": true
+    },
+    {
+      "check": "Anti-xray active in Survival and Nether with engine 3",
+      "passed": true
+    },
+    {
+      "check": "Creative and End stay unobfuscated",
+      "passed": true
+    },
+    {
+      "check": "Render distance 16 retained",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors fuck",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors siktir",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors блядь",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors сиктир",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors f.u.c.k",
+      "passed": true
+    },
+    {
+      "check": "Stale auth snapshot cannot leak uncensored text",
+      "passed": true
+    },
+    {
+      "check": "Ordinary chat stays intact",
+      "passed": true
+    },
+    {
+      "check": "Private messages are censored too",
+      "passed": true
+    },
+    {
+      "check": "CLAN chat messages are censored",
+      "passed": true
+    },
+    {
+      "check": "ALLY chat messages are censored",
+      "passed": true
+    },
+    {
+      "check": "Profanity creates no strike and no disconnect",
+      "passed": true
+    },
+    {
+      "check": "Manual kicks do not count",
+      "passed": true
+    },
+    {
+      "check": "Cancelled anti-cheat kick does not count",
+      "passed": true
+    },
+    {
+      "check": "Actual provider threshold produces one observed kick",
+      "passed": true
+    },
+    {
+      "check": "First confirmed kick persists across restart",
+      "passed": true
+    },
+    {
+      "check": "Second connection produces second kick",
+      "passed": true
+    },
+    {
+      "check": "Third confirmed kick produces permanent ban",
+      "passed": true
+    },
+    {
+      "check": "Native ban is UUID-based and permanent",
+      "passed": true
+    },
+    {
+      "check": "Unrelated account remains unpunished",
+      "passed": true
+    },
+    {
+      "check": "No persistence failures",
+      "passed": true
+    }
+  ],
+  "native_receipt_note": "All 26 native assertions printed PASS and the server shut down cleanly. The final optional raw-observation JSON write then failed because a clan hover UUID contained a NumPy ndarray. This receipt was reconstructed from the observed PASS output (same 24 assertions plus two clan/alliance assertions), with saved console kick records, permanent native ban, ledger and exact fixture JAR hashes rechecked. Raw component observations were not recovered. This is a report serialization defect, not an unobserved detector or chat pass. The writer is corrected for future runs; the negative receipt remains here.",
+  "isolated_network_checks": [
+    {
+      "check": "Permanent strike count survives another restart",
+      "passed": true
+    },
+    {
+      "check": "Permanently banned account cannot join",
+      "passed": true
+    },
+    {
+      "check": "Real invalid rotation packets trigger the provider and one recorded kick",
+      "passed": true
+    },
+    {
+      "check": "No persistence failures after real packet detection",
+      "passed": true
+    }
+  ],
+  "config_examples_sha256": {
+    "GrimAC/config.yml": "0dbb83d9b701f75cb95ec08bb8e959a1d4242f3fc270c7b221d2d91cc38c03a5",
+    "GrimAC/punishments.yml": "645c08264875e0fc852b7a336e424dd76751823823108143e29c88dbe195609d",
+    "LightAntiCheat-Plus/config.yml": "304e5df29d04ab6bcb07067fa5b28db760435dd813b6846c18a05ea27ec88258",
+    "survival-paper-world.yml": "9026d1ac7cf716e67ade395cf0dbe65663e51d045ccb0c4a984f4f3743b12a56",
+    "nether-paper-world.yml": "59c951882cc09f0ccc8b2953483a17eb354879d632dc6aa171e42e0a34b4506b",
+    "end-paper-world.yml": "e6828da2f0886f5c7e2603577053845a582677af87fc68e6bc4de8c2d11094ff",
+    "creative-paper-world.yml": "e6828da2f0886f5c7e2603577053845a582677af87fc68e6bc4de8c2d11094ff",
+    "WestShieldProtection/config.yml": "68925eac3c1cd896afc307fdc7bce7809ed57a4c08d7779f9066aa3f3ccc7579"
+  },
+  "production": {
+    "state": "running",
+    "exact_tested_artifacts_download_verified": true,
+    "configured_files_download_verified": true,
+    "protection_ready": true,
+    "persistence_failures": 0,
+    "chat_sanctions": false,
+    "prior_access_bans_and_settings_preserved": true,
+    "test_accounts_or_probes_installed": false,
+    "render_distance": 16,
+    "public_seed_permission": true,
+    "legsup_permission": false,
+    "existing_tab_clans_map_and_world_rules_ready": true,
+    "clan_alliance_channels_remain_disabled": true,
+    "https_status": {
+      "/": 200,
+      "/map/": 200,
+      "/voice/": 200
+    },
+    "offline_preinstallation_backup_verified": true
+  },
+  "limits": [
+    "Dictionary coverage is 28 language lists, including Uzbek Latin/Cyrillic; no claim of every language or spelling.",
+    "Native Java protocol tests verify chat and actual kick/ban handling. Synthetic provider flags do not prove independent cheat-detection accuracy.",
+    "Clan/alliance channels were enabled only on the isolated fixture to exercise the censor hook; production settings remain disabled.",
+    "Actual invalid-rotation network packets also triggered Grim and one observed kick.",
+    "No physical Bedrock controller/movement acceptance session or 200-player load test was performed.",
+    "Paper anti-xray does not identify x-ray clients; the existing public world seed permits seed-based ore prediction.",
+    "Test subjects and observers existed only in an isolated local full-stack server. No production test punishment was issued."
+  ]
+}

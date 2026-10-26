@@ -28,3 +28,5 @@ BlueMap shows a translucent clan-colored fill and permanent clan name. The **Cla
 Hold **TAB** on Java for server age, membership age, playtime, TPS and clan statistics. Bedrock players can use `/westshield` to open the same information in a native panel. `/map` and `/voice` provide links only when requested. Clan territory area is measured in square blocks and remains informational.
 
 TAB (or `/westshield` on Bedrock) also shows your personal ping in milliseconds. After signing in, every player can use `/seed` to view the current world seed.
+
+Chat profanity is replaced with `****` without warnings or other sanctions. Anti-cheat kicks are separate: the third confirmed anti-cheat kick permanently bans the account. Ordinary disconnects and manual kicks do not count.

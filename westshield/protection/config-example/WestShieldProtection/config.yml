@@ -1,0 +1,7 @@
+replacement: '****'
+# Additional literal words; no regex or remote dictionary requests at runtime.
+extra-words: []
+allow-words: []
+teleport-grace-seconds: 5
+# Only observed anti-cheat kicks count. Authentication/network/manual kicks do not.
+permanent-ban-after-kicks: 3

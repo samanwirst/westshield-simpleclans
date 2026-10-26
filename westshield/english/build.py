@@ -6,7 +6,7 @@ import yaml
 parser=argparse.ArgumentParser()
 parser.add_argument('--server-root',type=Path,required=True)
 parser.add_argument('--dependency-directory',type=Path,action='append',default=[])
-parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal','WestShieldWelcome','WestShieldTab'])
+parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal','WestShieldWelcome','WestShieldTab','WestShieldProtection'])
 args=parser.parse_args()
 BASE=Path(__file__).resolve().parent;OUT=BASE/'build';OUT.mkdir(exist_ok=True)
 runtime=args.server_root.resolve()
@@ -26,6 +26,8 @@ for source in sorted((BASE/'adapters').iterdir()):
  entries={str(p.relative_to(classes)):p.read_bytes() for p in classes.rglob('*.class')}
  for resource in ['plugin.yml','config.yml']:
   if (source/resource).exists():entries[resource]=(source/resource).read_bytes()
+ for resource in sorted((source/'resources').rglob('*')):
+  if resource.is_file():entries[str(resource.relative_to(source/'resources'))]=resource.read_bytes()
  if name=='WestShieldEnglish':
   dictionary=runtime/'plugins/Geyser-Spigot/locales/en_us.json'
   entries['english-dictionary.sha256']=(hashlib.sha256(dictionary.read_bytes()).hexdigest()+'\n').encode()
