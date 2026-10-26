@@ -1,0 +1,140 @@
+{
+  "verified_at": "2026-10-26T10:26:51.768652+00:00",
+  "artifacts_sha256": {
+    "SkinsRestorer.jar": "a85b4a370f988741c9a38f4d0498262edacbf3220314790ac1c127461996359c",
+    "WestShieldSkins-1.0.0.jar": "34a259325410fb3d2499fc161f6222dfa853615ce17a731d6c0444e8613711cb"
+  },
+  "isolated_checks": [
+    {
+      "check": "SkinsRestorer, source selector and existing full stack enable",
+      "passed": true
+    },
+    {
+      "check": "No new integration startup errors",
+      "passed": true
+    },
+    {
+      "check": "Skin lookup does not authenticate or change the offline account",
+      "passed": true
+    },
+    {
+      "check": "Skin commands cannot bypass AuthMe login",
+      "passed": true
+    },
+    {
+      "check": "Java skin is restored automatically from Ely.by",
+      "passed": true
+    },
+    {
+      "check": "Restored skin exactly matches Ely signed texture",
+      "passed": true
+    },
+    {
+      "check": "Another Java connection receives the signed Ely texture",
+      "passed": true
+    },
+    {
+      "check": "Players keep their UUID and limited self-service permissions",
+      "passed": true
+    },
+    {
+      "check": "Skin help stays in English for a Russian client",
+      "passed": true
+    },
+    {
+      "check": "Player cannot change another account skin",
+      "passed": true
+    },
+    {
+      "check": "Floodgate account retains its native skin by default",
+      "passed": true
+    },
+    {
+      "check": "The /skin nickname command selects the actual Minecraft account",
+      "passed": true
+    },
+    {
+      "check": "Skin change preserves the server account identity",
+      "passed": true
+    },
+    {
+      "check": "Another Java connection receives the new Minecraft texture",
+      "passed": true
+    },
+    {
+      "check": "Skin change cooldown prevents immediate source switching",
+      "passed": true
+    },
+    {
+      "check": "Minecraft selection survives restart instead of reverting to the Ely nickname",
+      "passed": true
+    },
+    {
+      "check": "Explicit Ely command selects Ely despite the Minecraft command default",
+      "passed": true
+    },
+    {
+      "check": "Update preserves the selected Ely source",
+      "passed": true
+    },
+    {
+      "check": "PvP head freezes the Ely skin and victim name",
+      "passed": true
+    },
+    {
+      "check": "Skin and name survive native skull placement and block loot",
+      "passed": true
+    },
+    {
+      "check": "Skin operations create no anti-cheat sanctions",
+      "passed": true
+    },
+    {
+      "check": "Signed Ely skin survives a clean server restart",
+      "passed": true
+    },
+    {
+      "check": "Ely-first, no random defaults, English and disabled auto-update are retained",
+      "passed": true
+    },
+    {
+      "check": "Clear restores the own Ely skin and removes the saved override",
+      "passed": true,
+      "verification": "Independent assertion over saved native before/after observer JSON"
+    }
+  ],
+  "receipt_note": "The native run passed its first 23 assertions, including source selection, transfer, authenticated restart, cooldown and head preservation. After /skin clear, the test observer wrote the expected authenticated/alive profile with its own Ely texture and no selection. Gson omits null fields, so the harness indexed the absent selected key and stopped before recording its last assertion. An independent post-run assertion checked the saved before/after native JSON and passed. The original incomplete receipt and observer files are retained privately. The reader now uses get(selected); no application JAR was changed or unobserved functional result inferred.",
+  "environment_notes": [],
+  "signature_proof": {
+    "source": "https://skinsystem.ely.by/textures/signed/ErickSkrauch",
+    "mojang_key_source": "https://api.minecraftservices.com/publickeys",
+    "mojang_signature_verified": true,
+    "algorithm": "SHA1withRSA",
+    "texture_sha256": "b6e1da3d0bf55081661dce8811d9a623025c937eb4550e654131976f21ef5572",
+    "texture_property_sha256": "30e20d284e6db4f130cb8c55d8ed5c67f42283e76bdf6e67e8ea722dc432b589",
+    "texture_host": "textures.minecraft.net"
+  },
+  "production": {
+    "state": "running",
+    "exact_tested_artifacts_download_verified": true,
+    "configuration_subset_verified": true,
+    "auto_updater_disabled": true,
+    "AuthMe_configuration_and_existing_access_preserved": true,
+    "skin_selector_ready": true,
+    "anticheat_ready_without_persistence_failure": true,
+    "self_service_permissions_verified": true,
+    "test_players_or_observers_deployed": false,
+    "https_status": {
+      "/": 200,
+      "/map/": 200,
+      "/voice/": 200
+    },
+    "offline_backup_download_verified": true
+  },
+  "limits": [
+    "No graphical Java rendering or physical Bedrock client/controller session was performed. Signed profile transfer to a second Java network peer was verified.",
+    "Ely.by and Mojang may return missing profiles or temporary service errors. Existing skins remain unchanged on an explicit lookup failure.",
+    "Independent launcher skin systems can override server-provided skins locally.",
+    "Local fixture update checks for Grim/Plan were disabled; a known PacketEvents GitHub HTTP-403 update check is qualified separately when observed. Production dependency settings were preserved."
+  ]
+}

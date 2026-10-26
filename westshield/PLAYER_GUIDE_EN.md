@@ -30,3 +30,5 @@ Hold **TAB** on Java for server age, membership age, playtime, TPS and clan stat
 TAB (or `/westshield` on Bedrock) also shows your personal ping in milliseconds. After signing in, every player can use `/seed` to view the current world seed.
 
 Chat profanity is replaced with `****` without warnings or other sanctions. Anti-cheat kicks are separate: the third confirmed anti-cheat kick permanently bans the account. Ordinary disconnects and manual kicks do not count.
+
+After signing in, use `/skin <nickname>` for that Minecraft account's skin, `/elyskin <nickname>` for Ely.by, `/skin update` to refresh, and `/skin clear` to restore your own skin. Java nickname skins load automatically from Ely.by with Minecraft fallback; a manual choice survives reconnects. Skin changes have a 30-second cooldown and never change your server account or items.

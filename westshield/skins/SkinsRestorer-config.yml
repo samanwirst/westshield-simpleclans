@@ -1,0 +1,43 @@
+api:
+  elyByEnabled: true
+  fetchRecommendedSkins: false
+storage:
+  defaultSkins:
+    enabled: false
+  skinExpiresAfter: 15
+  uuidExpiresAfter: 60
+commands:
+  forceDefaultPermissions: false
+  skinChangeCooldown: 30
+  skinErrorCooldown: 5
+  disableSkullCommand: true
+  disableGUICommand: true
+  customHelp:
+    enabled: true
+    message:
+      - '<dark_gray>[<aqua>West<gold>Shield<dark_gray>] <white>Skins'
+      - '<gray>Ely.by skins load automatically for your Java nickname.'
+      - '<aqua>/skin <nickname> <dark_gray>— <gray>Use a Minecraft account skin'
+      - '<aqua>/elyskin <nickname> <dark_gray>— <gray>Use an Ely.by account skin'
+      - '<aqua>/skin update <dark_gray>— <gray>Refresh your current skin'
+      - '<aqua>/skin clear <dark_gray>— <gray>Restore your own skin'
+login:
+  noSkinIfLoginCanceled: true
+  alwaysApplyPremium: false
+  offlineModeWarning:
+    enabled: false
+messages:
+  locale: en
+  consoleLocale: en
+  perIssuerLocale: false
+server:
+  proxyMode:
+    detection: DISABLED
+  remountPlayerOnSkinUpdate: false
+  sound:
+    enabled: false
+advanced:
+  teleportRefresh: false
+  playerHeadChatObjects: false
+dev:
+  debug: false

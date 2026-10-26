@@ -1,0 +1,21 @@
+name: WestShieldSkins
+version: 1.0.0
+main: com.westshield.skins.WestShieldSkins
+api-version: '26.2'
+depend: [AuthMe, SkinsRestorer]
+author: WestShield
+description: Explicit Minecraft and Ely.by skin sources with authenticated self-service.
+commands:
+  elyskin:
+    description: Use a skin from Ely.by without changing your server account.
+    usage: /elyskin [nickname]
+    permission: westshieldskins.ely
+  westshieldskins:
+    description: Inspect skin integration readiness.
+    usage: /westshieldskins status
+    permission: westshieldskins.admin
+permissions:
+  westshieldskins.ely:
+    default: true
+  westshieldskins.admin:
+    default: op

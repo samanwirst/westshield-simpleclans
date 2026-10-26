@@ -69,3 +69,5 @@ The authenticated, private SMP greeting and on-demand map/voice commands are doc
 The current [TAB information panel](westshield/tab/README.md) replaces the sidebar and automatic greeting, with Tashkent calendar ages, historical playtime, clan land statistics and TPS.
 
 The [protection guide](westshield/protection/README.md) documents multilingual censoring, separate Java/Bedrock anti-cheats, persistent three-kick bans and per-world anti-xray.
+
+The [skin guide](westshield/skins/README.md) covers automatic Ely.by skins, explicit Minecraft account skins through `/skin <nickname>`, and unchanged AuthMe authentication.

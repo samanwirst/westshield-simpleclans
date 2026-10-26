@@ -1,0 +1,8 @@
+{
+  "skinsrestorer.player": false,
+  "skinsrestorer.command": true,
+  "skinsrestorer.command.set": true,
+  "skinsrestorer.command.clear": true,
+  "skinsrestorer.command.update": true,
+  "skinsrestorer.command.undo": true
+}
