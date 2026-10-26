@@ -1,0 +1,155 @@
+{
+  "verified_at": "2026-10-26T10:50:44.539583+00:00",
+  "version": "WestShieldProtection 1.0.1",
+  "artifact_sha256": "e775db198af21f62e11e031052c44f98aa1f51bf84f13ec56188593cbd553916",
+  "runtime_dependency": {
+    "artifact": "com.google.re2j:re2j:1.8",
+    "url": "https://repo.maven.apache.org/maven2/com/google/re2j/re2j/1.8/re2j-1.8.jar",
+    "publisher_sha1": "12c25e923e9e4fb1575a7640a2698745c6f19a94",
+    "sha256": "7b52c72156dd7f98b3237a5b35c1d34fba381b21048c89208913ad80a45dfbd7",
+    "license": "BSD-3-Clause / Go license",
+    "source": "https://github.com/google/re2j/tree/re2j-1.8"
+  },
+  "base_unit_checks": 55,
+  "steam_unit_checks": 51,
+  "native_checks": [
+    {
+      "check": "Full stack loads all 29 imported Steam languages and 357 patterns",
+      "passed": true
+    },
+    {
+      "check": "No new filter startup errors",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors чмо",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors лох",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors гондон",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors уебан",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors сучь",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors чмошники",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors гондоны",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors уебанская",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors у е б а н",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors yеbаn",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors fuuuuucking",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors siktir",
+      "passed": true
+    },
+    {
+      "check": "Native chat censors сиктир",
+      "passed": true
+    },
+    {
+      "check": "Native chat preserves иди домой",
+      "passed": true
+    },
+    {
+      "check": "Native chat preserves такое бывает",
+      "passed": true
+    },
+    {
+      "check": "Native chat preserves плохой интернет",
+      "passed": true
+    },
+    {
+      "check": "Native chat preserves лохматый кот",
+      "passed": true
+    },
+    {
+      "check": "Native chat preserves I am from Tashkent",
+      "passed": true
+    },
+    {
+      "check": "Native chat preserves Bugun yaxshi kun",
+      "passed": true
+    },
+    {
+      "check": "Whispers censor the same vocabulary",
+      "passed": true
+    },
+    {
+      "check": "CLAN chat censors the same vocabulary",
+      "passed": true
+    },
+    {
+      "check": "ALLY chat censors the same vocabulary",
+      "passed": true
+    },
+    {
+      "check": "Profanity never creates a kick or counter increment",
+      "passed": true
+    },
+    {
+      "check": "Imported filtering survives restart",
+      "passed": true
+    }
+  ],
+  "literal_filter_words": 14802,
+  "source_language_sets": 29,
+  "source_literal_entries": 13792,
+  "source_patterns": 357,
+  "selected_clean_exceptions": 675,
+  "stress_test": {
+    "messages": 250,
+    "characters_each": 256,
+    "elapsed_ms": 932,
+    "scope": "isolated synthetic input; not production capacity acceptance"
+  },
+  "production": {
+    "state": "running",
+    "exact_tested_jar_verified": true,
+    "all_external_data_verified": true,
+    "confirmed_kick_ledger_bytecode_unchanged": true,
+    "existing_sanction_history_access_and_configuration_preserved": true,
+    "chat_sanctions": false,
+    "skin_adapter_ready": true,
+    "test_players_or_observers_deployed": false,
+    "https_status": {
+      "/": 200,
+      "/map/": 200,
+      "/voice/": 200
+    },
+    "offline_backup_download_verified": true
+  },
+  "limits": [
+    "Owner-supplied Steam dictionary adaptation, not the Steamworks API or a claim of identical Valve/user-preference behavior.",
+    "Steam does not provide Uzbek; the existing server Uzbek supplement remains active.",
+    "Spelling/context coverage is not universal. Neutral phrase and screenshot regressions are covered explicitly.",
+    "No physical Bedrock client/controller or 200-player load session was performed.",
+    "The original 1.0.0 verification and its qualifications remain historical. This increment does not rerun every detector/ban experiment because its sanction ledger bytecode and sanction handlers are unchanged."
+  ]
+}

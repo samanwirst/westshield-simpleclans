@@ -46,6 +46,7 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
     private final AtomicLong censored = new AtomicLong();
     private StrikeLedger ledger;
     private WordFilter filter;
+    private SteamDictionary steam;
     private GrimAbstractAPI grim;
     private long graceMillis;
     private long confirmedKicks;
@@ -83,14 +84,16 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
                 in.lines().filter(line -> !line.isBlank() && !line.startsWith("#")).forEach(words::add);
             }
             words.addAll(getConfig().getStringList("extra-words"));
-            filter = new WordFilter(words,getConfig().getStringList("allow-words"),getConfig().getString("replacement","****"));
+            steam=getConfig().getBoolean("external-steam-dictionaries",false)?SteamDictionary.load(getDataFolder().toPath().resolve("steam")):SteamDictionary.empty();
+            words.addAll(steam.words());ArrayList<String> allow=new ArrayList<>(steam.allowWords());allow.addAll(getConfig().getStringList("allow-words"));
+            filter = new WordFilter(words,allow,getConfig().getString("replacement","****"));
             grim = java.util.Objects.requireNonNull(Bukkit.getServicesManager().load(GrimAbstractAPI.class),"Grim API unavailable");
             grim.getEventBus().subscribe(this,FlagEvent.class,this::grimFlag);
             grim.getEventBus().subscribe(this,CommandExecuteEvent.class,this::grimPunishment);
             Bukkit.getPluginManager().registerEvents(this,this);
             for (Player player : Bukkit.getOnlinePlayers()) add(player);
             Bukkit.getScheduler().runTaskTimer(this,() -> sessions.values().forEach(s -> s.authenticated = authenticated(s.player)),1,20);
-            getLogger().info("Protection ready: dictionaries=28; words=" + filter.size() + "; Java=GrimAC; Bedrock=LightAntiCheat-Plus; ban-after-confirmed-kicks=3; chat-sanctions=false");
+            getLogger().info("Protection ready: base-dictionaries=28; words=" + filter.size() + "; steam-languages="+steam.languageCount()+"; steam-patterns="+steam.patternCount()+"; Java=GrimAC; Bedrock=LightAntiCheat-Plus; ban-after-confirmed-kicks=3; chat-sanctions=false");
         } catch (Exception failure) {
             getLogger().log(java.util.logging.Level.SEVERE,"Protection could not start; existing ledger retained",failure);
             Bukkit.getPluginManager().disablePlugin(this);
@@ -194,7 +197,7 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
     public void chat(AsyncChatEvent event) {
         Session captured=sessions.get(event.getPlayer().getUniqueId());
         if(captured==null) return; // Delivery rechecks live AuthMe state; a stale snapshot cannot leak an uncensored message.
-        String original=PLAIN.serialize(event.message()),cleaned=filter.censor(original);
+        String original=PLAIN.serialize(event.message()),cleaned=censor(original);
         if(original.equals(cleaned)) return;
         // Deliver a fresh system component so signed-original hover text cannot reveal censored words.
         event.setCancelled(true);censored.incrementAndGet();
@@ -212,7 +215,7 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
     public void clanChat(net.sacredlabyrinth.phaed.simpleclans.events.ChatEvent event) {
         Player sender=event.getSender().toPlayer();
         if(sender==null || !authenticated(sender)) {event.setCancelled(true);return;}
-        String original=event.getMessage(),cleaned=filter.censor(original);
+        String original=event.getMessage(),cleaned=censor(original);
         if(!original.equals(cleaned)) {event.setMessage(cleaned);censored.incrementAndGet();}
     }
 
@@ -228,14 +231,14 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
             else { int end=input.indexOf(' ',start);if(end<0)return;start=end; }
             while(start<input.length() && input.charAt(start)==' ')start++;
         } else if(!List.of("me","say").contains(root)) return;
-        String text=input.substring(start),cleaned=filter.censor(text);
+        String text=input.substring(start),cleaned=censor(text);
         if(!text.equals(cleaned)) { event.setCancelled(true);event.getPlayer().performCommand(input.substring(1,start)+cleaned);censored.incrementAndGet(); }
     }
 
     @Override public boolean onCommand(CommandSender sender,Command cmd,String label,String[] args) {
         if(sender instanceof Player p && !authenticated(p))return true;
         if(args.length==1 && args[0].equalsIgnoreCase("status")) {
-            sender.sendMessage("WestShield protection: ready=true; words="+filter.size()+"; dictionaries=28; Java=GrimAC; Bedrock=LightAntiCheat-Plus; confirmed-kicks="+confirmedKicks+"; banned-accounts="+ledger.bannedAccounts()+"; persistence-failures="+persistenceFailures+"; censored-messages="+censored.get()+"; chat-sanctions=false");return true;
+            sender.sendMessage("WestShield protection: ready=true; words="+filter.size()+"; base-dictionaries=28; steam-languages="+steam.languageCount()+"; steam-patterns="+steam.patternCount()+"; Java=GrimAC; Bedrock=LightAntiCheat-Plus; confirmed-kicks="+confirmedKicks+"; banned-accounts="+ledger.bannedAccounts()+"; persistence-failures="+persistenceFailures+"; censored-messages="+censored.get()+"; chat-sanctions=false");return true;
         }
         if(args.length==2 && args[0].equalsIgnoreCase("history")) {
             try { UUID id=UUID.fromString(args[1]);sender.sendMessage("Account "+id+": confirmed anti-cheat kicks="+ledger.count(id)+"/3"); }
@@ -244,4 +247,5 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
         sender.sendMessage("/westshieldprotection status | history <uuid>");return true;
     }
     @Override public List<String> onTabComplete(CommandSender sender,Command cmd,String label,String[] args) { return List.of(); }
+    private String censor(String text){return steam.censor(filter.censor(text));}
 }

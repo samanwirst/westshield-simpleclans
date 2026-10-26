@@ -1,0 +1,402 @@
+{
+  "source": "Owner-installed Steam client resource dictionaries",
+  "languages": [
+    "brazilian",
+    "bulgarian",
+    "czech",
+    "danish",
+    "dutch",
+    "english",
+    "finnish",
+    "french",
+    "german",
+    "greek",
+    "hungarian",
+    "indonesian",
+    "italian",
+    "japanese",
+    "koreana",
+    "latam",
+    "norwegian",
+    "polish",
+    "portuguese",
+    "romanian",
+    "russian",
+    "schinese",
+    "spanish",
+    "swedish",
+    "tchinese",
+    "thai",
+    "turkish",
+    "ukrainian",
+    "vietnamese"
+  ],
+  "files": {
+    "words.txt": {
+      "sha256": "92d2d5853bba1dfc39aa52dc50e43758dcbd3bb5f23629ac330ad800778e6d1d",
+      "entries": 13792
+    },
+    "patterns.txt": {
+      "sha256": "a3dc5a7f3894ea15a1ceff09c29ddf7473e2c60fbcd345856e94f3234c0d1aec",
+      "entries": 357
+    },
+    "allow-words.txt": {
+      "sha256": "7d638740c433166d548f7af1b539f4eb411b429ca713e36850d6f2a29dfe514f",
+      "entries": 675
+    }
+  },
+  "source_files": {
+    "filter_banned_brazilian.txt.gz": {
+      "sha256": "9dcc3c91bf744e53026bf4736bb6ac7369eb4f07d77c71fdfca4662038f495b5",
+      "entries": 59
+    },
+    "filter_banned_bulgarian.txt.gz": {
+      "sha256": "ac9a493bd5eb8a3848fe17ecdc6ce77742d994709390afa83699210abf92e75e",
+      "entries": 1
+    },
+    "filter_banned_czech.txt.gz": {
+      "sha256": "598c93b1d5c3cb30f67a31679089f52a41f94c42418609d0d1760dbb1f87efd8",
+      "entries": 36
+    },
+    "filter_banned_danish.txt.gz": {
+      "sha256": "fc196cb13d94f2819f2d7cae2882f2f703f9eb8e5c961980b9e66477bd27d5d3",
+      "entries": 19
+    },
+    "filter_banned_dutch.txt.gz": {
+      "sha256": "fd92cda7ae3e9f741e7f33e2eaf68d53af3b4867294e023c88b335d05cecdbaa",
+      "entries": 63
+    },
+    "filter_banned_english.txt.gz": {
+      "sha256": "32ad4d40318875d10f22a603fdc0060df96a509350b2f5bfcbe443347a3530b8",
+      "entries": 72
+    },
+    "filter_banned_finnish.txt.gz": {
+      "sha256": "21f4ddcfb1cc9bf5c3ee1c2cfd6e14a16eb15f1df596209c37756532356ef908",
+      "entries": 128
+    },
+    "filter_banned_french.txt.gz": {
+      "sha256": "e66ac902284ba330f638b837d9e50d75357f07aea42cb3533b636b9a0f9f1046",
+      "entries": 98
+    },
+    "filter_banned_german.txt.gz": {
+      "sha256": "d9e7fd2b1122bf2c0164bffe5e078f17bd139edc9da2caca8d94cf3e6a5a3006",
+      "entries": 71
+    },
+    "filter_banned_greek.txt.gz": {
+      "sha256": "bffb295f809b46d8add05a0603f1907d82ce4bdc900a7a50bdda4abf9085f02d",
+      "entries": 49
+    },
+    "filter_banned_hungarian.txt.gz": {
+      "sha256": "5bd70c8873ed4a1b4cb445b0676596a5f0e0b1527ad4d8b5556558743c879485",
+      "entries": 29
+    },
+    "filter_banned_indonesian.txt.gz": {
+      "sha256": "466031c25d49344aca903989adceef4b390a8fa5a55d9fd4576d6df944fff8f5",
+      "entries": 353
+    },
+    "filter_banned_italian.txt.gz": {
+      "sha256": "148537e75795bafa8e29a5943923b3503dcf9b624e6d4e5609b542a4d9be085e",
+      "entries": 98
+    },
+    "filter_banned_japanese.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_banned_koreana.txt.gz": {
+      "sha256": "febf94cb12dfd6721614b3d4fc62e53c69b425865d364153cf96013e3b81891e",
+      "entries": 23
+    },
+    "filter_banned_latam.txt.gz": {
+      "sha256": "52ce33875feaab76cd016d4bff37e7ef7d15116a7517899a97ea2619d1ca831c",
+      "entries": 34
+    },
+    "filter_banned_norwegian.txt.gz": {
+      "sha256": "c08d8da27d82e24a62dd5802d93e1aea96e831eb9628f946a0bda6b7dfa60351",
+      "entries": 84
+    },
+    "filter_banned_polish.txt.gz": {
+      "sha256": "15de3f9ac10ee48e123b3e39b2caed2451fe65042cf38393bf6db6a40789d6e2",
+      "entries": 259
+    },
+    "filter_banned_portuguese.txt.gz": {
+      "sha256": "00064045b53a5ca116a58d20414dcb061db9daf28d7e4462f69d9c9c0e0e1373",
+      "entries": 17
+    },
+    "filter_banned_romanian.txt.gz": {
+      "sha256": "8829cf463775879033541e663d04325cdfdef37a4382461487722bc64947c82e",
+      "entries": 2
+    },
+    "filter_banned_russian.txt.gz": {
+      "sha256": "5ffdf252ae53afedd6290aed8acf938ebe8e6c6e556084d4197d6c3bcd9fe888",
+      "entries": 113
+    },
+    "filter_banned_schinese.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_banned_spanish.txt.gz": {
+      "sha256": "45c1bb663272b37c54358ee1a5383b5fccf8850097d310243fc2b6cab64723d6",
+      "entries": 84
+    },
+    "filter_banned_swedish.txt.gz": {
+      "sha256": "77df52829ca0e2f4e60d0e099149802c6059fcd69fc45b1441fcbe02802f4149",
+      "entries": 212
+    },
+    "filter_banned_tchinese.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_banned_thai.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_banned_turkish.txt.gz": {
+      "sha256": "79a9f96ec1e2a3d43f2491ddc19dfc6903f19cd2a7f2a5b7b1e400b0cdca5033",
+      "entries": 417
+    },
+    "filter_banned_ukrainian.txt.gz": {
+      "sha256": "49c937602bf479fa1e83b2372ad097ff9d50dbf9780a28b928606ae759000383",
+      "entries": 115
+    },
+    "filter_banned_vietnamese.txt.gz": {
+      "sha256": "8ef9a41852a287bddf394ae7ddea6622ded47363a4385ab5c228e32ad99a7acb",
+      "entries": 7
+    },
+    "filter_profanity_brazilian.txt.gz": {
+      "sha256": "3b21cc469185a57a1b687a6c220c039ed0dfe8e3fa947a81bb6872cca501d646",
+      "entries": 120
+    },
+    "filter_profanity_bulgarian.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_profanity_czech.txt.gz": {
+      "sha256": "4bf29db471821714b2c8e0c30c8fdd9310548d3c63ff71001dca8d82440dcf96",
+      "entries": 51
+    },
+    "filter_profanity_danish.txt.gz": {
+      "sha256": "8f572053fb25250b7e687fe75f27dfbc8edca91eed35c615a94a3f6c6817a309",
+      "entries": 60
+    },
+    "filter_profanity_dutch.txt.gz": {
+      "sha256": "bff2119a1486925f1834c9ae33d78a3c5134e5bf5910b82213ede911504a6a1c",
+      "entries": 40
+    },
+    "filter_profanity_english.txt.gz": {
+      "sha256": "741ed2d4a8ddb27527aa04633961eaf071200d292334d3547bfaa3c6a84ecff6",
+      "entries": 69
+    },
+    "filter_profanity_finnish.txt.gz": {
+      "sha256": "60a76c9620953ae58577de757403b7f3ed35f09c6b73c39d9b37ac5e8c71521d",
+      "entries": 65
+    },
+    "filter_profanity_french.txt.gz": {
+      "sha256": "2a1c8f6da7fc08c1bd042e65cc40dc72ec72a3b9b677fa7d02026ea5b941fdde",
+      "entries": 112
+    },
+    "filter_profanity_german.txt.gz": {
+      "sha256": "e3a88c731f26074c22bb1989e92553a85c2a18c51559ce39e314dd48950d8fc5",
+      "entries": 62
+    },
+    "filter_profanity_greek.txt.gz": {
+      "sha256": "ebafe003c24f4d2105f90931b5035b17d2b48077e0fa9c4986b934cd1c6c938f",
+      "entries": 511
+    },
+    "filter_profanity_hungarian.txt.gz": {
+      "sha256": "73bc3ef97ef1c8f88de1c044c6b3d11ac040c15b4ba53161c9e1dd44f77d4050",
+      "entries": 79
+    },
+    "filter_profanity_indonesian.txt.gz": {
+      "sha256": "11026dfb89b0769d4f26e9c23dd456c4cc16078c9d783a879b425f53ccdde2f8",
+      "entries": 165
+    },
+    "filter_profanity_italian.txt.gz": {
+      "sha256": "0d2d01001943450b1efc8346717b646d470c63ff6ae02cabd855e6d1f8f90607",
+      "entries": 153
+    },
+    "filter_profanity_japanese.txt.gz": {
+      "sha256": "02fc5549fc927f5f9cff279ccd6b5c8c679d0816862fe75d6a365ddd53b02e9b",
+      "entries": 24
+    },
+    "filter_profanity_koreana.txt.gz": {
+      "sha256": "7aa300b33fcace08d39ea5e6a8703f8cbb99cf4ed9c43139862057b903e818fe",
+      "entries": 175
+    },
+    "filter_profanity_latam.txt.gz": {
+      "sha256": "e0e70689048f3e249cb28adf42d05ed352b2f10eff8239ce3540336e7d039d25",
+      "entries": 153
+    },
+    "filter_profanity_norwegian.txt.gz": {
+      "sha256": "a0ba2b668c91b059bdebe8afb0e61b550cff1bbe7022e06f3b6834729628fb1e",
+      "entries": 62
+    },
+    "filter_profanity_polish.txt.gz": {
+      "sha256": "ec58a3a401737ee568b7201eea95b551f054c4999da688a5f81eb8a292bab619",
+      "entries": 6842
+    },
+    "filter_profanity_portuguese.txt.gz": {
+      "sha256": "f6a8eff81ad418116f4f9612d26a514ed2c637ccf2e18ed3955e7ea13cf6d9ae",
+      "entries": 84
+    },
+    "filter_profanity_romanian.txt.gz": {
+      "sha256": "ecd712c3b7bd9ea4d71f651bc45d6b76b158bb39107d097de621993eeacc9e84",
+      "entries": 11
+    },
+    "filter_profanity_russian.txt.gz": {
+      "sha256": "0de42d3c16620615e2539e8dd55895eb6bc14d8c0a13b89bcbe719db0606285e",
+      "entries": 1961
+    },
+    "filter_profanity_schinese.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_profanity_spanish.txt.gz": {
+      "sha256": "0c3ebd90e6c5927323d5c720026634a44ffeb9a243c810cd9f112a8f411098c7",
+      "entries": 396
+    },
+    "filter_profanity_swedish.txt.gz": {
+      "sha256": "af74eb0872ecefb2186b192c3c070184e561653f80fb596beae3bbcccdd325d4",
+      "entries": 19
+    },
+    "filter_profanity_tchinese.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_profanity_thai.txt.gz": {
+      "sha256": "1b44de00071665bc61a2efa2b6b745f436dcb35e5d3626a776664d661b82c3ff",
+      "entries": 13
+    },
+    "filter_profanity_turkish.txt.gz": {
+      "sha256": "8aaca0ef5d8a22bc4f103e5c8701faf5caa9330704778ccffcbff3209a6c2e25",
+      "entries": 780
+    },
+    "filter_profanity_ukrainian.txt.gz": {
+      "sha256": "a73f981cb9268b154c25159904f59947f27ab2e504498df1df95a1bce3b4370d",
+      "entries": 1973
+    },
+    "filter_profanity_vietnamese.txt.gz": {
+      "sha256": "0b0652c574dca52acd50f991e187b13e8df8e016277069619e7241e640e78300",
+      "entries": 7
+    },
+    "filter_clean_brazilian.txt.gz": {
+      "sha256": "cc5e3e5ddf5f87691706fb5371f6d7bbaf2e66cf18a30d77aa3f72cecd525fc8",
+      "entries": 33531
+    },
+    "filter_clean_bulgarian.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_clean_czech.txt.gz": {
+      "sha256": "4fede916a9af2876a96cf84df08373ff08abedd93a52c24a7536efa95da0ecc2",
+      "entries": 43771
+    },
+    "filter_clean_danish.txt.gz": {
+      "sha256": "41ecf8780b46461bd135b01ee699c6405fb93c708aa29892062496f4331c31a4",
+      "entries": 36050
+    },
+    "filter_clean_dutch.txt.gz": {
+      "sha256": "d7ff4aff09e1ad39a49dd676652af3ec330c8cbf2b3fda094566d7e2f7b0a811",
+      "entries": 37120
+    },
+    "filter_clean_english.txt.gz": {
+      "sha256": "d8e1dad1e01f768e500b3f0404296c2c46ce6d04b3e2208eb4c95694cad8c825",
+      "entries": 36261
+    },
+    "filter_clean_finnish.txt.gz": {
+      "sha256": "acb87ad0f53d35c56cc88373652eedc47dcfb01b1f12fa70b4c0a41c20ab6d88",
+      "entries": 42146
+    },
+    "filter_clean_french.txt.gz": {
+      "sha256": "c060678c22aa5ae63f01d5380154deb850c65f5bae35a09041a26e3af3d51aeb",
+      "entries": 35972
+    },
+    "filter_clean_german.txt.gz": {
+      "sha256": "e14dd48c8a9eea5d9085c8d741a6e437dda7e5fe298d38657303230c54918a9b",
+      "entries": 40526
+    },
+    "filter_clean_greek.txt.gz": {
+      "sha256": "6feb83ca306745d634903cf09274b7baf0ac38e43c6b3fab1a608be344c3ef64",
+      "entries": 0
+    },
+    "filter_clean_hungarian.txt.gz": {
+      "sha256": "034915d0a1f8982775675669dad709f65543b3c5f0a5decf4bf84be58704918a",
+      "entries": 42853
+    },
+    "filter_clean_italian.txt.gz": {
+      "sha256": "a6dc1556ebdd1ae6d26b37658351c8b22016fdec725985ede4429a869ce4819e",
+      "entries": 37709
+    },
+    "filter_clean_japanese.txt.gz": {
+      "sha256": "77f0055faba992867817c485930c5f60cf64e65c65b410128426dc35fd8d862b",
+      "entries": 2
+    },
+    "filter_clean_koreana.txt.gz": {
+      "sha256": "bb1c43ca4c447999fb2058ff4a1f2ad121a0cb390a53da6f53a1beb825474771",
+      "entries": 2
+    },
+    "filter_clean_latam.txt.gz": {
+      "sha256": "fda9055d54c738e7ea375923c63db70eade0ba7c94dbd0c34de43019d7eb39c0",
+      "entries": 36818
+    },
+    "filter_clean_norwegian.txt.gz": {
+      "sha256": "1ffa1d4574598c67b73d3cbba5484c3a5d13f0d5ec04f68be76550c37b30e5bc",
+      "entries": 35569
+    },
+    "filter_clean_polish.txt.gz": {
+      "sha256": "f5c3e9d4e6818da906691dd0a050e9f5dd3cbf9561800d4d52d5a718174fa085",
+      "entries": 45605
+    },
+    "filter_clean_portuguese.txt.gz": {
+      "sha256": "de5385df5c6906bd223002c6a4f5e34ed6d4f4957c9330b4cd07eb3fbc114303",
+      "entries": 32231
+    },
+    "filter_clean_romanian.txt.gz": {
+      "sha256": "2b9c72dec0bba8c6b662473ad1b5f522b437a8492c7498aff243de77bb02e32f",
+      "entries": 30299
+    },
+    "filter_clean_russian.txt.gz": {
+      "sha256": "3ebfdc1002af32b781a28895aae8a3c71580136f09402547a5b254992e579d2a",
+      "entries": 42827
+    },
+    "filter_clean_schinese.txt.gz": {
+      "sha256": "77f0055faba992867817c485930c5f60cf64e65c65b410128426dc35fd8d862b",
+      "entries": 2
+    },
+    "filter_clean_spanish.txt.gz": {
+      "sha256": "fda9055d54c738e7ea375923c63db70eade0ba7c94dbd0c34de43019d7eb39c0",
+      "entries": 36818
+    },
+    "filter_clean_swedish.txt.gz": {
+      "sha256": "951b0c803380713644d781762b83d3f42a50715fc14765882fef646db7d5810e",
+      "entries": 39924
+    },
+    "filter_clean_tchinese.txt.gz": {
+      "sha256": "77f0055faba992867817c485930c5f60cf64e65c65b410128426dc35fd8d862b",
+      "entries": 2
+    },
+    "filter_clean_thai.txt.gz": {
+      "sha256": "618f57bc8b3135ef755516a230c805f42fda3775ac44f9859d81c46911f9ac80",
+      "entries": 43238
+    },
+    "filter_clean_turkish.txt.gz": {
+      "sha256": "95e495f83a3d9b58967f2eb4f4483b9240a38222b53086fb37514c21721088d1",
+      "entries": 42299
+    },
+    "filter_clean_ukrainian.txt.gz": {
+      "sha256": "3ebfdc1002af32b781a28895aae8a3c71580136f09402547a5b254992e579d2a",
+      "entries": 42827
+    },
+    "filter_clean_vietnamese.txt.gz": {
+      "sha256": "dd94c88a37a894dfe655baf8e986995c557cb04019a5869dd8ef1fc1a51352f3",
+      "entries": 5506
+    }
+  },
+  "clean_entries_scanned": 819908,
+  "adaptations": [
+    "No legal/political dictionaries",
+    "Neutral identity/anatomy terms excluded",
+    "Only relevant clean-word exceptions retained",
+    "Explicit server insults override clean exceptions"
+  ],
+  "dictionary_contents_published": false
+}

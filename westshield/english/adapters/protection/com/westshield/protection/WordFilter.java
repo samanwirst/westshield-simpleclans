@@ -80,7 +80,7 @@ public final class WordFilter {
         return result;
     }
 
-    private static String canonical(String word) {
+    static String canonical(String word) {
         StringBuilder out = new StringBuilder();
         for (Run run : runs(word)) out.append(String.valueOf(run.letter()).repeat(run.count()));
         return out.toString();

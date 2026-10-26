@@ -31,4 +31,6 @@ TAB (or `/westshield` on Bedrock) also shows your personal ping in milliseconds.
 
 Chat profanity is replaced with `****` without warnings or other sanctions. Anti-cheat kicks are separate: the third confirmed anti-cheat kick permanently bans the account. Ordinary disconnects and manual kicks do not count.
 
+Chat filtering also uses an imported Steam vocabulary/spelling-pattern snapshot, plus the server's Uzbek supplement. Reported Russian insult variants are censored in public chat and whispers; ordinary words and phrases remain readable. Dictionary filtering cannot guarantee every possible future spelling.
+
 After signing in, use `/skin <nickname>` for that Minecraft account's skin, `/elyskin <nickname>` for Ely.by, `/skin update` to refresh, and `/skin clear` to restore your own skin. Java nickname skins load automatically from Ely.by with Minecraft fallback; a manual choice survives reconnects. Skin changes have a 30-second cooldown and never change your server account or items.

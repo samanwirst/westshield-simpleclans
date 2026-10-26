@@ -1,0 +1,8 @@
+{
+  "artifact": "com.google.re2j:re2j:1.8",
+  "url": "https://repo.maven.apache.org/maven2/com/google/re2j/re2j/1.8/re2j-1.8.jar",
+  "publisher_sha1": "12c25e923e9e4fb1575a7640a2698745c6f19a94",
+  "sha256": "7b52c72156dd7f98b3237a5b35c1d34fba381b21048c89208913ad80a45dfbd7",
+  "license": "BSD-3-Clause / Go license",
+  "source": "https://github.com/google/re2j/tree/re2j-1.8"
+}

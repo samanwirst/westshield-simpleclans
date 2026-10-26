@@ -1,6 +1,6 @@
 # WestShield chat and game protection
 
-WestShieldProtection 1.0.0 combines a censor-only language policy with one durable sanction policy for the pinned anti-cheat providers. The server remains Purpur 26.2 build 2633 / Java 25, with AuthMe, Geyser/Floodgate, creative inventory isolation, informational clan territories, render distance 16 and simulation distance 4.
+WestShieldProtection 1.0.1 combines a censor-only language policy with one durable sanction policy for the pinned anti-cheat providers. The server remains Purpur 26.2 build 2633 / Java 25, with AuthMe, Geyser/Floodgate, creative inventory isolation, informational clan territories, render distance 16 and simulation distance 4.
 
 ## Chat
 
@@ -11,6 +11,24 @@ Matched spans become exactly `****`. There are no profanity warnings, mutes, kic
 Normalization handles case, common Unicode lookalikes, Latin diacritics, leetspeak, separators, zero-width separators and repeated letters. Source spans and word boundaries prevent examples such as `class`, `assassin`, `Scunthorpe`, `analytics`, English `I am`, and Uzbek `qo'yaman`/`tashlayman` from being replaced as profanity. CJK/Thai dictionaries also work in text without spaces. Non-European combining marks are retained. Literal trie matching does not execute dictionary entries as regex.
 
 Dictionaries are bundled; there are no runtime dictionary/model requests and no chat sent to an external moderation service. [Dictionary provenance](dictionaries.lock.json) pins upstream files and hashes. The base data is CC BY 4.0; its license and attribution are included in the JAR. The derived vocabulary supplements/removals are documented there. Clan/alliance channels remain disabled in the existing production configuration; they are enabled only in the isolated acceptance fixture to exercise their future censor hook.
+
+### Owner-supplied Steam dictionaries
+
+The installed 1.0.1 configuration also enables external dictionaries imported from the owner's installed Steam client. The snapshot contains 29 language/locale sets, 13,792 unique literal entries and 357 spelling patterns. The existing Uzbek Latin/Cyrillic supplement remains enabled because Steam does not supply Uzbek. Additional Russian inflections, transliterations and insults reported by the owner are included in the bundled server vocabulary.
+
+The importer examines 819,908 Steam clean-list entries and retains 675 relevant exceptions, including the server's neutral-word policy. It does not import legal/political dictionaries. Matching examples include the reported insults, inflected forms, mixed transliteration, repeated letters and separated spellings. Ordinary phrases such as `иди домой`, `такое бывает`, `плохой интернет`, `лохматый кот` and `I am from Tashkent` remain unchanged in acceptance tests.
+
+The literal entries extend the existing Unicode trie. Spelling patterns use the pinned, embedded [RE2/J 1.8 runtime](re2j.lock.json), whose BSD license is included in the JAR. RE2/J avoids exponential backtracking; its Unicode word classes are adapted to include Cyrillic. External file sizes, pattern counts and SHA-256 checksums are validated before enabling the filter. This is an adaptation of owner-supplied dictionaries, **not the Steamworks filtering API**: Steam friendship/preferences behavior and identical Valve matching are not claimed. Unknown future variants remain possible.
+
+Valve dictionary contents are kept under private `plugins/WestShieldProtection/steam/` configuration. They are not embedded in the JAR, source repository or public release. There is no Steam installation, Steam account session or remote moderation request on the game server. Reproduce an owner-authorized import outside the repository with:
+
+```sh
+python3 westshield/protection/import_steam.py --steam-resource /path/to/Steam/resource --output /private/path/steam-dictionaries
+```
+
+Install the generated four files under `plugins/WestShieldProtection/steam/` and set `external-steam-dictionaries: true` in the existing configuration before restarting. Preserve `strikes.yml` and existing `extra-words`/`allow-words`. A missing or changed enabled dictionary refuses startup rather than silently discarding its rules. The public JAR defaults to external dictionaries disabled; the installed server enables its verified private snapshot.
+
+The current [Steam increment verification](steam-verification.json) records actual dictionary hashes/counts, tests and live readiness. The original [1.0.0 verification](verification.json) remains historical, including its original artifact hashes and qualifications. Neither increment claims a physical Bedrock acceptance session or universal spelling coverage.
 
 ## Anti-cheat providers
 
@@ -46,7 +64,7 @@ Packet, reach, interaction and exploit checks are provided by the anti-cheats an
 ## Build and acceptance
 
 ```sh
-python3 westshield/english/build.py --server-root /path/to/server --dependency-directory /path/to/pinned-anticheats --only WestShieldProtection
+python3 westshield/english/build.py --server-root /path/to/server --dependency-directory /path/to/pinned-anticheats --embed-re2j /path/to/re2j-1.8.jar --only WestShieldProtection
 ```
 
 The pinned dependency directory must contain GrimAC 2.3.74 and LightAntiCheat+ 2.0.2. The exact installed AuthMe/Floodgate/SimpleClans/Paper libraries come from the supplied server root. The build embeds `resources/words.txt` and its notices. Source is in `english/adapters/protection` and inherits the repository's GPL-3.0 license; upstream providers retain their own notices/licenses.
@@ -55,8 +73,9 @@ Run the 55 dictionary and persistence checks with Java/Javac 25 or newer:
 
 ```sh
 python3 westshield/protection/tests/run.py --server-root /path/to/server
+python3 westshield/protection/tests/run.py --server-root /path/to/server --steam-directory /private/path/steam-dictionaries
 ```
 
 The [configuration examples](config-example/) contain the installed provider settings and only the anti-xray sections of world settings. Merge each world section into that world's `paper-world.yml`; do not replace unrelated world settings.
 
-[verification.json](verification.json) records the exact installed artifacts and actual scope. Unit checks cover vocabulary/false-positive examples, Unicode handling, counter replay/reload/threshold and failed/malformed persistence. Isolated full-stack Java protocol tests cover visible chat/private messages, ordinary/manual/cancelled kick exclusions, real provider thresholds, three confirmed disconnects, native permanent bans and restart persistence. A separate network test sends actual impossible rotation packets through Grim and verifies a single confirmed kick; the banned account is also refused after a further restart. Test observers and accounts are never deployed on production. Synthetic provider flag injection checks the punishment pipeline, not independent detector accuracy; physical Bedrock play and 200-player load capacity are not established.
+The historical [1.0.0 verification](verification.json) records its original artifacts and scope. Unit checks cover vocabulary/false-positive examples, Unicode handling, counter replay/reload/threshold and failed/malformed persistence. Its isolated full-stack Java protocol tests cover visible chat/private messages, ordinary/manual/cancelled kick exclusions, real provider thresholds, three confirmed disconnects, native permanent bans and restart persistence. A separate network test sends actual impossible rotation packets through Grim and verifies a single confirmed kick; the banned account is also refused after a further restart. The current [1.0.1 Steam verification](steam-verification.json) adds 51 dictionary/pattern/integrity checks and 26 native chat/restart checks, alongside the original 55 unit checks. Test observers and accounts are never deployed on production. Synthetic provider flag injection checks the punishment pipeline, not independent detector accuracy; physical Bedrock play and 200-player load capacity are not established.

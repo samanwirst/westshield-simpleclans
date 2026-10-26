@@ -1,11 +1,13 @@
 """Build the published WestShield adapters against an installed Purpur 26.2 server."""
 from pathlib import Path
 import argparse,hashlib,shutil,subprocess,zipfile
+import json
 import yaml
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--server-root',type=Path,required=True)
 parser.add_argument('--dependency-directory',type=Path,action='append',default=[])
+parser.add_argument('--embed-re2j',type=Path,help='Embed the pinned RE2/J runtime in WestShieldProtection only')
 parser.add_argument('--only',choices=['WestShieldCreative','WestShieldWorldRules','WestShieldHeads','WestShieldEnglish','WestShieldCombat','WestShieldPortal','WestShieldWelcome','WestShieldTab','WestShieldProtection','WestShieldSkins'])
 args=parser.parse_args()
 BASE=Path(__file__).resolve().parent;OUT=BASE/'build';OUT.mkdir(exist_ok=True)
@@ -14,10 +16,15 @@ libraries=[*sorted((runtime/'libraries').rglob('*.jar')),*sorted((runtime/'plugi
 libraries.extend(sorted((runtime/'versions').rglob('purpur-*.jar')))
 explicit=[path for directory in args.dependency_directory for path in sorted(directory.glob('*.jar'))]
 libraries=explicit+libraries
+if args.embed_re2j:
+ lock=json.loads((BASE.parent/'protection/re2j.lock.json').read_text())
+ if hashlib.sha256(args.embed_re2j.read_bytes()).hexdigest()!=lock['sha256']:raise ValueError('RE2/J hash differs from pinned runtime')
+ libraries.insert(0,args.embed_re2j)
 for source in sorted((BASE/'adapters').iterdir()):
  descriptor=yaml.safe_load((source/'plugin.yml').read_text())
  name=descriptor['name'];version=descriptor['version']
  if args.only and args.only!=name:continue
+ if name=='WestShieldProtection' and not args.embed_re2j:raise ValueError('WestShieldProtection requires the pinned --embed-re2j runtime')
  classes=OUT/(name+'-classes')
  if classes.exists():shutil.rmtree(classes)
  classes.mkdir()
@@ -28,6 +35,10 @@ for source in sorted((BASE/'adapters').iterdir()):
   if (source/resource).exists():entries[resource]=(source/resource).read_bytes()
  for resource in sorted((source/'resources').rglob('*')):
   if resource.is_file():entries[str(resource.relative_to(source/'resources'))]=resource.read_bytes()
+ if name=='WestShieldProtection':
+  with zipfile.ZipFile(args.embed_re2j) as library:
+   for entry in library.namelist():
+    if entry.startswith('com/google/re2j/') and entry.endswith('.class'):entries[entry]=library.read(entry)
  if name=='WestShieldEnglish':
   dictionary=runtime/'plugins/Geyser-Spigot/locales/en_us.json'
   entries['english-dictionary.sha256']=(hashlib.sha256(dictionary.read_bytes()).hexdigest()+'\n').encode()

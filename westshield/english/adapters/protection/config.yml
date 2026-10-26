@@ -1,4 +1,6 @@
 replacement: '****'
+# Owner-supplied files under steam/; dictionary data is not bundled or downloaded at runtime.
+external-steam-dictionaries: false
 # Additional literal words; no regex or remote dictionary requests at runtime.
 extra-words: []
 allow-words: []

@@ -48,6 +48,8 @@ python3 westshield/english/floodgate_text_overlay.py --upstream-jar /path/to/flo
 
 The adapter build includes WestShieldCreative 1.0.3, WestShieldWorldRules 1.1.2, WestShieldHeads 1.0.2 and WestShieldEnglish 1.0.1. Build SimpleClans 2.19.2-westshield.1 and WestShieldClanTerritories 1.0.3 separately using its existing build script. Do not install old/new copies of the same plugin together or upload test probes. Replace only the corresponding current JARs after a consistent backup and clean stop.
 
+The current tree also contains the [protection adapter](../protection/README.md), which requires its pinned anti-cheat dependencies and `--embed-re2j /path/to/re2j-1.8.jar` when building all adapters. Use `--only <adapter-name>` to build another adapter independently. [WestShieldSkins](../skins/README.md) additionally requires the installed SkinsRestorer API.
+
 ## Acceptance
 
 Current WestShield acceptance is recorded in [rebranding/verification.json](../rebranding/verification.json), with exact artifact hashes and separate isolated/production check lists. The isolated Java protocol and browser run covers 26 checks; geometry/storage covers 22 cases.
