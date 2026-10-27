@@ -1,43 +1,37 @@
-sign-in: '<dark_gray>[<aqua>West<gold>Shield<dark_gray>]</dark_gray> <gray>Please sign in first.</gray>'
+sign-in: <dark_gray>[<aqua>West<gold>Shield<dark_gray>]</dark_gray> <gray>Please sign in first.</gray>
 automatic:
-  enabled: false
+  enabled: true
 title:
   enabled: false
-  main: '<bold><gradient:#80B3E0:#4DACE1>West</gradient><gradient:#FFF3C4:#F6AC10>Shield</gradient></bold>'
-  subtitle: '<gray>Welcome, <white><player></white>.</gray>'
+  main: <bold><gradient:#80B3E0:#4DACE1>West</gradient><gradient:#FFF3C4:#F6AC10>Shield</gradient></bold>
+  subtitle: <gray>Welcome, <white><player></white>.</gray>
 welcome:
   java:
-    - ''
-    - '  <bold><gradient:#80B3E0:#4DACE1>West</gradient><gradient:#FFF3C4:#F6AC10>Shield</gradient></bold> <dark_gray>•</dark_gray> <white>SMP</white>'
-    - '  <aqua>Minecraft Club</aqua> <dark_gray>×</dark_gray> <gold>WestDevs</gold>'
-    - ''
-    - '  <white>Welcome, <aqua><player></aqua>!</white>'
-    - '  <gray>Build together. Make your mark.</gray>'
-    - ''
-    - "  <click:run_command:/map><hover:show_text:'<gray>Open the world map</gray>'><aqua><bold>[ Map ]</bold></aqua></hover></click>  <click:run_command:/voice><hover:show_text:'<gray>Set up proximity voice chat</gray>'><gold><bold>[ Voice ]</bold></gold></hover></click>  <click:run_command:'/clan help'><hover:show_text:'<gray>Clan commands</gray>'><green><bold>[ Clans ]</bold></green></hover></click>"
-    - "  <click:run_command:/survival><gray>[ Survival ]</gray></click>  <click:run_command:/creative><gray>[ Creative ]</gray></click>"
-    - ''
+  - ''
+  - '  <bold><gradient:#80B3E0:#4DACE1>West</gradient><gradient:#FFF3C4:#F6AC10>Shield</gradient></bold> <dark_gray>•</dark_gray> <white>Welcome, <aqua><player></aqua>!</white>'
+  - '  <aqua>Minecraft Club</aqua> <dark_gray>×</dark_gray> <gold>WestDevs</gold>'
+  - ''
+  - '  <click:open_url:''https://westshield.dynmap.xyz/map/''><hover:show_text:''<gray>https://westshield.dynmap.xyz/map/</gray>''><aqua><bold>[ Map ]</bold></aqua></hover></click>  <click:open_url:''https://westshield.dynmap.xyz/voice/''><hover:show_text:''<gray>https://westshield.dynmap.xyz/voice/</gray>''><gold><bold>[ Voice ]</bold></gold></hover></click>  <click:open_url:''https://westshield-constitution.vercel.app/''><hover:show_text:''<gray>https://westshield-constitution.vercel.app/</gray>''><green><bold>[ Constitution ]</bold></green></hover></click>'
+  - ''
   bedrock:
-    - ''
-    - '  <bold><aqua>West</aqua><gold>Shield</gold></bold> <dark_gray>•</dark_gray> <white>SMP</white>'
-    - '  <aqua>Minecraft Club</aqua> <dark_gray>×</dark_gray> <gold>WestDevs</gold>'
-    - ''
-    - '  <white>Welcome, <aqua><player></aqua>!</white>'
-    - '  <gray>Build together. Make your mark.</gray>'
-    - ''
-    - '  <aqua>/map</aqua>  <dark_gray>•</dark_gray>  <gold>/voice</gold>  <dark_gray>•</dark_gray>  <green>/clan help</green>'
-    - '  <gray>/survival  •  /creative</gray>'
-    - ''
+  - ''
+  - '  <bold><aqua>West</aqua><gold>Shield</gold></bold> <dark_gray>•</dark_gray> <white>Welcome, <aqua><player></aqua>!</white>'
+  - '  <aqua>Minecraft Club</aqua> <dark_gray>×</dark_gray> <gold>WestDevs</gold>'
+  - ''
+  - '  <aqua>Map:</aqua> <white>https://westshield.dynmap.xyz/map/</white>'
+  - '  <gold>Voice:</gold> <white>https://westshield.dynmap.xyz/voice/</white>'
+  - '  <green>Constitution:</green> <white>https://westshield-constitution.vercel.app/</white>'
+  - ''
 map:
-  - ''
-  - '  <aqua><bold>WORLD MAP</bold></aqua>'
-  - "  <click:open_url:'https://westshield.dynmap.xyz/map/'><underlined><aqua>https://westshield.dynmap.xyz/map/</aqua></underlined></click>"
-  - ''
+- ''
+- '  <aqua><bold>WORLD MAP</bold></aqua>'
+- '  <click:open_url:''https://westshield.dynmap.xyz/map/''><underlined><aqua>https://westshield.dynmap.xyz/map/</aqua></underlined></click>'
+- ''
 voice:
-  - ''
-  - '  <gold><bold>PROXIMITY VOICE</bold></gold> <gray>• Java + Bedrock</gray>'
-  - '  <gray>Set a separate voice password:</gray>'
-  - "  <click:suggest_command:'/svg pswd '><aqua>/svg pswd \\<voice-password> confirm</aqua></click>"
-  - '  <gray>Then open the website and allow your microphone:</gray>'
-  - "  <click:open_url:'https://westshield.dynmap.xyz/voice/'><underlined><gold>https://westshield.dynmap.xyz/voice/</gold></underlined></click>"
-  - ''
+- ''
+- '  <gold><bold>PROXIMITY VOICE</bold></gold> <gray>• Java + Bedrock</gray>'
+- '  <gray>Set a separate voice password:</gray>'
+- '  <click:suggest_command:''/svg pswd ''><aqua>/svg pswd \<voice-password> confirm</aqua></click>'
+- '  <gray>Then open the website and allow your microphone:</gray>'
+- '  <click:open_url:''https://westshield.dynmap.xyz/voice/''><underlined><gold>https://westshield.dynmap.xyz/voice/</gold></underlined></click>'
+- ''

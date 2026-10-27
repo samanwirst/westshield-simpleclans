@@ -1,0 +1,35 @@
+{
+  "config_sha256": "2d2798346492efa32fa114def09e280e6773c1536ecf18a33dafdbad7224958f",
+  "java_open_url_links": 3,
+  "bedrock_plain_urls": 3,
+  "automatic_after_authentication": true,
+  "title": false,
+  "authme_and_tab_unchanged": true,
+  "upstream_plugin_binary_unchanged": true,
+  "native_render_java_clicks": 3,
+  "native_render_bedrock_clicks": 0,
+  "physical_client_ui_tested": false,
+  "production_test_players": false,
+  "date": "2026-10-27",
+  "status": "verified-active",
+  "plugin": "WestShieldWelcome 1.0.1",
+  "scope": "Configuration-only change. MiniMessage component rendering and production config/startup/status verified; no real-client click/UI session.",
+  "urls_after_restart": [
+    {
+      "url": "https://westshield.dynmap.xyz/map/",
+      "status": 200,
+      "expected_title_found": true
+    },
+    {
+      "url": "https://westshield.dynmap.xyz/voice/",
+      "status": 200,
+      "expected_title_found": true
+    },
+    {
+      "url": "https://westshield-constitution.vercel.app/",
+      "status": 200,
+      "expected_title_found": true
+    }
+  ],
+  "source_config_sha256": "37a9f42a4ce7a5890931db4d6c555b4cfe6df5eef683dbce1d3bf42d80aad17b"
+}

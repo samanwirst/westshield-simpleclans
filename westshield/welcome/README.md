@@ -1,6 +1,18 @@
 # WestShield authenticated welcome
 
-**Current configuration:** WestShieldWelcome 1.0.1 disables automatic greetings/titles and sends `/welcome` to the new [TAB information panel](../tab/README.md). `/map` and `/voice` remain available on demand. The preview and 1.0.0 acceptance below describe the preceding welcome-only release.
+**Current configuration (2026-10-27):** WestShieldWelcome 1.0.1 sends one compact private greeting after AuthMe login, registration or session restoration. Java receives three direct website buttons: **Map**, **Voice**, and **Constitution**. Bedrock receives the corresponding labelled full HTTPS URLs as plain text. The greeting names WestShield, Minecraft Club and WestDevs. Automatic titles remain disabled.
+
+Current public addresses:
+
+- Map: https://westshield.dynmap.xyz/map/
+- Voice: https://westshield.dynmap.xyz/voice/
+- Constitution: https://westshield-constitution.vercel.app/
+
+The [TAB information panel](../tab/README.md) still owns player/server/clan statistics. `/welcome` opens that panel; `/map` and `/voice` remain available on demand. This increment changes only the welcome configuration; authentication rules and the plugin binary are unchanged. Java buttons use `open_url`, while the Bedrock greeting contains no click events. Source defaults are in `english/adapters/welcome/config.yml`.
+
+## Historical 1.0.0 welcome release
+
+The preview and acceptance below describe the preceding welcome-only layout; its command buttons and title are not the current link greeting.
 
 ![Welcome layout](preview.png)
 

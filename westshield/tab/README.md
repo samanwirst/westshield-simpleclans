@@ -2,7 +2,7 @@
 
 ![TAB layout](preview.png)
 
-WestShieldTab 1.0.1 moves the server HUD into Java's TAB header/footer. The sidebar is disabled. WestShieldWelcome 1.0.1 disables automatic greetings/titles and retains on-demand `/map` and `/voice`; `/welcome` opens the information panel. AuthMe still owns registration, login, reminders and all authentication policy.
+WestShieldTab 1.0.1 moves the server HUD into Java's TAB header/footer. The sidebar is disabled. The current WestShieldWelcome 1.0.1 configuration sends a compact authenticated greeting with map, voice and constitution links; automatic titles remain disabled. `/map` and `/voice` remain on demand, and `/welcome` opens the information panel. AuthMe still owns registration, login, reminders and all authentication policy.
 
 The panel shows the real online/max-player count, one-minute TPS capped at 20, personal ping in milliseconds, server age, personal membership age, online duration, and the current clan's name/color, age, member count, authenticated online members, polygon area and number of regions. It reveals no positions, compass directions or player tracking. Useful commands appear as short reminders; TAB text is not a clickable menu.
 
@@ -48,6 +48,6 @@ Back up before a clean stop. Replace the old welcome and territory JARs, add Wes
 
 ## Verification
 
-[verification.json](verification.json) records the current ping/seed increment. The preceding full TAB, restart, geometry and time acceptance is retained in [verification-v1.0.0.json](verification-v1.0.0.json). Native Java protocol tests cover login/logout, actual colored TAB packets, the absence of sidebar objectives and automatic greetings, Plan history, a real clan and a concave 64-square-block polygon, shared form rendering, custom placeholders after a TAB reload, and persistence after an actual server restart. Time tests cross Tashkent midnight and a leap day. Existing geometry/storage checks run against territory 1.0.3.
+[verification.json](verification.json) records the current ping/seed increment. The preceding full TAB, restart, geometry and time acceptance is retained in [verification-v1.0.0.json](verification-v1.0.0.json). Native Java protocol tests cover login/logout, actual colored TAB packets, the absence of sidebar objectives and (in that historical TAB configuration) automatic greetings, Plan history, a real clan and a concave 64-square-block polygon, shared form rendering, custom placeholders after a TAB reload, and persistence after an actual server restart. Time tests cross Tashkent midnight and a leap day. Existing geometry/storage checks run against territory 1.0.3.
 
 The preview is rendered from the captured native header/footer with illustrative fictional player rows and local Minecraft glyphs. The pictured ping comes from an intentionally delayed local test connection, not a public-server latency measurement. Game font files are not redistributed. Java protocol and form-payload checks do not establish physical Bedrock/controller GUI behavior or a 200-player load benchmark. Earlier test-harness failures are retained privately and are not overwritten as passes.
