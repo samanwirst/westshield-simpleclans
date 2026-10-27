@@ -236,7 +236,16 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
     }
 
     @Override public boolean onCommand(CommandSender sender,Command cmd,String label,String[] args) {
+        if (!sender.hasPermission("westshieldprotection.admin")) return true;
         if(sender instanceof Player p && !authenticated(p))return true;
+        boolean shortPardon = cmd.getName().equalsIgnoreCase("wsunban");
+        if (shortPardon || args.length > 0 && args[0].equalsIgnoreCase("pardon")) {
+            int offset = shortPardon ? 0 : 1;
+            if (args.length <= offset) { sender.sendMessage("/wsunban <name|uuid> [reason]");return true; }
+            String reason = args.length > offset + 1 ? String.join(" ", java.util.Arrays.copyOfRange(args,offset+1,args.length)) : "Administrator pardon";
+            if (reason.length() > 200) { sender.sendMessage("Pardon reason must be at most 200 characters.");return true; }
+            pardon(sender,args[offset],reason);return true;
+        }
         if(args.length==1 && args[0].equalsIgnoreCase("status")) {
             sender.sendMessage("WestShield protection: ready=true; words="+filter.size()+"; base-dictionaries=28; steam-languages="+steam.languageCount()+"; steam-patterns="+steam.patternCount()+"; Java=GrimAC; Bedrock=LightAntiCheat-Plus; confirmed-kicks="+confirmedKicks+"; banned-accounts="+ledger.bannedAccounts()+"; persistence-failures="+persistenceFailures+"; censored-messages="+censored.get()+"; chat-sanctions=false");return true;
         }
@@ -244,8 +253,49 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
             try { UUID id=UUID.fromString(args[1]);sender.sendMessage("Account "+id+": confirmed anti-cheat kicks="+ledger.count(id)+"/3"); }
             catch(IllegalArgumentException invalid) { sender.sendMessage("Use an account UUID."); }return true;
         }
-        sender.sendMessage("/westshieldprotection status | history <uuid>");return true;
+        sender.sendMessage("/westshieldprotection status | history <uuid> | pardon <name|uuid> [reason]");return true;
     }
     @Override public List<String> onTabComplete(CommandSender sender,Command cmd,String label,String[] args) { return List.of(); }
     private String censor(String text){return steam.censor(filter.censor(text));}
+
+    private void pardon(CommandSender sender, String target, String reason) {
+        var bans = (org.bukkit.ban.ProfileBanList) Bukkit.getBanList(BanList.Type.PROFILE);
+        java.util.Set<UUID> candidates = new java.util.HashSet<>();
+        UUID explicit = null;
+        try { explicit = UUID.fromString(target);candidates.add(explicit); }
+        catch (IllegalArgumentException ignored) { candidates.addAll(ledger.accountsNamed(target)); }
+        for (var entry : bans.getBanEntries()) {
+            if (!(entry.getBanTarget() instanceof org.bukkit.profile.PlayerProfile profile)) continue;
+            if (profile.getUniqueId() != null && (profile.getUniqueId().equals(explicit)
+                    || explicit == null && target.equalsIgnoreCase(profile.getName()))) candidates.add(profile.getUniqueId());
+        }
+        if (candidates.isEmpty()) { sender.sendMessage("No active anti-cheat record or profile ban found for " + target + ".");return; }
+        if (candidates.size() != 1) { sender.sendMessage("Ambiguous account name. Use /wsunban <account UUID>.");return; }
+        UUID id = candidates.iterator().next();
+        String name = ledger.name(id);
+        if (name == null) for (var entry : bans.getBanEntries()) if (entry.getBanTarget() instanceof org.bukkit.profile.PlayerProfile p && id.equals(p.getUniqueId())) { name = p.getName();break; }
+        var profile = name == null ? Bukkit.createProfile(id) : Bukkit.createProfile(id, name);
+        if (name == null) name = id.toString();
+        if (ledger.count(id) == 0 && !bans.isBanned(profile)) { sender.sendMessage("No active ban or anti-cheat strikes for " + name + ".");return; }
+        String actor = sender instanceof Player player ? "player:" + player.getUniqueId() : "console";
+        UUID action;
+        try { action = ledger.pardon(id, name, actor, reason); }
+        catch (Exception failure) {
+            persistenceFailures++;getLogger().log(java.util.logging.Level.SEVERE,"Pardon refused: counter reset could not be saved for " + id,failure);
+            sender.sendMessage("Pardon failed: the counter could not be saved. The native ban was not changed.");return;
+        }
+        PendingKick removed = pending.remove(id);
+        if (removed != null) removed.session.issued = false;
+        Session session = sessions.get(id);
+        if (session != null) { session.issued = false;session.graceUntil = System.currentTimeMillis() + graceMillis; }
+        try {
+            bans.pardon(profile);
+            if (bans.isBanned(profile)) throw new IllegalStateException("Native profile ban remains active");
+            getLogger().info("Administrator pardon completed: action=" + action + "; account=" + id + "; actor=" + actor + "; active-kicks=0/3");
+            sender.sendMessage("Pardoned " + name + "; anti-cheat kicks=0/3. The player can reconnect. No restart required.");
+        } catch (Exception failure) {
+            persistenceFailures++;getLogger().log(java.util.logging.Level.SEVERE,"Counter reset saved, but native pardon failed: action=" + action + "; account=" + id,failure);
+            sender.sendMessage("Counter reset saved, but the native pardon failed. Retry /wsunban " + id + ".");
+        }
+    }
 }

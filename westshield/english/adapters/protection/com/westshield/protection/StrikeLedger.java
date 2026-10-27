@@ -10,11 +10,15 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.UUID;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-/** At most three immutable confirmed-kick receipts per account, atomically replaced on disk. */
+/** Active kick cycles plus preserved pardon receipts, atomically replaced on disk. */
 public final class StrikeLedger {
     private final Path path;
     private volatile Map<UUID, Integer> counts = Map.of();
@@ -40,10 +44,47 @@ public final class StrikeLedger {
     public int count(UUID id) { return counts.getOrDefault(id, 0); }
     public int bannedAccounts() { return (int) counts.values().stream().filter(n -> n >= 3).count(); }
 
+    public synchronized Set<UUID> accountsNamed(String name) {
+        Set<UUID> result = new HashSet<>();
+        for (UUID id : counts.keySet()) if (name.equalsIgnoreCase(data.getString("accounts." + id + ".name"))) result.add(id);
+        return Set.copyOf(result);
+    }
+
+    public synchronized String name(UUID id) { return data.getString("accounts." + id + ".name"); }
+
+    /** Persist the audit/reset before publishing the new counter to login threads. */
+    public synchronized UUID pardon(UUID id, String name, String actor, String reason) throws Exception {
+        UUID action = UUID.randomUUID();
+        String base = "accounts." + id;
+        YamlConfiguration candidate = new YamlConfiguration();candidate.loadFromString(data.saveToString());
+        var previous = candidate.getConfigurationSection(base);
+        Map<String, Object> archived = previous == null ? Map.of() : snapshot(previous);
+        var receipts = candidate.getConfigurationSection(base + ".receipts");
+        if (receipts != null) for (String receipt : receipts.getKeys(false)) candidate.set("seen-receipts." + id + "." + receipt, true);
+        candidate.set("pardons." + action, Map.of("account", id.toString(), "name", name,
+                "actor", actor, "reason", reason, "at", System.currentTimeMillis(),
+                "previous-kicks", count(id), "previous", archived,
+                "operation", "counter-reset-before-native-pardon"));
+        candidate.set(base, null);
+        persist(candidate.saveToString());
+        data.loadFromString(candidate.saveToString());
+        Map<UUID, Integer> updated = new HashMap<>(counts);updated.remove(id);counts = Map.copyOf(updated);
+        return action;
+    }
+
+    private static Map<String, Object> snapshot(ConfigurationSection section) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        for (String key : section.getKeys(false)) {
+            Object value = section.get(key);
+            result.put(key, value instanceof ConfigurationSection nested ? snapshot(nested) : value);
+        }
+        return result;
+    }
+
     public synchronized int record(UUID id, String name, UUID receipt, String provider, String check) throws Exception {
         if(count(id)>=3)return 3;
         String base = "accounts." + id;
-        if (data.contains(base + ".receipts." + receipt)) return count(id);
+        if (data.contains(base + ".receipts." + receipt) || data.contains("seen-receipts." + id + "." + receipt)) return count(id);
         int next = Math.min(3, count(id) + 1);
         YamlConfiguration candidate = new YamlConfiguration();candidate.loadFromString(data.saveToString());
         candidate.set(base + ".name", name);candidate.set(base + ".kicks", next);

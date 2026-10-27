@@ -1,5 +1,5 @@
 name: WestShieldProtection
-version: 1.0.1
+version: 1.0.2
 main: com.westshield.protection.WestShieldProtection
 api-version: '26.2'
 depend: [AuthMe, GrimAC, LightAntiCheat-Plus, floodgate, SimpleClans]
@@ -8,7 +8,11 @@ description: Multilingual censor and durable confirmed anti-cheat kick accountin
 commands:
   westshieldprotection:
     description: Inspect protection readiness or a player's confirmed anti-cheat kick count.
-    usage: /westshieldprotection status|history <uuid>
+    usage: /westshieldprotection status | history <uuid> | pardon <name|uuid> [reason]
+    permission: westshieldprotection.admin
+  wsunban:
+    description: Pardon a profile and reset its active anti-cheat counter without a restart.
+    usage: /wsunban <name|uuid> [reason]
     permission: westshieldprotection.admin
 permissions:
   westshieldprotection.admin:

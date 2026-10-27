@@ -68,9 +68,37 @@ A counter increments only after the adapter observes its accepted anti-cheat kic
 
 Counters use account UUIDs, survive restarts, and have atomic file replacement with idempotent receipt IDs. Authentication failures, normal network exits, manual kicks and profanity do not count. This is an account ban, not an IP ban; Java and Bedrock accounts have distinct UUIDs unless linked by their existing account system.
 
-`plugins/WestShieldProtection/strikes.yml` is private operational state and is included by normal plugin backups. Do not delete it during routine upgrades. A saved count of three also refuses login, including an interrupted native-ban write. To intentionally pardon an account, an operator must stop the server, back up the ledger, remove that account's ledger entry, apply native `/pardon`, and restart; merely removing a native ban does not erase confirmed history.
+`plugins/WestShieldProtection/strikes.yml` is private operational state and is included by normal plugin backups. Do not delete it during routine upgrades. A saved count of three also refuses login, including an interrupted native-ban write. The installed 1.0.1 runtime has no command to reset its in-memory counter: merely removing a native ban does not clear the second admission block. Do not edit a running server's ledger or interrupt players to apply a pardon without explicit operator approval.
 
 Operators can use `/westshieldprotection status` and `/westshieldprotection history <uuid>`. These require `westshieldprotection.admin` (operator by default) and player authentication. There is no player-accessible strike command or default bypass.
+
+## Prepared 1.0.2: administrator pardons
+
+Version 1.0.2 adds `/wsunban <name|uuid> [reason]` and
+`/westshieldprotection pardon <name|uuid> [reason]`. Both require
+`westshieldprotection.admin` (operator by default), plus AuthMe authentication for
+player senders. They operate on the canonical account UUID used by the ledger and
+native profile bans, without IP bans, teleports, inventory changes or restarts.
+Ambiguous names are refused; an explicit UUID can select the intended account.
+
+The command atomically saves a ledger audit/reset before publishing zero active
+strikes to login threads. It then removes the native profile ban and verifies its
+absence. These are two storage systems, not a shared transaction: a failed ledger
+save leaves the ban unchanged; a later native-pardon failure reports that the
+counter was cleared and asks the administrator to retry the command. Server logs
+record the final native result against the durable pardon action ID.
+
+Original receipts, actor and reason remain under `pardons` in the same version-1
+ledger. Archived receipt IDs cannot be counted again. Three fresh confirmed kicks
+can start a new permanent ban. Repeating an already completed pardon is a no-op.
+Pending accounting for a pardoned connection is fenced, without claiming that an
+already-issued disconnect can be cancelled.
+
+The candidate compiles against the pinned Purpur 26.2 runtime and passes all 67
+dictionary/persistence checks, including 12 new pardon checks. The command's full
+server/permission integration has not yet been exercised. This version is prepared
+locally and **not installed or activated** on the live server. Loading it requires
+a separately approved maintenance window; future pardons then need no restart.
 
 ## Anti-xray and exploitation
 

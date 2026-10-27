@@ -27,6 +27,25 @@ public final class ProtectionChecks {
   check("Third receipt reaches permanent-ban threshold",ledger.record(id,"Fixture",UUID.randomUUID(),"GrimAC","Test")==3 && ledger.bannedAccounts()==1);
   check("Counter is capped at three",ledger.record(id,"Fixture",UUID.randomUUID(),"GrimAC","Test")==3);
   check("Other account stays independent",ledger.count(UUID.randomUUID())==0);
+  UUID other=UUID.randomUUID();ledger.record(other,"OtherFixture",UUID.randomUUID(),"GrimAC","Other");
+  UUID pardon=ledger.pardon(id,"Fixture","console","False positive reviewed");
+  check("Pardon resets the live counter without a reload",ledger.count(id)==0 && ledger.bannedAccounts()==0);
+  check("Pardon preserves unrelated counters",ledger.count(other)==1);
+  var saved=org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(path.toFile());
+  check("Pardon keeps the three original receipts",saved.getConfigurationSection("pardons."+pardon+".previous.receipts").getKeys(false).size()==3);
+  check("Pardon records its actor and reason",saved.getString("pardons."+pardon+".actor").equals("console") && saved.getString("pardons."+pardon+".reason").equals("False positive reviewed"));
+  check("A cleared account has no active name match",ledger.accountsNamed("Fixture").isEmpty());
+  ledger=new StrikeLedger(path);check("Pardon survives restart",ledger.count(id)==0 && ledger.count(other)==1);
+  check("An archived kick receipt cannot count again",ledger.record(id,"Fixture",event,"GrimAC","Test")==0);
+  check("A new kick starts a fresh cycle at one",ledger.record(id,"Fixture",UUID.randomUUID(),"GrimAC","New")==1);
+  check("Account lookup ignores casing",ledger.accountsNamed("fIxTuRe").equals(Set.of(id)));
+  ledger.record(id,"Fixture",UUID.randomUUID(),"GrimAC","New");ledger.record(id,"Fixture",UUID.randomUUID(),"GrimAC","New");
+  check("Three new kicks can ban again after pardon",ledger.count(id)==3 && ledger.bannedAccounts()==1);
+  ledger.pardon(id,"Fixture","console","Second review");saved=org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(path.toFile());
+  check("A later pardon preserves both audit cycles",saved.getConfigurationSection("pardons").getKeys(false).size()==2 && saved.getConfigurationSection("pardons."+pardon+".previous.receipts").getKeys(false).size()==3);
+  Path blockedPardon=base.resolve("pardon-blocked");var cannotPardon=new StrikeLedger(blockedPardon.resolve("strikes.yml"));cannotPardon.record(id,"Fixture",UUID.randomUUID(),"GrimAC","Test");Files.move(blockedPardon,base.resolve("pardon-backup"));Files.writeString(blockedPardon,"not a directory");boolean pardonFailed=false;
+  try{cannotPardon.pardon(id,"Fixture","console","Test");}catch(Exception expected){pardonFailed=true;}
+  check("Failed pardon persistence keeps the live sanction",pardonFailed && cannotPardon.count(id)==1 && cannotPardon.accountsNamed("Fixture").contains(id));
   Path bad=base.resolve("bad.yml");Files.writeString(bad,"version: 2\n");boolean refused=false;try{new StrikeLedger(bad);}catch(Exception expected){refused=true;}check("Unknown ledger schema fails closed without rewriting",refused && Files.readString(bad).equals("version: 2\n"));
   Path blocked=base.resolve("blocked");var failing=new StrikeLedger(blocked.resolve("strikes.yml"));Files.writeString(blocked,"not a directory");boolean failed=false;try{failing.record(id,"Fixture",UUID.randomUUID(),"GrimAC","Test");}catch(Exception expected){failed=true;}check("Failed persistence does not activate a counter",failed && failing.count(id)==0);
   System.out.println("PROTECTION_CHECKS="+checks);
