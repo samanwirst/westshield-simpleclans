@@ -1,11 +1,14 @@
 name: WestShieldAccounts
-version: 1.0.0
+version: 1.0.1
 main: com.westshield.accounts.WestShieldAccounts
 api-version: '26.2'
 author: WestShield
 depend: [AuthMe, floodgate]
 description: Uses one AuthMe-protected profile for matching Java and Bedrock names.
 commands:
+  bedrocklogin:
+    description: Open the Bedrock AuthMe sign-in or registration form.
+    aliases: [blogin]
   westshieldaccounts:
     description: Shows the shared-account adapter status.
     permission: westshieldaccounts.admin

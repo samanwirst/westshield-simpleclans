@@ -60,6 +60,10 @@ public final class WestShieldAccounts extends JavaPlugin implements Listener {
             handlerId = InstanceHolder.getHandshakeHandlers().addHandshakeHandler(this::handshake);
             if (handlerId < 0) throw new IllegalStateException("Floodgate handshake resolver unavailable");
             ready = true;
+            getCommand("bedrocklogin").setExecutor((sender, command, label, args) -> {
+                if (sender instanceof Player player) showBedrockLogin(player);
+                return true;
+            });
             getServer().getScheduler().runTaskTimer(this, this::refreshWhitelist, 100, 100);
             getServer().getScheduler().runTaskTimerAsynchronously(this, this::refreshRegisteredSafely, 200, 200);
             getLogger().info("Shared accounts ready; same Java-compatible name, one UUID, authentication=AuthMe; overrides=" + overrides.size());
@@ -166,6 +170,36 @@ public final class WestShieldAccounts extends JavaPlugin implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void joined(PlayerJoinEvent event) {
         if (automatic(event.getPlayer()) != null) event.getPlayer().sendMessage(Component.text("WestShield: Java and Bedrock use this same profile. Sign in with your server password."));
+        getServer().getScheduler().runTaskLater(this, () -> showBedrockLogin(event.getPlayer()), 30L);
+    }
+    private void showBedrockLogin(Player player) {
+        if (!ready || !player.isOnline() || Bukkit.getPlayer(player.getUniqueId()) != player
+                || !FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())
+                || AuthMeApi.getInstance().isAuthenticated(player)) return;
+        boolean registeredAccount = AuthMeApi.getInstance().isRegistered(player.getName());
+        var builder = org.geysermc.cumulus.form.CustomForm.builder()
+                .title(registeredAccount ? "WestShield | Sign in" : "WestShield | Register")
+                .input("Server password", registeredAccount ? "Your existing WestShield password" : "Choose a password (8+ characters)");
+        if (!registeredAccount) builder.input("Confirm password", "Enter the same password again");
+        builder.validResultHandler(response -> {
+            String password = response.asInput(0);
+            String confirmation = registeredAccount ? password : response.asInput(1);
+            if (!isEnabled()) return;
+            getServer().getScheduler().runTask(this, () -> {
+                if (!ready || !player.isOnline() || Bukkit.getPlayer(player.getUniqueId()) != player
+                        || AuthMeApi.getInstance().isAuthenticated(player)) return;
+                if (AuthMeApi.getInstance().isRegistered(player.getName()) != registeredAccount) { showBedrockLogin(player);return; }
+                if (password == null || password.isEmpty() || password.length() > 128
+                        || password.codePoints().anyMatch(Character::isWhitespace)
+                        || !password.equals(confirmation)) {
+                    player.sendMessage(Component.text("Passwords must match and contain no spaces. Reopen the form with /bedrocklogin."));return;
+                }
+                // AuthMe validates the secret; no force-login or credential storage occurs here.
+                player.performCommand(registeredAccount ? "login " + password : "register " + password + " " + confirmation);
+            });
+        });
+        if (!FloodgateApi.getInstance().sendForm(player.getUniqueId(), builder))
+            player.sendMessage(Component.text("Open sign-in again with /bedrocklogin, or use /login <password>."));
     }
     private void authenticated(Player player) {
         getServer().getScheduler().runTask(this, () -> {

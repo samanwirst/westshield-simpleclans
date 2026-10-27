@@ -2,12 +2,14 @@
   "date": "2026-10-27",
   "version": "1.0.2",
   "artifact_sha256": "481257e8de5c58f95a1287f4222db10a9de2bbcece149befde9727d235d0d570",
-  "status": "prepared-locally-not-deployed",
+  "status": "installed-and-running",
   "unit_checks": 67,
   "new_pardon_checks": 12,
-  "native_command_integration_tested": false,
-  "production_changes": false,
-  "live_restart": false,
+  "native_command_integration_tested": "Live administrator pardon observed; full automated permission integration not run",
+  "production_changes": true,
+  "live_restart": true,
   "teleports": false,
-  "deployment_requires_explicit_user_approval": true
+  "deployment_requires_explicit_user_approval": true,
+  "restart_explicitly_authorized": true,
+  "native_pardon_observed": true
 }

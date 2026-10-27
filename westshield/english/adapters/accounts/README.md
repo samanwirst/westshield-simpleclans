@@ -73,3 +73,14 @@ Upstream references:
 [local linking](https://geysermc.org/wiki/floodgate/linking/),
 [handshake API](https://github.com/GeyserMC/Floodgate/blob/master/api/src/main/java/org/geysermc/floodgate/api/handshake/HandshakeData.java),
 [AuthMe](https://github.com/AuthMe/AuthMeReloaded/wiki).
+
+## Bedrock sign-in forms (1.0.1)
+
+After joining, an unauthenticated Floodgate player receives a native sign-in or
+registration form. `/bedrocklogin` (alias `/blogin`) reopens it. Inputs are forwarded
+to the ordinary AuthMe login/register command, never force-login. The callback
+rechecks the exact live connection and current registration state; passwords are
+not stored or logged by this adapter. Existing Java/Bedrock account UUIDs,
+passwords and profile overrides remain unchanged. The AuthMe allow-command list
+must include both form commands. A physical Bedrock form submission still needs
+client verification. An outdated Bedrock client must be updated independently.

@@ -72,7 +72,7 @@ Counters use account UUIDs, survive restarts, and have atomic file replacement w
 
 Operators can use `/westshieldprotection status` and `/westshieldprotection history <uuid>`. These require `westshieldprotection.admin` (operator by default) and player authentication. There is no player-accessible strike command or default bypass.
 
-## Prepared 1.0.2: administrator pardons
+## Version 1.0.2: administrator pardons
 
 Version 1.0.2 adds `/wsunban <name|uuid> [reason]` and
 `/westshieldprotection pardon <name|uuid> [reason]`. Both require
@@ -94,11 +94,17 @@ can start a new permanent ban. Repeating an already completed pardon is a no-op.
 Pending accounting for a pardoned connection is fenced, without claiming that an
 already-issued disconnect can be cancelled.
 
-The candidate compiles against the pinned Purpur 26.2 runtime and passes all 67
-dictionary/persistence checks, including 12 new pardon checks. The command's full
-server/permission integration has not yet been exercised. This version is prepared
-locally and **not installed or activated** on the live server. Loading it requires
-a separately approved maintenance window; future pardons then need no restart.
+Version 1.0.2 compiles against the pinned Purpur 26.2 runtime and passed 67
+dictionary/persistence checks, including 12 pardon checks. It was installed on
+2026-10-27 during an explicitly approved restart. A real administrator pardon was
+observed completing with the native ban removed and the active count reset to zero.
+Future pardons require no restart. No player teleport commands were used.
+
+The current compatibility policy logs timing, simulation, packet-order and similar
+checks without automatic sanctions. Reach and hitbox thresholds are 20 and 30,
+with a 60-second violation window. Critical exploit checks retain sanctions.
+Bedrock LAC checks remain enabled for observation with automatic punishment off.
+Anti-xray remains unchanged.
 
 ## Anti-xray and exploitation
 
