@@ -1,0 +1,6 @@
+enabled: true
+# The deprecated handshake API is verified only against this installed build.
+floodgate-version: '2.2.5-SNAPSHOT (b141-81b65cc)'
+# Preserve an existing Bedrock-only UUID when its AuthMe name is promoted.
+# Real production mappings are held only in the private server configuration.
+profile-overrides: {}

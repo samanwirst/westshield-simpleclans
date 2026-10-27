@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "check": "Legacy prefixed registration keeps its exact password hash during rename",
+      "passed": true
+    },
+    {
+      "check": "Shared-account adapter enables on the exact full server stack",
+      "passed": true
+    },
+    {
+      "check": "Java must authenticate",
+      "passed": true
+    },
+    {
+      "check": "Java account holds the fixture state",
+      "passed": true
+    },
+    {
+      "check": "Signed Floodgate handshake selects the same canonical name and UUID automatically",
+      "passed": true
+    },
+    {
+      "check": "Matching name does not bypass AuthMe",
+      "passed": true
+    },
+    {
+      "check": "Wrong password cannot enter the shared Bedrock profile",
+      "passed": true
+    },
+    {
+      "check": "Same password authenticates Bedrock into the Java profile",
+      "passed": true
+    },
+    {
+      "check": "Inventory XP and saved location are shared across editions",
+      "passed": true
+    },
+    {
+      "check": "Bedrock item changes are visible after returning to Java",
+      "passed": true
+    },
+    {
+      "check": "Bedrock-first whitelist selects an unprefixed shared profile",
+      "passed": true
+    },
+    {
+      "check": "Bedrock-first registration creates one canonical AuthMe account",
+      "passed": true
+    },
+    {
+      "check": "A Bedrock-first registration also works from Java",
+      "passed": true
+    },
+    {
+      "check": "Existing Bedrock-only UUID override is honored on Java",
+      "passed": true
+    },
+    {
+      "check": "Shared inventory and authentication survive restart",
+      "passed": true
+    },
+    {
+      "check": "Canonical account ban also rejects the matching Bedrock connection",
+      "passed": true
+    }
+  ],
+  "physical_bedrock_tested": false,
+  "production_mutations": false,
+  "status": "passed",
+  "artifact": "WestShieldAccounts-1.0.0.jar",
+  "artifact_sha256": "cf2b64ee76dfcdd42ce6e0ec40c2a5eeb8a9e32d0bbf4aa6b45d18fa14a386be",
+  "scope": "Isolated Purpur 26.2 gameplay-plugin fixture using native encrypted Floodgate handshakes; no physical Bedrock UI or live player login test.",
+  "runtime": {
+    "AuthMe": "6.0.1-b2770",
+    "floodgate": "2.2.5-SNAPSHOT (b141-81b65cc)"
+  }
+}

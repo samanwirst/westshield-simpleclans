@@ -1,0 +1,16 @@
+{
+  "artifact_sha256": "cf2b64ee76dfcdd42ce6e0ec40c2a5eeb8a9e32d0bbf4aa6b45d18fa14a386be",
+  "physical_bedrock_tested": false,
+  "authme_required_both_editions": true,
+  "same_name_shared_profile": true,
+  "existing_passwords_preserved": true,
+  "player_uuids_unchanged": true,
+  "canonical_name_cache_corrected": true,
+  "production_player_probes": false,
+  "status": "verified-active",
+  "isolated_checks": 20,
+  "server_running": true,
+  "adapter_failures": 0,
+  "tps": 20,
+  "production_verification": "Read-back, configuration, exact installed JAR hash and operator status; no live player login probe."
+}

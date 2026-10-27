@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "check": "Migrated Bedrock profile resolves its unprefixed name while retaining the original native UUID",
+      "passed": true
+    },
+    {
+      "check": "Migrated native-UUID Bedrock profile still requires AuthMe",
+      "passed": true
+    },
+    {
+      "check": "Migrated native-UUID Bedrock profile accepts the common password",
+      "passed": true
+    },
+    {
+      "check": "Returning to Java from the migrated native UUID preserves the Bedrock item change and edition detection",
+      "passed": true
+    }
+  ],
+  "scope": "Synthetic migrated legacy identity; native encrypted Floodgate handshake and Java return",
+  "physical_bedrock_tested": false,
+  "production_mutations": false,
+  "status": "passed"
+}
