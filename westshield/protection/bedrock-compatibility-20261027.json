@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-27",
+  "status": "verified-active",
+  "provider": "LightAntiCheat-Plus 2.0.2",
+  "disabled_check": "BadPacketsC",
+  "change": "Disable only its enabled, punishable and Bedrock-detection switches.",
+  "evidence": "A physical Bedrock session repeatedly flagged BadPacketsC at 20 TPS. Installed JAR bytecode maps PLAYER_INPUT to STEER_VEHICLE and the check rejects moving players outside vehicles.",
+  "source_reference": "https://github.com/ArkFlame/LightAntiCheat/tree/7486de2c9394ace5692aacbfc9a237f1ac6a9664",
+  "runtime_provider_lists_check_disabled": true,
+  "other_enabled_lac_checks": 57,
+  "unrelated_settings_preserved": true,
+  "identified_false_positive_receipts_voided": 1,
+  "affected_account_remaining_strikes": 0,
+  "other_account_history_preserved": true,
+  "three_confirmed_kicks_policy_preserved": true,
+  "shared_authme_profiles_ready": true,
+  "tps_observed": 20,
+  "new_physical_bedrock_retest_pending": true,
+  "production_test_bots_or_probes": false
+}

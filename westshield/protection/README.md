@@ -39,6 +39,23 @@ The current [Steam increment verification](steam-verification.json) records actu
 
 Exact upstream artifacts, supported game versions, publisher SHA-512 and local SHA-256 are in [dependencies.lock.json](dependencies.lock.json). These are unmodified upstream JARs, not renamed custom builds. Neither publisher's update check installs a new binary automatically.
 
+### Bedrock packet compatibility correction (2026-10-27)
+
+`BadPacketsC` is disabled in the current Bedrock-only configuration. Its installed
+packet mapper classifies both `PLAYER_INPUT` and `STEER_VEHICLE` as vehicle input,
+while the check flags moving players outside a vehicle. A physical Bedrock session
+produced repeated `BadPacketsC` violations and a confirmed kick at 20 TPS. This
+check therefore cannot provide reliable automatic punishment on this server.
+Its detection and punishment switches are also off; other check settings, Grim's
+Java detection and the three-confirmed-kick policy remain unchanged.
+
+The single identified false-positive receipt was voided after a clean stop, with
+its original ledger and configuration retained in private backups. No unrelated
+account history or native ban was removed. Runtime verification checks that the
+provider lists `BadPacketsC` as disabled and the affected account has zero strikes.
+A new physical Bedrock movement session is still required; this configuration
+correction is not evidence that every remaining check is free of false positives.
+
 ## Confirmed kicks and permanent bans
 
 Grim's current event bus and LAC's punishment event feed one adapter. Stock independent punishment commands are disabled; the adapter binds each decision to the captured account/connection and refuses stale or unauthenticated decisions. Multiple flags/checks in one connection cannot become multiple kicks.
