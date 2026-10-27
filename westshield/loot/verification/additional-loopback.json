@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "check": "A natural chest minecart provides personal loot",
+      "passed": true
+    },
+    {
+      "check": "Moving a minecart preserves its identity and remaining roll",
+      "passed": true
+    },
+    {
+      "check": "Destroying a chest minecart permanently retires its reward",
+      "passed": true
+    },
+    {
+      "check": "Hoppers cannot extract unclaimed natural loot or insert stored items",
+      "passed": true
+    },
+    {
+      "check": "A chest reached first by a hopper still supplies its original personal loot",
+      "passed": true
+    },
+    {
+      "check": "A full player inventory neither consumes nor drops personal loot",
+      "passed": true
+    },
+    {
+      "check": "Even a player-placed chest carrying a loot table remains ordinary",
+      "passed": true
+    },
+    {
+      "check": "The shared Bedrock profile can continue an earlier Java roll",
+      "passed": true
+    },
+    {
+      "check": "A Bedrock-identified connection can take items through the native click path",
+      "passed": true
+    },
+    {
+      "check": "Returning from Bedrock to Java retains both the debit and received items",
+      "passed": true
+    },
+    {
+      "check": "Creative worlds never create personal loot or cross-world rewards",
+      "passed": true
+    },
+    {
+      "check": "All extra scenarios finish without loot runtime failures",
+      "passed": true
+    }
+  ],
+  "production_mutations": false,
+  "physical_bedrock_ui_tested": false,
+  "synthetic_java_movement_exemptions": true,
+  "cart_opening_uses_bukkit_interaction_event": true,
+  "cart_destruction_uses_bukkit_event_and_remove": true,
+  "artifact_sha256": "a4f19a65451ae0d57ab431aad52b5ebad6c84c2f7436bf542d97223d8b45ff56",
+  "status": "passed"
+}

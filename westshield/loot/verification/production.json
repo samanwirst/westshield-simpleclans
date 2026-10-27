@@ -1,0 +1,21 @@
+{
+  "status": "verified-running",
+  "date": "2026-10-27",
+  "artifact_sha256": "a4f19a65451ae0d57ab431aad52b5ebad6c84c2f7436bf542d97223d8b45ff56",
+  "pre_install_world_plugin_backup": true,
+  "clean_restart": true,
+  "server_plugin_ready": true,
+  "plugin_failures": 0,
+  "unresolved_transfers": 0,
+  "sqlite_integrity": "ok",
+  "canonical_accounts_ready": true,
+  "tps": 20.0,
+  "java_status": true,
+  "bedrock_public_status": "confirmed by an external status service on port 32712; direct UDP probes from this workstation timed out",
+  "physical_bedrock_ui_tested": false,
+  "live_container_gameplay_tested": false,
+  "live_scope": "Startup, dependencies, command status, data integrity, configuration preservation and public status endpoints; interactive loot mechanics were tested only in the loopback fixture.",
+  "test_probes_installed_live": false,
+  "whitelist_and_authentication_preserved": true,
+  "local_checks_passed": 64
+}

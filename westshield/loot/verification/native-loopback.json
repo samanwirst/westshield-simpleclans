@@ -1,0 +1,101 @@
+{
+  "checks": [
+    {
+      "check": "Plugin enables on Purpur with AuthMe and shared accounts",
+      "passed": true
+    },
+    {
+      "check": "AuthMe denial cannot be bypassed by a natural chest",
+      "passed": true
+    },
+    {
+      "check": "First authenticated natural chest opens personal loot",
+      "passed": true
+    },
+    {
+      "check": "Real client inventory click transfers items into the player inventory",
+      "passed": true
+    },
+    {
+      "check": "Delivery journal clears only after native player save",
+      "passed": true
+    },
+    {
+      "check": "Reopening preserves the exact remaining inventory without reroll",
+      "passed": true
+    },
+    {
+      "check": "Another plugin can deny opening without being overridden",
+      "passed": true
+    },
+    {
+      "check": "Natural barrels have their own personal roll",
+      "passed": true
+    },
+    {
+      "check": "Natural double chests preserve both halves and a 54-slot GUI",
+      "passed": true
+    },
+    {
+      "check": "A player storage chest is not converted",
+      "passed": true
+    },
+    {
+      "check": "Trial Vaults remain vanilla and are never registered",
+      "passed": true
+    },
+    {
+      "check": "A new account receives a separate roll from the same chest",
+      "passed": true
+    },
+    {
+      "check": "Each account has an independently generated seed",
+      "passed": true
+    },
+    {
+      "check": "Floodgate selects the same shared UUID before gameplay",
+      "passed": true
+    },
+    {
+      "check": "Switching Java to Bedrock preserves the exact remaining loot",
+      "passed": true
+    },
+    {
+      "check": "Edition change cannot reroll or create another account reward",
+      "passed": true
+    },
+    {
+      "check": "Players may physically destroy a natural loot container",
+      "passed": true
+    },
+    {
+      "check": "Physical destruction permanently retires all remaining personal loot",
+      "passed": true
+    },
+    {
+      "check": "A replacement chest at the same coordinates is ordinary and never refills",
+      "passed": true
+    },
+    {
+      "check": "Explosions can destroy natural loot with permanent loss",
+      "passed": true
+    },
+    {
+      "check": "Personal remaining loot and shared-account history survive server restart",
+      "passed": true
+    },
+    {
+      "check": "Destroyed-container tombstones also survive server restart",
+      "passed": true
+    },
+    {
+      "check": "No loot persistence or runtime failures",
+      "passed": true
+    }
+  ],
+  "production_mutations": false,
+  "physical_bedrock_ui_tested": false,
+  "synthetic_java_movement_exemptions": true,
+  "artifact_sha256": "a4f19a65451ae0d57ab431aad52b5ebad6c84c2f7436bf542d97223d8b45ff56",
+  "status": "passed"
+}

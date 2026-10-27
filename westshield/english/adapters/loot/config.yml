@@ -1,0 +1,12 @@
+enabled: true
+# Paper dimension keys, not display names. Creative and the End are excluded.
+allowed-world-keys: [minecraft:overworld, minecraft:the_nether]
+allowed-game-modes: [SURVIVAL, ADVENTURE]
+max-containers: 100000
+max-pending-requests: 200
+max-open-distance: 8.0
+inventory-title: 'Personal Loot · click to take'
+# Each account/container pair receives one permanent random roll. No refill or expiry.
+# A roll's seed is reserved durably before generation, including failed attempts.
+# Containers without their original loot table are never guessed or regenerated.
+# Ordinary/player-placed chests are never converted, including copied block metadata.
