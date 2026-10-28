@@ -2,7 +2,7 @@
   "date": "2026-10-28",
   "version": "1.0.3",
   "artifact_sha256": "2fc318832ad4760dcd6cb95e9ff0e19ea7e8c1461c00c98d3b48ceb176c70bc6",
-  "status": "ready-awaiting-approved-restart",
+  "status": "installed-and-running",
   "unit_checks": 76,
   "native_chat_checks": [
     {
@@ -38,7 +38,11 @@
       "passed": true
     }
   ],
-  "production_chat_active": false,
+  "production_chat_active": true,
   "restart_permission_requested": true,
-  "teleports": false
+  "teleports": false,
+  "restart_explicitly_authorized": true,
+  "runtime_local_radius": 100,
+  "runtime_global_prefix": "!",
+  "runtime_persistence_failures": 0
 }
