@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-28",
+  "bluemap_version": "5.29",
+  "web_extension_version": "1.1.1",
+  "cause": "Top-only block meshes were displayed at an oblique angle, exposing missing side faces.",
+  "renderer": {
+    "perspective_flag_for_exterior_geometry": true,
+    "free_flight_flag": false,
+    "sky_light": 1,
+    "ambient_light": 0.18,
+    "render_threads": 1,
+    "removed_region_scan_restored": true
+  },
+  "browser": {
+    "mode": "oblique",
+    "angle": 0.7853981633974483,
+    "ortho": 1,
+    "hiresRadius": 224,
+    "loaded": 86,
+    "pending": 3,
+    "sideTriangles": 583005,
+    "horizontalTriangles": 356529,
+    "ambient": 0.18,
+    "sun": 1,
+    "views": [
+      "flat"
+    ],
+    "privacy": true,
+    "hash": "#westshield",
+    "topAngle": 0,
+    "popupVisible": false,
+    "errors": []
+  },
+  "visual_review": "Updated central terrain and trees have exterior side faces; missing-face black gaps are gone. After detailed-tile loading settles, the inspected viewport no longer shows the coarse fallback around its edges. Tiles outside the completed region still require the background rerender.",
+  "rerender": {
+    "central_region_completed": true,
+    "full_overworld": "running in background",
+    "status_time_tashkent": "2026-10-28 22:11:41",
+    "estimated_remaining_minutes_at_status": 90,
+    "completion_not_yet_verified": true
+  },
+  "server": {
+    "restarted": false,
+    "forced_teleports": false,
+    "observed_tps_5s_1m_5m_15m": [
+      20,
+      20,
+      20,
+      20
+    ]
+  },
+  "files_sha256": {
+    "westshield-map-v3.js": "e958a5a65748fa574fd1414230aed65c0734dbe5d0f6c2b0e2bea189e10639ad",
+    "westshield-map-v3.css": "fc844c9b141506f52977d33af4406094bdb68f27cb77bed864b129cd761d4bb0",
+    "rendering.conf": "fb2254701e0332f1b5683f7096a08131b6c3d9ae7fabb4b8f168cd254e413a3f"
+  },
+  "limits": [
+    "The camera/coordinate restrictions are browser presentation controls, not a security boundary for public map data.",
+    "This check covers web rendering, not player gameplay or every map tile.",
+    "The earlier browser-only orthographic verification is historical and does not prove correct exterior geometry."
+  ]
+}

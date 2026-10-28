@@ -44,6 +44,36 @@
     const app = window.bluemap;
     if (!app?.mapControls || !app?.mapViewer?.controlsManager || app.westshieldOrthographicV1) return;
     const manager = app.mapViewer.controlsManager;
+    const lockViews = () => {
+        for (const map of app.maps) {
+            map.data.perspectiveView = false;
+            map.data.freeFlightView = false;
+            map.data.views = ["flat"];
+        }
+    };
+    lockViews();
+    const switchMap = app.switchMap.bind(app);
+    app.switchMap = async (...args) => { const result = await switchMap(...args);lockViews();return result; };
+    app.setPerspectiveView = () => app.setFlatView(0);
+    app.setFreeFlight = () => app.setFlatView(0);
+    let lastQualityUpdate = 0;
+    const improveDetail = () => {
+        const now = performance.now();
+        if (now - lastQualityUpdate < 500 || !app.mapViewer.map) return;
+        lastQualityUpdate = now;
+        const height = Math.tan(manager.camera.fov * Math.PI / 360) * manager.distance;
+        const width = height * manager.camera.aspect;
+        const footprint = (width + height / Math.cos(manager.angle)) / Math.SQRT2;
+        const budget = innerWidth < 600 ? 320 : 576;
+        const radius = Math.min(budget, Math.max(160, Math.ceil((footprint + 64) / 32) * 32));
+        const viewer = app.mapViewer;
+        const center = viewer.data.loadedCenter;
+        if (viewer.data.loadedHiresViewDistance !== radius ||
+            Math.abs(center.x - manager.position.x) >= 32 ||
+            Math.abs(center.y - manager.position.z) >= 32) {
+            viewer.loadMapArea(manager.position.x, manager.position.z, radius);
+        }
+    };
     let mode = "oblique";
     try { if (localStorage.getItem("westshield.map.view") === "top") mode = "top"; } catch (_) {}
     const apply = () => {
@@ -51,13 +81,13 @@
         manager.angle = mode === "oblique" ? Math.PI / 4 : 0;
         manager.rotation = mode === "oblique" ? Math.PI / 4 : 0;
         manager.tilt = 0;
-        manager.position.y = 0;
+        manager.position.y = mode === "oblique" ? 64 : 0;
     };
     // Retain normal pan/zoom, then pin orientation before the camera is updated.
     // A tilted orthographic camera needs a fixed target height: stock MapControls
     // otherwise leaves it at its temporary -10000 value when mapHeight is skipped.
     const update = app.mapControls.update.bind(app.mapControls);
-    app.mapControls.update = (delta, map) => { update(delta, map);apply(); };
+    app.mapControls.update = (delta, map) => { update(delta, map);apply();improveDetail(); };
     for (const name of ["mouseRotate", "mouseAngle", "keyRotate", "keyAngle", "touchRotate", "touchAngle"]) {
         const control = app.mapControls[name];
         if (control) control.update = () => {};
@@ -95,7 +125,15 @@
         apply();
     };
     Object.defineProperty(app, "westshieldOrthographicV1", {value: {
-        version: "1.0.0", get mode() { return mode; }, select
+        version: "1.1.1", get mode() { return mode; }, select
     }});
+    const resetCamera = app.resetCamera.bind(app);
+    app.resetCamera = () => {
+        resetCamera();
+        manager.distance = 200;
+        select(mode);
+    };
+    // Open at a readable scale instead of BlueMap's distant low-resolution overview.
+    if (manager.distance >= 1000) manager.distance = 200;
     select(mode);
 })();
