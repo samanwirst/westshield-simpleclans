@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-28",
+  "version": "1.0.3",
+  "artifact_sha256": "2fc318832ad4760dcd6cb95e9ff0e19ea7e8c1461c00c98d3b48ceb176c70bc6",
+  "status": "ready-awaiting-approved-restart",
+  "unit_checks": 76,
+  "native_chat_checks": [
+    {
+      "check": "Local chat reaches the 100-block boundary",
+      "passed": true
+    },
+    {
+      "check": "Local chat excludes players beyond 100 blocks",
+      "passed": true
+    },
+    {
+      "check": "Local chat excludes other dimensions",
+      "passed": true
+    },
+    {
+      "check": "Global chat reaches another dimension",
+      "passed": true
+    },
+    {
+      "check": "Global label is included",
+      "passed": true
+    },
+    {
+      "check": "Local chat is censored without leaking the original",
+      "passed": true
+    },
+    {
+      "check": "Censored local chat stays local",
+      "passed": true
+    },
+    {
+      "check": "Global chat is also censored",
+      "passed": true
+    }
+  ],
+  "production_chat_active": false,
+  "restart_permission_requested": true,
+  "teleports": false
+}

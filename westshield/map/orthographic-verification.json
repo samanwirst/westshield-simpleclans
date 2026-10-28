@@ -1,0 +1,45 @@
+{
+  "oblique": {
+    "angle": 0.7853981633974483,
+    "ortho": 1,
+    "rotation": 0.7853981633974483,
+    "height": 0,
+    "mode": "oblique",
+    "sun": 1,
+    "coordinatesHidden": true,
+    "popupVisible": false,
+    "hash": "#westshield"
+  },
+  "top": {
+    "angle": 0,
+    "ortho": 1,
+    "rotation": 0,
+    "height": 0,
+    "mode": "top",
+    "sun": 1,
+    "coordinatesHidden": true,
+    "popupVisible": false,
+    "hash": "#westshield"
+  },
+  "after_navigation": {
+    "angle": 0.7853981633974483,
+    "ortho": 1,
+    "rotation": 0.7853981633974483,
+    "height": 0,
+    "mode": "oblique",
+    "sun": 1,
+    "coordinatesHidden": true,
+    "popupVisible": false,
+    "hash": "#westshield"
+  },
+  "mobile_controls": {
+    "view": {
+      "x": 97.5,
+      "y": 626,
+      "width": 195,
+      "height": 62
+    },
+    "clan": null
+  },
+  "page_errors": []
+}

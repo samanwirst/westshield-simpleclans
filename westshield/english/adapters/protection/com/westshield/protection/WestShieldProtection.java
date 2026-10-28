@@ -51,6 +51,7 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
     private long graceMillis;
     private long confirmedKicks;
     private long persistenceFailures;
+    private double localChatDistanceSquared;
 
     private static final class Session {
         final Player player;
@@ -78,6 +79,9 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
             saveDefaultConfig();
             if (getConfig().getInt("permanent-ban-after-kicks",3) != 3) throw new IllegalArgumentException("This server policy requires three confirmed kicks");
             graceMillis = Math.max(0, getConfig().getLong("teleport-grace-seconds",5)) * 1000;
+            double chatDistance = getConfig().getDouble("local-chat-radius",100);
+            if (!Double.isFinite(chatDistance) || chatDistance < 1 || chatDistance > 1000) throw new IllegalArgumentException("Invalid local chat radius");
+            localChatDistanceSquared = chatDistance * chatDistance;
             ledger = new StrikeLedger(getDataFolder().toPath().resolve("strikes.yml"));
             ArrayList<String> words = new ArrayList<>();
             try (var in = new BufferedReader(new InputStreamReader(java.util.Objects.requireNonNull(getResource("words.txt")), StandardCharsets.UTF_8))) {
@@ -196,17 +200,28 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
     public void chat(AsyncChatEvent event) {
         Session captured=sessions.get(event.getPlayer().getUniqueId());
-        if(captured==null) return; // Delivery rechecks live AuthMe state; a stale snapshot cannot leak an uncensored message.
-        String original=PLAIN.serialize(event.message()),cleaned=censor(original);
-        if(original.equals(cleaned)) return;
-        // Deliver a fresh system component so signed-original hover text cannot reveal censored words.
-        event.setCancelled(true);censored.incrementAndGet();
+        event.setCancelled(true);
+        if(captured==null) return;
+        String original=PLAIN.serialize(event.message());
+        boolean global = ChatScope.global(original);
+        String content = ChatScope.content(original), cleaned=censor(content);
+        if (cleaned.isBlank()) return;
+        if(!content.equals(cleaned)) censored.incrementAndGet();
+        // Main-thread delivery uses live positions and the existing renderer for both editions.
         var viewers=List.copyOf(event.viewers());var renderer=event.renderer();
         Bukkit.getScheduler().runTask(this,() -> {
             if(sessions.get(event.getPlayer().getUniqueId())!=captured || !authenticated(captured.player)) return;
+            var origin=captured.player.getLocation();
             for(var viewer:viewers) {
-                if(viewer instanceof Player target && (!target.isOnline() || !target.canSee(captured.player))) continue;
-                viewer.sendMessage(renderer.render(captured.player,captured.player.displayName(),Component.text(cleaned),viewer));
+                if(viewer instanceof Player target) {
+                    if(!authenticated(target) || !target.canSee(captured.player)) continue;
+                    var destination=target.getLocation();
+                    if(!ChatScope.receives(global,origin.getWorld().getUID(),origin.getX(),origin.getY(),origin.getZ(),
+                            destination.getWorld().getUID(),destination.getX(),destination.getY(),destination.getZ(),localChatDistanceSquared)) continue;
+                }
+                Component rendered=renderer.render(captured.player,captured.player.displayName(),Component.text(cleaned),viewer);
+                if(global) rendered=Component.text("[Global] ",net.kyori.adventure.text.format.NamedTextColor.GOLD).append(rendered);
+                viewer.sendMessage(rendered);
             }
         });
     }
@@ -247,7 +262,7 @@ public final class WestShieldProtection extends JavaPlugin implements Listener {
             pardon(sender,args[offset],reason);return true;
         }
         if(args.length==1 && args[0].equalsIgnoreCase("status")) {
-            sender.sendMessage("WestShield protection: ready=true; words="+filter.size()+"; base-dictionaries=28; steam-languages="+steam.languageCount()+"; steam-patterns="+steam.patternCount()+"; Java=GrimAC; Bedrock=LightAntiCheat-Plus; confirmed-kicks="+confirmedKicks+"; banned-accounts="+ledger.bannedAccounts()+"; persistence-failures="+persistenceFailures+"; censored-messages="+censored.get()+"; chat-sanctions=false");return true;
+            sender.sendMessage("WestShield protection: ready=true; words="+filter.size()+"; base-dictionaries=28; steam-languages="+steam.languageCount()+"; steam-patterns="+steam.patternCount()+"; Java=GrimAC; Bedrock=LightAntiCheat-Plus; confirmed-kicks="+confirmedKicks+"; banned-accounts="+ledger.bannedAccounts()+"; persistence-failures="+persistenceFailures+"; censored-messages="+censored.get()+"; chat-sanctions=false; local-chat-radius="+Math.sqrt(localChatDistanceSquared)+"; global-prefix=!");return true;
         }
         if(args.length==2 && args[0].equalsIgnoreCase("history")) {
             try { UUID id=UUID.fromString(args[1]);sender.sendMessage("Account "+id+": confirmed anti-cheat kicks="+ledger.count(id)+"/3"); }

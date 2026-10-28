@@ -1,5 +1,5 @@
 name: WestShieldProtection
-version: 1.0.2
+version: 1.0.3
 main: com.westshield.protection.WestShieldProtection
 api-version: '26.2'
 depend: [AuthMe, GrimAC, LightAntiCheat-Plus, floodgate, SimpleClans]

@@ -130,3 +130,22 @@ python3 westshield/protection/tests/run.py --server-root /path/to/server --steam
 The [configuration examples](config-example/) contain the installed provider settings and only the anti-xray sections of world settings. Merge each world section into that world's `paper-world.yml`; do not replace unrelated world settings.
 
 The historical [1.0.0 verification](verification.json) records its original artifacts and scope. Unit checks cover vocabulary/false-positive examples, Unicode handling, counter replay/reload/threshold and failed/malformed persistence. Its isolated full-stack Java protocol tests cover visible chat/private messages, ordinary/manual/cancelled kick exclusions, real provider thresholds, three confirmed disconnects, native permanent bans and restart persistence. A separate network test sends actual impossible rotation packets through Grim and verifies a single confirmed kick; the banned account is also refused after a further restart. The current [1.0.1 Steam verification](steam-verification.json) adds 51 dictionary/pattern/integrity checks and 26 native chat/restart checks, alongside the original 55 unit checks. Test observers and accounts are never deployed on production. Synthetic provider flag injection checks the punishment pipeline, not independent detector accuracy; physical Bedrock play and 200-player load capacity are not established.
+
+## Prepared 1.0.3: local and global public chat
+
+Ordinary messages retain the existing renderer and reach authenticated, visible
+players within 100 blocks in the same dimension. Distance is checked in 3D on the
+main thread at delivery, including the exact 100-block boundary. A leading `!`
+selects global delivery across worlds and adds a gold `[Global]` label; the prefix
+is removed from the body. Empty global messages are ignored. Console observation
+remains available to the host.
+
+Both channels share the existing profanity filter and AuthMe/current-session
+checks. Censored local messages cannot escape their local audience; no automatic
+profanity sanctions are added. Other event cancellations and audience restrictions
+are respected. Configure `local-chat-radius` (default 100, bounds 1–1000).
+
+The candidate passed 76 unit checks and eight native loopback chat checks,
+including boundary/dimension delivery and censoring in both channels. It is ready
+locally; production activation awaits an explicitly approved restart. No hot reload
+or server restart was performed for this candidate.

@@ -1,5 +1,6 @@
 import com.westshield.protection.WordFilter;
 import com.westshield.protection.StrikeLedger;
+import com.westshield.protection.ChatScope;
 import java.util.*;
 import java.nio.file.*;
 import java.io.*;
@@ -46,6 +47,16 @@ public final class ProtectionChecks {
   Path blockedPardon=base.resolve("pardon-blocked");var cannotPardon=new StrikeLedger(blockedPardon.resolve("strikes.yml"));cannotPardon.record(id,"Fixture",UUID.randomUUID(),"GrimAC","Test");Files.move(blockedPardon,base.resolve("pardon-backup"));Files.writeString(blockedPardon,"not a directory");boolean pardonFailed=false;
   try{cannotPardon.pardon(id,"Fixture","console","Test");}catch(Exception expected){pardonFailed=true;}
   check("Failed pardon persistence keeps the live sanction",pardonFailed && cannotPardon.count(id)==1 && cannotPardon.accountsNamed("Fixture").contains(id));
+  UUID world=UUID.randomUUID(),nether=UUID.randomUUID();
+  check("Plain local message keeps its exact text",!ChatScope.global("hello !") && ChatScope.content("hello !").equals("hello !"));
+  check("Leading bang selects global and removes only the prefix",ChatScope.global("! hello") && ChatScope.content("! hello").equals("hello"));
+  check("Another bang in global text remains",ChatScope.content("!!hello").equals("!hello"));
+  check("Empty global message is identifiable",ChatScope.content("!  ").isBlank());
+  check("Local chat includes its 100-block boundary",ChatScope.receives(false,world,0,0,0,world,100,0,0,10000));
+  check("Local chat excludes positions beyond 100 blocks",!ChatScope.receives(false,world,0,0,0,world,100.01,0,0,10000));
+  check("Local chat uses 3D distance",!ChatScope.receives(false,world,0,0,0,world,80,0,80,10000) && !ChatScope.receives(false,world,0,0,0,world,0,101,0,10000));
+  check("Local chat never crosses dimensions",!ChatScope.receives(false,world,0,0,0,nether,0,0,0,10000));
+  check("Global chat crosses dimensions and distances",ChatScope.receives(true,world,0,0,0,nether,10000,200,10000,10000));
   Path bad=base.resolve("bad.yml");Files.writeString(bad,"version: 2\n");boolean refused=false;try{new StrikeLedger(bad);}catch(Exception expected){refused=true;}check("Unknown ledger schema fails closed without rewriting",refused && Files.readString(bad).equals("version: 2\n"));
   Path blocked=base.resolve("blocked");var failing=new StrikeLedger(blocked.resolve("strikes.yml"));Files.writeString(blocked,"not a directory");boolean failed=false;try{failing.record(id,"Fixture",UUID.randomUUID(),"GrimAC","Test");}catch(Exception expected){failed=true;}check("Failed persistence does not activate a counter",failed && failing.count(id)==0);
   System.out.println("PROTECTION_CHECKS="+checks);

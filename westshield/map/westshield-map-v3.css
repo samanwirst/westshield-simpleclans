@@ -1,0 +1,28 @@
+.control-bar .position-input,
+.control-bar .compass,
+.control-bar .day-night-switch,
+.bm-marker-popup {
+    display: none !important;
+}
+
+/* BlueMap 5.29 with one view: hide lighting and unused free-flight settings. */
+html[data-westshield-map-menu="settings"] .side-menu .group:first-child,
+html[data-westshield-map-menu="settings"] .side-menu .group:nth-child(5) {
+    display: none !important;
+}
+
+.westshield-map-views {
+    position: fixed; left: 50%; bottom: max(24px, env(safe-area-inset-bottom));
+    transform: translateX(-50%); z-index: 500; display: flex; gap: 4px;
+    padding: 5px; border: 1px solid #ffffff30; border-radius: 12px;
+    background: #15232de8; box-shadow: 0 5px 24px #0006; backdrop-filter: blur(10px);
+    font-family: inherit;
+}
+.westshield-map-views button {
+    appearance: none; border: 0; border-radius: 8px; color: #e0e8ed;
+    background: transparent; padding: 10px 16px; font: 600 14px inherit;
+    cursor: pointer; touch-action: manipulation;
+}
+.westshield-map-views button[aria-pressed="true"] { color: #061d22; background: #66dce7; }
+.westshield-map-views button:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+@media (max-width: 480px) { .westshield-map-views { bottom: calc(72px + env(safe-area-inset-bottom)); } }
