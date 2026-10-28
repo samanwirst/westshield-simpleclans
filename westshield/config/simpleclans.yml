@@ -10,8 +10,8 @@ tag:
     right: ''
   separator:
     color: '8'
-    leader-color: '4'
-    char: ' .'
+    leader-color: '8'
+    char: ' | '
 settings:
   enable-gui: false
   disable-messages: false
@@ -25,7 +25,8 @@ settings:
   enable-auto-groups: false
   chat-compatibility-mode: false
   rival-limit-percent: 50
-  use-colorcode-from-prefix-for-name: true
+  use-colorcode-from-prefix-for-name: false
+  chat-use-clan-name: true
   accept-other-alphabets-letters-on-tag: false
   display-chat-tags: true
   global-friendly-fire: true

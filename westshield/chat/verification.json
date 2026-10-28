@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-29",
+  "candidate_version": "2.19.2-westshield.2",
+  "candidate_sha256": "984048b39c3fab8c47a667f2b25518cb3c7e6a06ec881416c61a484c0907f3eb",
+  "active_production_version": "2.19.2-westshield.1",
+  "live_configuration": {
+    "tag.separator.char": " | ",
+    "tag.separator.color": "8",
+    "tag.separator.leader-color": "8",
+    "settings.use-colorcode-from-prefix-for-name": false,
+    "settings.chat-use-clan-name": true
+  },
+  "activation": {
+    "separator": "active through native SimpleClans configuration reload",
+    "white_player_names": "configured",
+    "full_clan_name": "prepared, not active",
+    "new_jar_uploaded": false,
+    "server_restarted": false
+  },
+  "checks": {
+    "label_contract_cases": 7,
+    "public_Clan_API_unchanged": true,
+    "current_clan_leadership_preserved": true
+  },
+  "scope": "The new code was built and checked locally. No production activation or physical Java/Bedrock client acceptance is claimed."
+}

@@ -1,5 +1,6 @@
 package net.sacredlabyrinth.phaed.simpleclans;
 
+import com.westshield.clans.ChatClanName;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -1580,7 +1581,9 @@ public class Clan implements Serializable, Comparable<Clan> {
         String tagSeparatorColor = isLeader ? sm.getColored(TAG_SEPARATOR_LEADER_COLOR) : sm.getColored(TAG_SEPARATOR_COLOR);
         String tagSeparator = sm.getString(TAG_SEPARATOR_CHAR);
 
-        return bracketColor + bracketLeft + bracketDefaultColor + getColorTag() + bracketColor + bracketRight + tagSeparatorColor + tagSeparator;
+        String label = sm.getConfig().getBoolean("settings.chat-use-clan-name", false)
+                ? ChatClanName.render(getColorTag(), getName()) : getColorTag();
+        return bracketColor + bracketLeft + bracketDefaultColor + label + bracketColor + bracketRight + tagSeparatorColor + tagSeparator;
     }
 
     /**
@@ -1731,8 +1734,8 @@ public class Clan implements Serializable, Comparable<Clan> {
         banner.setAmount(1);
         ItemMeta itemMeta = banner.getItemMeta();
         if (itemMeta != null) {
-            // hides the banner patterns from the lore (I don't know why it's called POTION_EFFECTS)
-            itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+            // The former HIDE_POTION_EFFECTS flag was renamed in the current API.
+            itemMeta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
             itemMeta.setLore(null);
             itemMeta.setDisplayName(null);
             banner.setItemMeta(itemMeta);

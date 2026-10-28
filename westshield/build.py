@@ -30,6 +30,7 @@ for name, expected in json.loads(lock.read_text()).items():
     assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, name
     libraries.append(path)
 sources = [ROOT / 'src/main/java/net/sacredlabyrinth/phaed/simpleclans/commands/SCCommandManager.java',
+           ROOT / 'src/main/java/net/sacredlabyrinth/phaed/simpleclans/Clan.java',
            ROOT / 'src/main/java/net/sacredlabyrinth/phaed/simpleclans/managers/PermissionsManager.java',
            ROOT / 'src/main/java/net/sacredlabyrinth/phaed/simpleclans/managers/StorageManager.java',
            ROOT / 'src/main/java/net/sacredlabyrinth/phaed/simpleclans/commands/general/GeneralCommands.java',
@@ -54,20 +55,21 @@ for path in classes.rglob('*.class'):
     entries[str(path.relative_to(classes))] = path.read_bytes()
 descriptor = entries['plugin.yml'].decode()
 assert "version: '2.19.2-05e7abc'" in descriptor
-descriptor = descriptor.replace("version: '2.19.2-05e7abc'", "version: '2.19.2-westshield.1'")
+descriptor = descriptor.replace("version: '2.19.2-05e7abc'", "version: '2.19.2-westshield.2'")
 descriptor = descriptor.rstrip() + '\n  westshieldclans.admin:\n    description: Create clans and administer informational clan territories.\n    default: op\n'
 entries['plugin.yml'] = descriptor.encode()
 entries['META-INF/WestShield-FORK.json'] = json.dumps({
-    'version': '2.19.2-westshield.1', 'upstream_commit': '05e7abccbdd46339691b9a01eae84caae817b3ef',
+    'version': '2.19.2-westshield.2', 'upstream_commit': '05e7abccbdd46339691b9a01eae84caae817b3ef',
     'upstream_sha256': json.loads((deps / 'sha256.json').read_text())['SimpleClans-2.19.2.jar'],
     'changes': ['Use supported Player.locale API in ACF', 'Grant fresh clan permission attachments immediately',
                 'Restrict clan creation to westshieldclans.admin and revalidate conversation authority',
                 'Prevent an old disbanded clan deferred save from overwriting a reused tag',
-                'Use English for direct and interactive clan-creation authority errors'],
+                'Use English for direct and interactive clan-creation authority errors',
+                'Optionally display full clan names in labels without changing clan identifiers or colors'],
     'server': 'Purpur 26.2 build 2633', 'java_release': 25,
 }, indent=2).encode()
 entries['META-INF/WestShield-SIMPLECLANS-LICENSE.txt'] = (ROOT / 'LICENSE').read_bytes()
-output = BASE / 'SimpleClans-2.19.2-westshield.1.jar'
+output = BASE / 'SimpleClans-2.19.2-westshield.2.jar'
 with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as target:
     for name, data in sorted(entries.items()):
         entry = zipfile.ZipInfo(name, (2026, 10, 17, 0, 0, 0))

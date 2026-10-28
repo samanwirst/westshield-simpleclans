@@ -22,7 +22,7 @@ for name, entry in json.loads((dependencies / 'lock.json').read_text()).items():
             path.write_bytes(response.read())
     if hashlib.sha256(path.read_bytes()).hexdigest() != entry['sha256']:
         raise SystemExit('Dependency hash mismatch: ' + name)
-clan = BASE.parent / 'SimpleClans-2.19.2-westshield.1.jar'
+clan = BASE.parent / 'SimpleClans-2.19.2-westshield.2.jar'
 if not clan.exists():
     raise SystemExit('Build SimpleClans westshield.2 first')
 auth = list((server / 'plugins').glob('AuthMe*.jar'))

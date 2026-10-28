@@ -50,7 +50,7 @@ python3 westshield/build.py --server-libraries /path/to/purpur-26.2/libraries
 
 The script downloads three public, hash-pinned compile dependencies when missing. Vault is a compile-only API dependency; the example runtime configuration does not require installing Vault.
 
-Output: `westshield/SimpleClans-2.19.2-westshield.1.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup. The optional territory plugin has its own build and artifact; see its README.
+Output: `westshield/SimpleClans-2.19.2-westshield.2.jar` and its SHA-256 file. Replace the old SimpleClans JAR while the server is stopped, retaining the plugin's data folder and a current backup. The optional territory plugin has its own build and artifact; see its README. The full-name chat increment is documented in [westshield/chat/README.md](westshield/chat/README.md); its new code is prepared and is not active on production yet.
 
 The inherited upstream publishing workflows are archived under `westshield/upstream-workflows`; they are not enabled for this fork.
 
