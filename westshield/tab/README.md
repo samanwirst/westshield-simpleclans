@@ -6,20 +6,26 @@ WestShieldTab 1.0.1 moves the server HUD into Java's TAB header/footer. The side
 
 The panel shows the real online/max-player count, one-minute TPS capped at 20, personal ping in milliseconds, server age, personal membership age, online duration, and the current clan's name/color, age, member count, authenticated online members, polygon area and number of regions. It reveals no positions, compass directions or player tracking. Useful commands appear as short reminders; TAB text is not a clickable menu.
 
-The player list displays a colored full clan name, a gray `|` divider and a white
-player name. The former `%player%` value discarded clan presentation; the running
+The player list and above-head nametags display a colored full clan name, a gray
+`|` divider and a white player name. The former `%player%` value discarded clan presentation; the running
 SimpleClans build's `%displayname%` still includes only the short tag. The native
 TAB conditions in [clan-names.example.yml](clan-names.example.yml) bridge the two
 current tags to their names and colors without changing clan identifiers. Their
-fallback is `&f%displayname%`, so clanless players retain their normal name.
+player-list fallback is `&f%displayname%`, so clanless players retain their normal name.
+Above-head prefixes contain no username, since Minecraft supplies it, and end with
+`&f` to keep that native username white. Their clanless fallback is only `&f`.
 Conditions inspect the styled tag rather than OP-sensitive permission checks.
 
 The 2026-10-30 bridge was applied using TAB's native configuration reload, without
-restarting Minecraft or changing membership, visibility, nametags or the existing
-header/footer statistics. Membership changes follow the existing display name.
+restarting Minecraft or changing membership, collision, visibility or the existing
+header/footer statistics. The subsequent nametag increment changes only `tagprefix`
+and adds prefix conditions; the TAB player-list formatting remains intact.
+Membership changes follow the existing display name.
 New clans and later name/color changes require regenerating the label configuration
 until the full-clan-name code in `../chat/README.md` is activated. After that update,
-the fallback uses the full native name automatically and the bridge can be removed.
+the player-list fallback uses the full native name automatically. Above-head
+prefixes will still need a clan-only name provider or regenerated conditions;
+putting the complete display name into `tagprefix` would duplicate the username.
 [clan-names-verification.json](clan-names-verification.json) records the live checks
 and the offline-member limit for the second clan.
 

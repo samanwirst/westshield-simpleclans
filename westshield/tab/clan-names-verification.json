@@ -22,6 +22,16 @@
   },
   "server_restart": false,
   "native_tab_reload": true,
+  "nametag_increment": {
+    "active": true,
+    "native_prefix_parse": "Syndicate | ",
+    "prefix_has_username": false,
+    "last_prefix_color": "white",
+    "clanless_prefix": "white color code only",
+    "tablist_format_preserved": true,
+    "team_collision_and_visibility_settings_preserved": true,
+    "client_visual_check_performed": false
+  },
   "gameplay_or_membership_changed": false,
   "limitations": [
     "This is a configuration bridge for the two current clan labels. Membership is detected from the existing styled display name, including operators.",
