@@ -176,15 +176,13 @@ public final class WestShieldClanTerritories extends JavaPlugin implements Liste
     /** Read-only, main-thread summary; retired worlds and clan incarnations do not count. */
     public LandSummary landSummary(Clan clan) {
         if (!Bukkit.isPrimaryThread()) throw new IllegalStateException("Read land summaries on the server thread");
-        int count = 0;
-        double area = 0;
+        List<Territory> owned = new ArrayList<>();
         for (Territory territory : store.all()) {
             if (Bukkit.getWorld(territory.world()) != null && currentClan(territory) == clan) {
-                count++;
-                area += territory.area();
+                owned.add(territory);
             }
         }
-        return new LandSummary(count, area);
+        return new LandSummary(owned.size(), Territory.coveredArea(owned));
     }
 
     public record LandSummary(int regions, double squareBlocks) { }

@@ -58,6 +58,21 @@ public final class GeometryChecks {
         catch (IllegalArgumentException expected) {
             check(java.util.Arrays.equals(saved,Files.readAllBytes(file)) && store.get("crossing")==null,"Rejected overlaps change neither the file nor live state");
         }
+        Territory extension = new Territory("extension",world,"survival","poly",1000,points(10,1,15,1,15,3,10,3));
+        // Keep this independent from the other clan's adjacent test territory.
+        TerritoryStore expanded = new TerritoryStore(directory.resolve("expanded.yml"));
+        expanded.put(concave,false);expanded.put(extension,false);
+        check(expanded.get("alpha").vertices().equals(outline) && expanded.at(world,14,2).size()==1,
+                "Adding an overlapping same-clan extension retains the original vertices and adds new land");
+        check(Territory.coveredArea(expanded.all())==86,
+                "Clan area counts the geometric union instead of double-counting the overlap");
+        check(new TerritoryStore(directory.resolve("expanded.yml")).all().size()==2,
+                "Same-clan overlapping regions persist and reload together");
+        Territory reincarnated = new Territory("reused-tag",world,"survival","poly",2000,points(1,1,3,1,3,3,1,3));
+        try { expanded.put(reincarnated,false);throw new AssertionError("Reused clan tag inherited land"); }
+        catch (IllegalArgumentException expected) {
+            check(expanded.get("reused-tag")==null,"A recreated clan with the same tag cannot overlap its predecessor");
+        }
         UUID otherWorld = UUID.randomUUID();
         store.put(new Territory("different-world",otherWorld,"creative","poly",1000,outline),false);
         check(store.at(otherWorld,2,10).size()==1 && store.at(UUID.randomUUID(),2,10).isEmpty(),"Equal coordinates are isolated by world UUID");

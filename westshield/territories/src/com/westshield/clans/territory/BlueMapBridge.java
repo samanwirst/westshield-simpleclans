@@ -57,34 +57,60 @@ public final class BlueMapBridge implements AutoCloseable {
             layers.put(map.getId(),MarkerSet.builder().label("Clan territories").toggleable(true)
                     .defaultHidden(false).sorting(100).build());
         }
+        Map<String,List<Territory>> groups=new LinkedHashMap<>();
         for (Territory territory:store.all()) {
             Clan clan=resolve.apply(territory);
             var world=Bukkit.getWorld(territory.world());
             if (clan==null || world==null) continue;
+            String key=territory.world()+":"+clan.getFounded()+":"+clan.getTag();
+            groups.computeIfAbsent(key,ignored -> new ArrayList<>()).add(territory);
+        }
+        for (List<Territory> owned:groups.values()) {
+            Territory territory=owned.getFirst();
+            Clan clan=resolve.apply(territory);
+            var world=Bukkit.getWorld(territory.world());
             var mappedWorld=api.getWorld(world);
             if (mappedWorld.isEmpty()) continue;
             int rgb=color.apply(clan);
             String name=escape(ChatColor.stripColor(clan.getName()).replaceAll("[\\p{Cntrl}]",""));
-            Shape outline=new Shape(territory.vertices().stream().map(point -> new Vector2d(point.x(),point.z())).toList());
-            double[] anchor=territory.labelPoint();
+            var union=org.locationtech.jts.operation.union.UnaryUnionOp.union(
+                    owned.stream().map(Territory::geometry).toList());
             int brightness=((rgb>>16&255)*299+(rgb>>8&255)*587+(rgb&255)*114)/1000;
             String backdrop=brightness<140?"rgba(255,255,255,.88)":"rgba(0,0,0,.68)";
             String html="<span style=\"display:block;white-space:nowrap;font:700 15px/1.3 sans-serif;"
                     +"padding:3px 7px;border-radius:5px;pointer-events:none;user-select:none;"
                     +"color:"+ClanColors.hex(rgb)+";background:"+backdrop+"\">"+name+"</span>";
-            for (BlueMapMap map:mappedWorld.get().getMaps()) {
+            for (int part=0;part<union.getNumGeometries();part++) {
+                var polygon=(org.locationtech.jts.geom.Polygon)union.getGeometryN(part);
+                Shape outline=shape(polygon.getExteriorRing());
+                Shape[] holes=new Shape[polygon.getNumInteriorRing()];
+                for (int index=0;index<holes.length;index++) holes[index]=shape(polygon.getInteriorRingN(index));
+                var anchor=polygon.getInteriorPoint();
+                String id=territory.id()+(part==0?"":"#part-"+part);
+                for (BlueMapMap map:mappedWorld.get().getMaps()) {
                 MarkerSet layer=layers.get(map.getId());
                 if (layer==null) continue;
-                layer.getMarkers().put(territory.id()+"-area",ShapeMarker.builder()
-                        .label(name).listed(false).shape(outline,64).centerPosition().detail("")
+                layer.getMarkers().put(id+"-area",ShapeMarker.builder()
+                        .label(name).listed(false).shape(outline,64).holes(holes).centerPosition().detail("")
                         .depthTestEnabled(false).lineWidth(2).lineColor(new Color(rgb,.9f))
                         .fillColor(new Color(rgb,.18f)).build());
-                layer.getMarkers().put(territory.id()+"-name",HtmlMarker.builder().label(name).listed(false)
-                        .position(anchor[0],65,anchor[1]).html(html).styleClasses("westshield-clan-label").build());
+                layer.getMarkers().put(id+"-name",HtmlMarker.builder().label(name).listed(false)
+                        .position(anchor.getX(),65,anchor.getY()).html(html).styleClasses("westshield-clan-label").build());
+                }
             }
         }
         for (BlueMapMap map:api.getMaps()) map.getMarkerSets().put(LAYER,layers.get(map.getId()));
         previous=List.copyOf(signature);
+    }
+
+    private static Shape shape(org.locationtech.jts.geom.LineString ring) {
+        // BlueMap closes its shapes; omit JTS's repeated closing coordinate.
+        List<Vector2d> points=new ArrayList<>();
+        for (int index=0;index<ring.getNumPoints()-1;index++) {
+            var point=ring.getCoordinateN(index);
+            points.add(new Vector2d(point.x,point.y));
+        }
+        return new Shape(points);
     }
 
     private static String escape(String text) {

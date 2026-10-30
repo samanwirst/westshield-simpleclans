@@ -63,6 +63,24 @@ public final class Territory {
     public long clanFounded() { return clanFounded; }
     public List<Vertex> vertices() { return vertices; }
     public double area() { return polygon.getArea(); }
+    org.locationtech.jts.geom.Polygon geometry() { return (Polygon) polygon.copy(); }
+
+    public boolean sameOwner(Territory other) {
+        return clanFounded == other.clanFounded && clanTag.equalsIgnoreCase(other.clanTag);
+    }
+
+    /** Count overlapping extensions once, while keeping different worlds separate. */
+    public static double coveredArea(java.util.Collection<Territory> territories) {
+        java.util.Map<UUID, List<org.locationtech.jts.geom.Geometry>> worlds = new java.util.LinkedHashMap<>();
+        for (Territory territory : territories) {
+            worlds.computeIfAbsent(territory.world, ignored -> new ArrayList<>()).add(territory.polygon);
+        }
+        double area = 0;
+        for (var geometries : worlds.values()) {
+            area += org.locationtech.jts.operation.union.UnaryUnionOp.union(geometries).getArea();
+        }
+        return area;
+    }
     public double[] labelPoint() {
         var interior = polygon.getInteriorPoint();
         return new double[]{interior.getX(),interior.getY()};

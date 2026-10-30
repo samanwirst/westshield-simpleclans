@@ -1,5 +1,5 @@
 name: WestShieldClanTerritories
-version: '1.0.3'
+version: '1.0.4'
 main: com.westshield.clans.territory.WestShieldClanTerritories
 api-version: '1.21'
 depend: [SimpleClans, AuthMe, BlueMap]

@@ -54,11 +54,11 @@ entries['META-INF/WestShield-LICENSE.txt'] = (FORK / 'LICENSE').read_bytes()
 for path in dependencies.glob('JTS-*'):
     entries['META-INF/'+path.name] = path.read_bytes()
 entries['META-INF/WestShield-BUILD.json'] = json.dumps({
-    'name': 'WestShieldClanTerritories', 'version': '1.0.3', 'java_release': 25,
+    'name': 'WestShieldClanTerritories', 'version': '1.0.4', 'java_release': 25,
     'server': 'Purpur 26.2 build 2633', 'jts': json.loads((dependencies/'lock.json').read_text()),
     'protection': False, 'fixed_vertex_limit': None,
 }, indent=2).encode()
-output = BASE / 'WestShieldClanTerritories-1.0.3.jar'
+output = BASE / 'WestShieldClanTerritories-1.0.4.jar'
 with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as target:
     for name, data in sorted(entries.items()):
         item = zipfile.ZipInfo(name, (2026, 10, 20, 0, 0, 0))

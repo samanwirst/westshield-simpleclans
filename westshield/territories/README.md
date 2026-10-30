@@ -1,6 +1,6 @@
 # Informational clan territories
 
-WestShieldClanTerritories 1.0.3 adds world-specific polygon labels to the WestShield SimpleClans 2.19.2-westshield.1 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration.
+WestShieldClanTerritories 1.0.4 adds world-specific polygon labels to the WestShield SimpleClans 2.19.2-westshield.1 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration. Version 1.0.4 is a prepared candidate; it has not replaced the running 1.0.3 plugin.
 
 The territory has no protection policy. Entry and exit send a brief standard Minecraft actionbar with the current clan name. Building, breaking, containers, PvP and ordinary interaction continue under the existing server rules. This plugin never uncancels another plugin's decisions. Its only block-break cancellation is for an authenticated administrator holding the explicitly tagged selection wand, to prevent the wand from breaking a selected block.
 
@@ -45,7 +45,19 @@ Java and the browser map preserve the exact RGB value. Bedrock's text palette is
 
 `/cterr point` adds the block at the administrator's feet. `/cterr point <x> <z>` is an alternative for touch input or exact administrative placement. Every vertex belongs to one world. There is no configured vertex-count cap; triangles, concave outlines and long detailed boundaries use the same polygon model. Self-intersections, repeated internal vertices and zero-area outlines are rejected instead of inventing an interior.
 
-Coordinates are horizontal block coordinates and territory detection ignores height. A boundary block is included. Different territories may share an edge, but their interiors cannot overlap. On a shared edge, the lexically first territory ID provides the label. A clan can have multiple separate territories and territories in different worlds.
+Coordinates are horizontal block coordinates and territory detection ignores height. A boundary block is included. Different clans may share an edge, but their interiors cannot overlap. Regions belonging to the same clan tag and founding timestamp may overlap. In a shared area, the lexically first territory ID provides the label. A clan can have multiple separate territories and territories in different worlds.
+
+To **add** selected land, use a fresh region ID, for example `/cterr save sndct syndicate2`.
+This retains every saved region and its original vertices, even when the new area
+overlaps an existing region of the same clan. Do not use `reshape` to add land:
+that command intentionally replaces one saved outline. The clan's TAB area is the
+geometric union, so overlap counts once. BlueMap also renders the union per clan
+and world, avoiding doubled tint or internal borders, while preserving any holes.
+The number of saved regions remains the number of records, not connected components.
+
+The running 1.0.3 rejects these overlapping additions. Activating 1.0.4 requires
+an approved server restart. Unsaved wand selections are currently held only in
+memory and disappear on logout or restart; do not restart expecting to retain them.
 
 ## Management
 
@@ -72,13 +84,18 @@ python3 westshield/territories/build.py --server-root /path/to/prepared-purpur-s
 python3 westshield/territories/check_geometry.py --server-root /path/to/prepared-purpur-server
 ```
 
-Output: `westshield/territories/WestShieldClanTerritories-1.0.3.jar` and SHA-256. The supplied server root must contain its `libraries`, AuthMe and BlueMap 5.29 JARs. JTS 1.20.0 is downloaded from Maven Central only if missing and checked against the committed SHA-256 lock; its classes and tagged upstream license files are embedded. No runtime download is needed. Custom source is covered by the fork's GPL-3.0; JTS retains its Eclipse licenses/notices.
+Output: `westshield/territories/WestShieldClanTerritories-1.0.4.jar` and SHA-256. The supplied server root must contain its `libraries`, AuthMe and BlueMap 5.29 JARs. JTS 1.20.0 is downloaded from Maven Central only if missing and checked against the committed SHA-256 lock; its classes and tagged upstream license files are embedded. No runtime download is needed. Custom source is covered by the fork's GPL-3.0; JTS retains its Eclipse licenses/notices.
 
 ## Verification
 
 The current English presentation is recorded in [../english/README.md](../english/README.md). The original territory checkpoint is recorded in [VERIFICATION.md](VERIFICATION.md), with 22 geometry, 48 native and 25 browser checks. It retains the earlier failed-attempt qualifications and physical-client limits.
 
-The standalone checks cover concavity, both winding orders, inclusive boundaries, invalid outlines, positive-area overlap, shared edges, exact persistence, world isolation, disk failures and a saved/reloaded 10,000-vertex polygon.
+The 26 standalone checks cover concavity, both winding orders, inclusive boundaries,
+invalid outlines, cross-clan overlap rejection, additive same-clan overlap with
+unchanged old vertices, union area, persistence of overlapping additions, reused-tag
+isolation, shared edges, world isolation, disk failures and a saved/reloaded
+10,000-vertex polygon. These are candidate geometry/storage checks, not live
+activation or graphical-client acceptance of version 1.0.4.
 
 The separate integration fixture uses real, authenticated, non-OP Java protocol clients on loopback TCP 25601. Its Geyser endpoint is restricted to loopback UDP 25602. It verifies new administrative permissions, the old permission no longer authorizing creation, conversation revocation, creation for another leader, the tagged wand's actual left/right network packets, a copied wand in ordinary hands, actual actionbar packets, native block breaking/placing/chest access, existing creative claims and clan trust, lifecycle identity, and a clean restart.
 

@@ -71,7 +71,8 @@ public final class TerritoryStore {
         List<Territory> all = List.copyOf(values);
         for (int first = 0; first < all.size(); first++) {
             for (int second = first + 1; second < all.size(); second++) {
-                if (all.get(first).overlapsInterior(all.get(second))) {
+                if (!all.get(first).sameOwner(all.get(second))
+                        && all.get(first).overlapsInterior(all.get(second))) {
                     throw new IllegalArgumentException("Territory interiors overlap: "
                             + all.get(first).id() + " / " + all.get(second).id());
                 }
