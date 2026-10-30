@@ -6,6 +6,16 @@ WestShieldTab 1.0.1 moves the server HUD into Java's TAB header/footer. The side
 
 The panel shows the real online/max-player count, one-minute TPS capped at 20, personal ping in milliseconds, server age, personal membership age, online duration, and the current clan's name/color, age, member count, authenticated online members, polygon area and number of regions. It reveals no positions, compass directions or player tracking. Useful commands appear as short reminders; TAB text is not a clickable menu.
 
+The player list uses `_DEFAULT_.customtabname: '&f%displayname%'` in TAB's
+`groups.yml`. TAB's native display-name placeholder retains the existing
+SimpleClans clan label and its color, the gray `|` divider and white player name.
+The former `%player%` value discarded that clan presentation. The 2026-10-30
+configuration fix was applied live with `tab group _DEFAULT_ customtabname
+&f%displayname%`; it required neither a server restart nor a plugin reload.
+Only this property changed. Clan membership, visibility, nametags and existing
+header/footer statistics remain owned by their current plugins. The full-clan-name
+code increment described in `../chat/README.md` is still a separate pending release.
+
 Personal ping refreshes with the panel once a second. Java uses Paper’s game-connection latency. Bedrock uses the current Geyser connection’s `ping()` API, so the panel does not depend on the loopback Java connection or on enabling Geyser’s keepalive-forwarding setting. The same personal value appears in the on-demand information panel.
 
 All authenticated players can use `/seed` and `/minecraft:seed` through the narrowly scoped `minecraft.command.seed` grant on the default LuckPerms group. Authentication and operator-only commands keep their existing policy.

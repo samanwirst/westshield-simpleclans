@@ -1,0 +1,8 @@
+# Merge this default formatting into the deployment's existing groups.yml.
+# SimpleClans owns the clan color/divider and explicitly white player name.
+_DEFAULT_:
+  tabprefix: '%luckperms-prefix%'
+  tagprefix: '%luckperms-prefix%'
+  customtabname: '&f%displayname%'
+  tabsuffix: ''
+  tagsuffix: ''
