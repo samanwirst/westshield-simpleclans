@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-30",
+  "tab_version": "6.2.0",
+  "configured_clans": [
+    {
+      "tag": "sndct",
+      "name": "Syndicate",
+      "color": "#AA0000"
+    },
+    {
+      "tag": "wgggs",
+      "name": "WestGiggas",
+      "color": "#691C16"
+    }
+  ],
+  "native_runtime_checks": {
+    "clan_member_name": "Syndicate | <white username>",
+    "clan_name_color": "#AA0000",
+    "player_without_clan": "<white username>",
+    "header_footer_adapter_ready": true,
+    "header_footer_history_failures": 0
+  },
+  "server_restart": false,
+  "native_tab_reload": true,
+  "gameplay_or_membership_changed": false,
+  "limitations": [
+    "This is a configuration bridge for the two current clan labels. Membership is detected from the existing styled display name, including operators.",
+    "New clans, renamed labels and changed colors require regenerating the bridge until the prepared full-name SimpleClans code is activated.",
+    "The absent-clan fallback preserves native display names and will use full names automatically after that code update.",
+    "The WestGiggas template is configured but its member was offline during native parsing checks."
+  ]
+}

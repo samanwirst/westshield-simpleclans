@@ -1,0 +1,15 @@
+# Merge conditions into TAB/config.yml and groups-yml-overlay into TAB/groups.yml.
+conditions:
+  westshield_clan_name_wgggs:
+    conditions:
+    - '%displayname%<-wgggs&8'
+    'true': &x&6&9&1&C&1&6WestGiggas &8| &f%player%
+    'false': '&f%displayname%'
+  westshield_clan_name_sndct:
+    conditions:
+    - '%displayname%<-sndct&8'
+    'true': &x&A&A&0&0&0&0Syndicate &8| &f%player%
+    'false': '%condition:westshield_clan_name_wgggs%'
+groups-yml-overlay:
+  _DEFAULT_:
+    customtabname: '&f%condition:westshield_clan_name_sndct%'
