@@ -1,6 +1,6 @@
 # Informational clan territories
 
-WestShieldClanTerritories 1.0.4 adds world-specific polygon labels to the WestShield SimpleClans 2.19.2-westshield.1 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration. Version 1.0.4 is a prepared candidate; it has not replaced the running 1.0.3 plugin.
+WestShieldClanTerritories 1.0.4 adds world-specific polygon labels to the WestShield SimpleClans 2.19.2-westshield.1 fork. It targets Purpur 26.2 build 2633 / Java 25, AuthMe 6.0.1, BlueMap 5.29 and the existing GriefPrevention creative-claim configuration. Version 1.0.4 was activated on 2026-10-30 during an explicitly approved restart. The original 50-vertex Syndicate region was preserved exactly, and its new 11-vertex extension was added as a separate record.
 
 The territory has no protection policy. Entry and exit send a brief standard Minecraft actionbar with the current clan name. Building, breaking, containers, PvP and ordinary interaction continue under the existing server rules. This plugin never uncancels another plugin's decisions. Its only block-break cancellation is for an authenticated administrator holding the explicitly tagged selection wand, to prevent the wand from breaking a selected block.
 
@@ -55,9 +55,11 @@ geometric union, so overlap counts once. BlueMap also renders the union per clan
 and world, avoiding doubled tint or internal borders, while preserving any holes.
 The number of saved regions remains the number of records, not connected components.
 
-The running 1.0.3 rejects these overlapping additions. Activating 1.0.4 requires
-an approved server restart. Unsaved wand selections are currently held only in
-memory and disappear on logout or restart; do not restart expecting to retain them.
+The previous 1.0.3 rejected these overlapping additions. Unsaved wand selections
+are still held only in memory and disappear on logout or restart. The specific
+2026-10-30 extension was recovered and saved from the administrator’s local
+Replay Mod packet recording before the approved update; this is not an automatic
+selection-persistence feature.
 
 ## Management
 
@@ -94,8 +96,9 @@ The 26 standalone checks cover concavity, both winding orders, inclusive boundar
 invalid outlines, cross-clan overlap rejection, additive same-clan overlap with
 unchanged old vertices, union area, persistence of overlapping additions, reused-tag
 isolation, shared edges, world isolation, disk failures and a saved/reloaded
-10,000-vertex polygon. These are candidate geometry/storage checks, not live
-activation or graphical-client acceptance of version 1.0.4.
+10,000-vertex polygon. The live activation separately confirmed the 1.0.4 startup, four saved regions,
+both Syndicate records, the BlueMap bridge and the TAB adapter. These checks do
+not establish physical-client rendering or a load benchmark.
 
 The separate integration fixture uses real, authenticated, non-OP Java protocol clients on loopback TCP 25601. Its Geyser endpoint is restricted to loopback UDP 25602. It verifies new administrative permissions, the old permission no longer authorizing creation, conversation revocation, creation for another leader, the tagged wand's actual left/right network packets, a copied wand in ordinary hands, actual actionbar packets, native block breaking/placing/chest access, existing creative claims and clan trust, lifecycle identity, and a clean restart.
 
